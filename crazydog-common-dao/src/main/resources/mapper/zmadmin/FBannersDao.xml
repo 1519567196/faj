@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FBannersDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FBannersEntity" id="fBannersMap">
+        <result property="itemid" column="itemid"/>
+        <result property="type" column="type"/>
+        <result property="image" column="image"/>
+        <result property="vrUrl" column="vr_url"/>
+        <result property="toUrl" column="to_url"/>
+        <result property="sort" column="sort"/>
+        <result property="addtime" column="addtime"/>
+        <result property="areaid" column="areaid"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

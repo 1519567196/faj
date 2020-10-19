@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FAdvertDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FAdvertEntity" id="fAdvertMap">
+        <result property="itemid" column="itemid"/>
+        <result property="adPlaceId" column="ad_place_id"/>
+        <result property="imgurl" column="imgurl"/>
+        <result property="title" column="title"/>
+        <result property="tourl" column="tourl"/>
+        <result property="sort" column="sort"/>
+        <result property="status" column="status"/>
+        <result property="addtime" column="addtime"/>
+        <result property="adduserid" column="adduserid"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="areaid" column="areaid"/>
+    </resultMap>
+
+    <select id="selectAll" resultType="com.resjz.common.dao.zmadmin.entity.FAdvertEntity">
+        select * from f_ad_place where 1=1
+
+    </select>
+
+</mapper>

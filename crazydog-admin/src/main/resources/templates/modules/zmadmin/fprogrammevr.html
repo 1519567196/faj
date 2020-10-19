@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我家方案-全景</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fprogrammevr:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammevr:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammevr:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+
+            <a class="btn btn-primary" @click="indexPush"><i class="fa fa-hand-rock-o" aria-hidden="true"></i>&nbsp;首页推荐</a>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+            <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal" id="form-programme-vr">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="required"  autocomplete="off"   v-model="fProgrammeVr.title" placeholder="标题"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">vr链接</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="required"  autocomplete="off" v-model="fProgrammeVr.vrUrl" placeholder="vr链接"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">vr首图</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" readonly class="form-control" name="required" v-model="fProgrammeVr.vrImg" placeholder="vr首图"/>-->
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"programme"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属户型</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fProgrammeVr.programmeHouseId" placeholder="属所户型id(关联我加方案户型表)"/>-->
+                            <select   v-model="fProgrammeVr.programmeHouseId" placeholder="请选择户型" style="" name="required">
+                                <option v-for="(item,index) in selPHouseVal" :key="item.itemid" :value="item.itemid"
+                                        :label="item.title"/>
+                            </select>
+
+                        </div>
+                    </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">排序</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="fProgrammeVr.sort" placeholder="(数值越大越靠前)"/>
+
+                </div>
+            </div>
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fprogrammevr.js?_${.now?long}"></script>
+</body>
+</html>

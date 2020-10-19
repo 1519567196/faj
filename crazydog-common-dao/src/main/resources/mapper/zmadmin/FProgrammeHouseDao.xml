@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FProgrammeHouseDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FProgrammeHouseEntity" id="fProgrammeHouseMap">
+        <result property="itemid" column="itemid"/>
+        <result property="title" column="title"/>
+        <result property="houseType" column="house_type"/>
+        <result property="programmeVillageId" column="programme_village_id"/>
+        <result property="image" column="image"/>
+        <result property="isVr" column="is_vr"/>
+        <result property="builtArea" column="built_area"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="areaid" column="areaid"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

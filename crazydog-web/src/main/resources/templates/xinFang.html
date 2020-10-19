@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>标题</title>
+	<link rel="stylesheet" href="/fcss/plugins/bootstrap.min.css">
+	<script src="/fjs/plugins/jquery.min.js"></script>
+	<script src="/fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/fcss/plugins/swiper.min.css">
+  <script src="/fjs/plugins/swiper.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/elementUI.css">
+  <script src="/fjs/plugins/vue.js"></script>
+  <script src="/fjs/plugins/elementUI.js"></script>
+  <link rel="stylesheet" href="/fcss/common.css">
+  <link rel="stylesheet" href="/fcss/xinFang.css">
+  </head>
+  <script th:inline="javascript">
+    $(function () {
+      $(".headerpage").load("/commonHeader.html");
+      $(".bottompage").load("/commonBottom.html");
+
+
+      var message = [[${fHousesSelAttrV}]]+'';
+     var strings = message.split(";");
+      strings.forEach(function (item) {
+
+      var id=item.split(",")[1];
+      var buxianid=item.split(",")[0];
+      if (document.getElementById(''+id)!=null){
+        document.getElementById(''+id).classList.add("active-xscr")
+        document.getElementById('buxian'+buxianid).classList.remove("active-xscr")
+      }
+
+      })
+
+
+
+    })
+  </script>
+  <body>
+    <div>
+      <!-- 页头begin -->
+
+      <div class="headerpage"></div>
+
+
+
+      <!-- 页头end -->
+      <div class="xinf-bg padd-lr">
+        <div class="con-xsear">
+          <div class="con-wsinp">
+            <input class="wsea-inpu" placeholder="" id="search"  type="text">
+          </div>
+          <button class="btn-wsear" type="button" onclick="search(4)">搜索</button>
+        </div>
+        <div class="con-wbrea">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-wbre" href="/index.html">首页</a></li>
+            <li class="breadcrumb-item active">新房</li>
+          </ol>
+        </div>
+        <div class="swiper-container xfa-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination aind-spag xfa-spagi"></div>
+        </div>
+        <div class="con-xscri">
+          <div class="xscr-nava">
+            <span class="xscr-name">商圈&emsp;&emsp;</span>
+            <div>
+            <span class="xscr-item "
+                               th:classappend="${fHousesAreaClass==null}?'active-xscr'"
+                  onclick="search(1,1)"
+                        >不限</span>
+<!--             <a href="" th:each="areac,stat :${fAreaEntities}">-->
+               <span class="xscr-item"   th:each="areac,stat :${fAreaEntities}"
+                     th:classappend="${fHousesAreaClass==areac.areaId}?'active-xscr'"
+                     th:text="${areac.areaName}"
+                     th:onclick="|search(1,${areac.areaId})|">嘉祥县</span>
+<!--             </a>-->
+
+            </div>
+          </div>
+          <div class="xscr-nava" th:each="fa : ${fCommonAttrEntities}">
+            <span class="xscr-name" th:text="|${fa.title}&emsp;&emsp;|" >价格&emsp;&emsp;</span>
+            <div>
+              <span class="xscr-item active-xscr " th:id="|buxian${fa.itemid}|" th:onclick="|search(2,null,${fa.itemid})|">不限</span>
+              <span class="xscr-item" th:each=" fv :${fa.values}"  th:id="${fv.valueId}" th:text="${fv.title}" th:onclick="|search(2,${fv.valueId},${fa.itemid})|">6000以下</span>
+            </div>
+          </div>
+
+          <div class="xscr-nava">
+            <span class="xscr-name">销售状态</span>
+            <div>
+              <span class="xscr-item "  onclick="search(3,null)"  th:classappend="${fHousesSaleStu==null}?'active-xscr'">不限</span>
+              <span class="xscr-item" onclick="search(3,1)"    th:classappend="${fHousesSaleStu==1}?'active-xscr'">在售</span>
+              <span class="xscr-item" onclick="search(3,3)" th:classappend="${fHousesSaleStu==3}?'active-xscr'">待售</span>
+              <span class="xscr-item" onclick="search(3,2)" th:classappend="${fHousesSaleStu==2}?'active-xscr'">售罄</span>
+            </div>
+          </div>
+        </div>
+        <div class="zlis-sbet">
+<!--          楼盘列表+分页-->
+          <div class="zlis-big con-xinf">
+<!--            楼盘查看标签-->
+            <div class="xpax-list">
+              <div class="xpax-item " th:classappend="${order==1||order==null}?'active-xpax'" onclick="search(5,1)">
+                <div class="xpax-text" >默认排序</div>
+                <div class="xpax-line"></div>
+              </div>
+              <div class="xpax-item" onclick="search(5,2)" th:classappend="${order==2}?'active-xpax'">
+                <div class="xpax-text">按价格</div>
+                <div class="xpax-line"></div>
+              </div>
+              <div class="xpax-item" onclick="search(5,3)" th:classappend="${order==3}?'active-xpax'">
+                <div class="xpax-text">人气楼盘</div>
+                <div class="xpax-line"></div>
+              </div>
+            </div>
+<!--            楼盘列表-->
+            <div>
+              <a class="xinf-item" href="javascript:void(0);"  th:each="fh :${fHouses.list}" th:onclick="|sublpIndex(${fh.itemid})|">
+                <img class="img-xinf" th:src="${fh.image}">
+                <div class="con-xtext">
+                  <div class="xinf-asta">
+                    <span class="xinf-name" th:text="${fh.title}">中南·漫悦湾</span>
+                    <img class="img-xstar"
+                         th:src="${fh.score>=1?'/fimages/xinFang/icon_star_00.png':fh.score>0? '/fimages/xinFang/icon_star_03.png':'/fimages/xinFang/icon_star_01.png'}">
+                    <img class="img-xstar"
+                         th:src="${fh.score>=2?'/fimages/xinFang/icon_star_00.png':fh.score>1? '/fimages/xinFang/icon_star_03.png':'/fimages/xinFang/icon_star_01.png'}">
+                    <img class="img-xstar"
+                         th:src="${fh.score>=3?'/fimages/xinFang/icon_star_00.png':fh.score>2? '/fimages/xinFang/icon_star_03.png':'/fimages/xinFang/icon_star_01.png'}">
+                    <img class="img-xstar"
+                         th:src="${fh.score>=4?'/fimages/xinFang/icon_star_00.png':fh.score>3? '/fimages/xinFang/icon_star_03.png':'/fimages/xinFang/icon_star_01.png'}">
+                    <img class="img-xstar"
+                         th:src="${fh.score>=5?'/fimages/xinFang/icon_star_00.png':fh.score>4? '/fimages/xinFang/icon_star_03.png':'/fimages/xinFang/icon_star_01.png'}">
+                    <span class="xinf-ping" th:text="|(${fh.info.commentNum}条评论)|">(20条评论)</span>
+                  </div>
+                  <div class="xinf-sece">
+                    <div>
+                      <div th:text="${fh.info.HhouseType}">3居/ 4居 － 109~144平米</div>
+                      <div th:text="${fh.info.areaAddress}">[高新区-高新区] 崇文大道与蓼河交汇处东北侧</div>
+                      <div>开盘时间：<block th:text="${fh.openTime}"> 待定</block></div>
+                    </div>
+                    <div>
+                      均价<span class="xsece-num" th:text="${fh.price}">9400</span>元/m²
+                    </div>
+                  </div>
+                  <div>
+                    <div class="xsec-otag" th:text="${fh.info['saleStatus']}">在售</div>
+                    <div class="xsec-btag" th:each="ht :${fh.info['houseType']}" th:text="${ht}">住宅</div>
+
+                    <div class="xsec-gtag"  th:each="tag :${fh.info['tags']}" th:text="${tag}">品牌地产</div>
+<!--                    <div class="xsec-gtag">低密度</div>-->
+                  </div>
+                </div>
+              </a>
+
+            </div>
+<!--            分页-->
+            <div class="con-xpagi" id="xpagi-con">
+              <el-pagination class="wjfa-pagi" layout="prev, pager, next" :page-count="pCount"
+              :current-page="cPage" @current-change="handleCurrentChange"></el-pagination>
+            </div>
+
+
+          </div>
+          <form  action="/fhouses/xinFang.html" id="submitPrm" method="post">
+            <input type="hidden" name="areaId2" id="areaId2">
+            <input type="hidden" name="areaId1" id="areaId1">
+            <input type="hidden" name="fHousesSelAttrV" id="fHousesSelAttrV">
+            <input type="hidden" name="fHousesSearch" id="fHousesSearch">
+            <input type="hidden" name="fHousesSaleStu" id="fHousesSaleStu">
+            <input type="hidden" name="page" id="page">
+            <input type="hidden" name="order" id="order">
+
+          </form>
+
+            <form  action="/fhousesIndex/lpIndex.html" id="submitDel" method="post">
+                <input type="hidden" name="houseId" id="houseId">
+                <input type="hidden" name="areaId1" id="areaId1D">
+
+
+            </form>
+
+<!--          右边栏-->
+          <div class="zlis-small">
+<!--            专属购房优惠-->
+            <div class="xinf-bfw">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/zxbkList/img_youhui.png">
+                <div class="con-zlyte">
+                  <div>专属<span class="zlyh-org">购房</span>优惠</div>
+                  <div class="zlyh-text">免费领取方案家专属优惠</div>
+                </div>
+              </div>
+              <div class="con-zlyfo">
+                <input class="zlyh-inpu" placeholder="请输入您的姓名" type="text">
+                <input class="zlyh-inpu" placeholder="请输入您的电话" type="text">
+                <div class="con-darea">
+                  <select class="zlyh-area sele-prov" id="xfan">
+                    <option>选择省</option>
+                  </select>
+                  <select class="zlyh-area sele-city" id="xfan-citi">
+                    <option>选择市</option>
+                  </select>
+                  <select class="zlyh-area" id="xfan-area">
+                    <option>选择区</option>
+                  </select>
+                </div>
+                <button class="btn-disc" type="button">立即领取</button>
+              </div>
+            </div>
+<!--            济宁新房热门楼盘-->
+            <div class="xinf-bfw xinf-rplr">
+              <div>
+                <img class="img-hot" src="/fimages/icon_hot.png">
+                <span class="xinf-hots">济宁新房热门楼盘</span>
+              </div>
+              <a class="xhot-item" href="/lpIndex.html">
+                <img width="100%" src="/fimages/xinFang/example3.png">
+                <div class="xhot-name">任城-华锦苑</div>
+                <div class="xhot-num">8000元/m²</div>
+              </a>
+              <a class="xhot-item" href="/lpIndex.html">
+                <img width="100%" src="/fimages/xinFang/example4.png">
+                <div class="xhot-name">九巨龙龙玺香醍溪谷</div>
+                <div class="xhot-num">8000元/m²</div>
+              </a>
+              <a class="xhot-item" href="/lpIndex.html">
+                <img width="100%" src="/fimages/xinFang/example4.png">
+                <div class="xhot-name">九巨龙龙玺香醍溪谷</div>
+                <div class="xhot-num">8000元/m²</div>
+              </a>
+            </div>
+<!--            济宁新开楼盘-->
+            <div class="xinf-bfw xinf-rplr">
+              <div class="xinf-hots">济宁新开楼盘</div>
+              <table class="con-xnewl">
+                <tr>
+                  <th>楼盘名称</th>
+                  <th>区域</th>
+                  <th>价格</th>
+                </tr>
+                <tr>
+                  <td>公用瑞马新天地</td>
+                  <td>高新区</td>
+                  <td>6800元/m²</td>
+                </tr>
+                <tr>
+                  <td>华润置地·万象府</td>
+                  <td>高新区</td>
+                  <td>7700元/m²</td>
+                </tr>
+                <tr>
+                  <td>城投瑞马锦府</td>
+                  <td>任城区</td>
+                  <td>6800元/m²</td>
+                </tr>
+                <tr>
+                  <td>恒大·丁字湾世纪</td>
+                  <td>泗水</td>
+                  <td>7700元/m²</td>
+                </tr>
+                <tr>
+                  <td>湖山美寓二期</td>
+                  <td>梁山</td>
+                  <td>6800元/m²</td>
+                </tr>
+                <tr>
+                  <td>东方·香溪湾</td>
+                  <td>汶上</td>
+                  <td>7700元/m²</td>
+                </tr>
+                <tr>
+                  <td>玮邦新城</td>
+                  <td>任城区</td>
+                  <td>6800元/m²</td>
+                </tr>
+                <tr>
+                  <td>龙城常青府</td>
+                  <td>高新区</td>
+                  <td>7700元/m²</td>
+                </tr>
+                <tr>
+                  <td>九巨龙红星7号</td>
+                  <td>任城区</td>
+                  <td>6800元/m²</td>
+                </tr>
+                <tr>
+                  <td>济州古城·香樟园</td>
+                  <td>高新区</td>
+                  <td>7700元/m²</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <block class="bottompage"></block>
+    </div>
+  <script src="/fjs/common.js"></script>
+  <script src="/fjs/xinFang.js"></script>
+  <script th:inline="javascript">
+
+      var parm = document.getElementById('search').value;
+      var parms = [[${fHousesSelAttrV}]]+'';
+      var areaId2 = [[${fHousesAreaClass}]];
+      var fHousesSearch = [[${fHousesSearch}]];
+      var fHousesSaleStu = [[${fHousesSaleStu}]];
+      var areaId1 = [[${areaId1}]];
+      var order = [[${order}]];
+      function sublpIndex(houseId){
+          // var areaId1 = [[${areaId1}]];
+          console.log(areaId1)
+          document.getElementById('houseId').value=houseId;
+          document.getElementById('areaId1D').value=areaId1;
+          var form = document.getElementById('submitDel')
+          form.submit();
+      }
+
+    $(function () {
+      var parm = '';
+      var parm1 = window.location.href.split("fHousesSearch=")
+      if (parm1.length == 2) {
+        if (parm1[1].split("&").length > 0) {
+          parm = parm1[1].split("&")[0];
+        } else {
+          parm = parm1[1];
+        }
+
+
+      }
+      // decodeURI
+      $("#search").val( decodeURI(parm));
+    })
+
+
+    // 分页begin
+    var pageCount = [[${fHouses.totalPage}]];//总页数
+    var currentPage = [[${fHouses.currPage}]];//当前页
+
+
+
+    new Vue({
+      el: '#xpagi-con',
+      data: function(){
+        return {
+          pCount: pageCount,
+          cPage: currentPage
+        }
+      },
+      methods: {
+        handleCurrentChange: function(val){
+          // location.replace('/fhouses/xinFang.html?areaId2='+areaId2+'&fHousesSelAttrV='+parms+'&fHousesSearch='+fHousesSearch+'&fHousesSaleStu='+fHousesSaleStu+'&areaId1='+areaId1+'&page='+val+'&order='+order);
+          document.getElementById('areaId2').value=areaId2;
+          document.getElementById('fHousesSelAttrV').value=parms;
+          document.getElementById('fHousesSearch').value=fHousesSearch;
+          document.getElementById('fHousesSaleStu').value=fHousesSaleStu;
+          document.getElementById('areaId1').value=areaId1;
+          document.getElementById('page').value=val;
+          document.getElementById('order').value=order;
+          var form = document.getElementById('submitPrm')
+          form.submit();
+          // 点击上一页、下一页或页号，改变当前页时触发
+          // val 改变后的页号
+        }
+      }
+    });
+    // 分页end
+    function search(bj, attr,attrId) {
+      var parm = document.getElementById('search').value;
+      var parms = [[${fHousesSelAttrV}]]+'';
+      var areaId2 = [[${fHousesAreaClass}]];
+      var fHousesSearch = [[${fHousesSearch}]];
+      var fHousesSaleStu = [[${fHousesSaleStu}]];
+      var areaId1 = [[${areaId1}]];
+      var order = [[${order}]];
+      if (bj == 1) {   //地区筛选
+        console.log(attr)
+        if (attr==1){
+          attr=null;
+        }
+
+
+        document.getElementById('areaId2').value=attr;
+        document.getElementById('fHousesSelAttrV').value=parms;
+        document.getElementById('fHousesSearch').value=fHousesSearch;
+        document.getElementById('fHousesSaleStu').value=fHousesSaleStu;
+        document.getElementById('areaId1').value=areaId1;
+        document.getElementById('order').value=order;
+        var form = document.getElementById('submitPrm')
+        form.submit();
+
+        // location.replace('/fhouses/xinFang.html?areaId2='+attr+'&fHousesSelAttrV='+parms+'&fHousesSearch='+fHousesSearch+'&fHousesSaleStu='+fHousesSaleStu+'&areaId1='+areaId1+'&order='+order);
+
+      } else if (bj == 2) {  //规格属性筛选
+        // parms=parms+';'+attrId+','+attr;
+        var rep='';
+        console.log(parms)
+
+        parms.split(";").forEach(function (it) {
+          console.log(it)
+          if (it.split(',')[0]==attrId){
+            console.log(attrId)
+            console.log(it.split(',')[0])
+          }else {
+            console.log(attrId)
+            rep=    rep+';'+it;
+          }
+
+        });
+        if (attr==null){
+
+        }else {
+          rep=rep+';'+attrId+','+attr;
+        }
+
+        // console.log(rep)
+        document.getElementById('areaId2').value=areaId2;
+        document.getElementById('fHousesSelAttrV').value=rep;
+        document.getElementById('fHousesSearch').value=fHousesSearch;
+        document.getElementById('fHousesSaleStu').value=fHousesSaleStu;
+        document.getElementById('areaId1').value=areaId1;
+        document.getElementById('order').value=order;
+        var form = document.getElementById('submitPrm')
+        form.submit();
+
+        // location.replace('/fhouses/xinFang.html?areaId2='+areaId2+'&fHousesSelAttrV='+rep+'&fHousesSearch='+fHousesSearch+'&fHousesSaleStu='+fHousesSaleStu+'&areaId1='+areaId1+'&order='+order);
+        // console.log(attr)
+      } else if (bj == 3) {  //销售状态筛选
+        console.log(attr)
+        document.getElementById('areaId2').value=areaId2;
+        document.getElementById('fHousesSelAttrV').value=parms;
+        document.getElementById('fHousesSearch').value=fHousesSearch;
+        document.getElementById('fHousesSaleStu').value=attr;
+        document.getElementById('areaId1').value=areaId1;
+        document.getElementById('order').value=order;
+        var form = document.getElementById('submitPrm')
+        form.submit();
+        // location.replace('/fhouses/xinFang.html?areaId2='+areaId2+'&fHousesSelAttrV='+parms+'&fHousesSearch='+fHousesSearch+'&fHousesSaleStu='+attr+'&areaId1='+areaId1+'&order='+order);
+
+      } else if (bj == 4) {  //搜索框
+        console.log(parm)
+        document.getElementById('areaId2').value=areaId2;
+        document.getElementById('fHousesSelAttrV').value=parms;
+        document.getElementById('fHousesSearch').value=parm;
+        document.getElementById('fHousesSaleStu').value=fHousesSaleStu;
+        document.getElementById('areaId1').value=areaId1;
+        document.getElementById('order').value=order;
+        var form = document.getElementById('submitPrm')
+        form.submit();
+        // location.replace('/fhouses/xinFang.html?areaId2='+areaId2+'&fHousesSelAttrV='+parms+'&fHousesSearch='+parm+'&fHousesSaleStu='+fHousesSaleStu+'&areaId1='+areaId1+'&order='+order);
+
+      }else if (bj == 5) {  //标签页（不同排序）
+        console.log(parm)
+        document.getElementById('areaId2').value=areaId2;
+        document.getElementById('fHousesSelAttrV').value=parms;
+        document.getElementById('fHousesSearch').value=fHousesSearch;
+        document.getElementById('fHousesSaleStu').value=fHousesSaleStu;
+        document.getElementById('areaId1').value=areaId1;
+        document.getElementById('order').value=attr;
+        var form = document.getElementById('submitPrm')
+        form.submit();
+        // location.replace('/fhouses/xinFang.html?areaId2='+areaId2+'&fHousesSelAttrV='+parms+'&fHousesSearch='+fHousesSearch+'&fHousesSaleStu='+fHousesSaleStu+'&areaId1='+areaId1+'&order='+attr);
+
+      }
+
+    }
+
+  </script>
+  </body>
+</html>

@@ -1,0 +1,449 @@
+<script  >
+
+    $(function () {
+        setClass('fprogrammevillage','wjfa')
+        // setClass('index','index')
+
+    })
+
+    function setClass(herfBj,divId) {
+        var haveContent = window.location.href.split(herfBj).length;
+        var div = document.getElementById(divId);
+        var divIndex = document.getElementById('index');
+
+        if (haveContent > 1) {
+
+            div.className = 'navi-item active-nav';
+            divIndex.className = 'navi-item';
+
+
+        } else {
+
+            div.className = 'navi-item';
+        }
+    }
+</script>
+<div class="page-header">
+    <div>
+        <i class="fa fa-map-marker colo-oraf" aria-hidden="true"></i>
+        <span id="area">济宁</span>
+        <span class="text-switch colo-oraf" id="switch-text">
+              <span>[切换]</span>
+              <div class="city-list" id="list-city">
+                <div class="clis-mwid" id="mwid-clis"></div>
+                <a class="city-item" href="/">全国</a>
+                <a class="city-item" href="/">北京</a>
+                <a class="city-item" href="/">上海</a>
+                <a class="city-item" href="/">广州</a>
+                <a class="city-item" href="/">深圳</a>
+                <a class="city-item" href="/">成都</a>
+                <a class="city-item" href="/">重庆</a>
+                <a class="city-item" href="/">天津</a>
+                <a class="city-item" href="/">武汉</a>
+                <a class="city-item" href="/">杭州</a>
+                <a class="city-item" href="/">南京</a>
+                <a class="city-item" href="/">苏州</a>
+                <a class="city-item" href="/">济南</a>
+                <a class="city-item" href="/">石家庄</a>
+              </div>
+            </span>
+    </div>
+    <div class="colo-grey9">
+        <div class="con-phone">
+            <i class="fa fa-phone colo-white" aria-hidden="true"></i>
+        </div>
+
+        <span class="text-heat" th:inline="text">客服电话：[[${LinkUs.mobile}]]&nbsp;&nbsp;服务时间：[[${LinkUs.workTime}]]</span>
+        <div class="con-phone">
+            <i class="fa fa-user colo-white" aria-hidden="true"></i>
+        </div>
+        <span th:if="${bean}!=null ">
+
+            <a class="colo-grey9 no-underline" th:text="${bean.memberName} ?: ${bean.memberName}"   href="/"></a>
+
+ <span>|</span>
+                            <a class="colo-grey9 no-underline" th:text="${bean.mobile} ?: ${bean.mobile}"   href="/"></a>
+
+
+            </span>
+        <span th:if="${bean}==null ">
+
+            <a class="colo-grey9 no-underline" href="/login.html">登录</a>
+            <span>|</span>
+            <a class="colo-grey9 no-underline" href="/register.html">注册</a>
+            </span>
+    </div>
+</div>
+<div class="con-nav">
+    <img class="img-logo" src="/fimages/img_logo.png">
+    <div class="navi-list">
+        <div class="navi-item active-nav" id="index">
+            <a class="navt-link no-underline" href="/index.html">首页</a>
+            <div class="navt-line"></div>
+        </div>
+        <div class="navi-item" id="wjfa">
+            <a class="navt-link no-underline" href="/fprogrammevillage/wjfa1.html?areaId1=370800">我家方案</a>
+            <div class="navt-line"></div>
+        </div>
+        <div class="navi-item" id="zx">
+            <a class="navt-link no-underline" href="/">装修</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <span class="navs-link" data-toggle="modal" data-target="#free-offe">免费报价</span>
+                <a class="navs-link" href="/">免费设计</a>
+                <span class="navs-link" data-toggle="modal" data-target="#hous-surv">免费验房量房</span>
+                <a class="navs-link" href="/">装修咨询</a>
+                <a class="navs-link" href="/">装修公司排行</a>
+                <a class="navs-link" href="/zxbk.html">装修百科</a>
+            </div>
+        </div>
+        <div class="navi-item" id="fdc">
+            <a class="navt-link no-underline" href="/">房地产</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <a class="navs-link" href="/">新房信息</a>
+                <a class="navs-link" href="/">地图搜房</a>
+                <a class="navs-link" href="/">楼盘排行</a>
+                <a class="navs-link" href="/">房产买卖流程</a>
+            </div>
+        </div>
+        <div class="navi-item" id="yzg">
+            <a class="navt-link no-underline" href="/">硬装馆</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <a class="navs-link" href="/">主材馆</a>
+                <a class="navs-link" href="/">辅材馆</a>
+                <a class="navs-link" href="/">建材百科</a>
+            </div>
+        </div>
+        <div class="navi-item" id="rzg">
+            <a class="navt-link no-underline" href="/">软装馆</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <a class="navs-link" href="/">家具品牌馆</a>
+                <a class="navs-link" href="/">家电品牌馆</a>
+                <a class="navs-link" href="/">软装品牌馆</a>
+                <a class="navs-link" href="/">装饰摆件</a>
+                <a class="navs-link" href="/">搭配指南</a>
+            </div>
+        </div>
+        <div class="navi-item" id="gz">
+            <a class="navt-link no-underline" href="/">公装</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <a class="navs-link" href="/">免费量尺</a>
+                <a class="navs-link" href="/">免费报价</a>
+                <a class="navs-link" href="/">公装公司推荐</a>
+                <a class="navs-link" href="/">公装案例</a>
+            </div>
+        </div>
+        <div class="navi-item" id="yztlq">
+            <a class="navt-link no-underline" href="/">业主讨论区</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <a class="navs-link" href="/">买房讨论</a>
+                <a class="navs-link" href="/">装修讨论</a>
+            </div>
+        </div>
+        <div class="navi-item" id="fajfw">
+            <a class="navt-link no-underline" href="/">方案家服务</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+                <span class="navs-link" data-toggle="modal" data-target="#disc-deco">免费获取专属优惠</span>
+                <a class="navs-link" href="/">贷款类服务</a>
+                <a class="navs-link" href="/">预留</a>
+            </div>
+        </div>
+    </div>
+    <!-- 搜索begin -->
+    <div class="con-search">
+        <img class="img-search" src="/fimages/icon_search.png">
+    </div>
+    <!-- 搜索end -->
+</div>
+<!-- 免费报价弹窗begin -->
+
+
+<div class="modal fade offe-free" id="free-offe">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-ofr" data-dismiss="modal">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <img class="img-ofree" src="/fimages/popup/img_money.png">
+            <div class="cont-ofre">
+                <div class="free-left">
+                    <div class="free-bma1">
+                        <span class="free-bfs1">装修计算器</span>
+                        <span class="text-ofr1">今天已有1222位业主获得了装修预算</span>
+                    </div>
+                    <div class="free-item">
+                        <span>所在城市：</span>
+                        <span class="free-asterisk">*</span>
+                        <div class="free-ilis">
+                            <select class="free-sele sele-prov" id="freo">
+                                <option>选择省</option>
+                            </select>
+                            <select class="free-sele sele-city" id="freo-citi">
+                                <option>选择市</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="free-item">
+                        <span>房屋面积：</span>
+                        <span class="free-asterisk">*</span>
+                        <div class="free-ilis">
+                            <input class="free-binp" placeholder="请输入您的房屋面积" type="text">
+                        </div>
+                    </div>
+                    <div class="free-item">
+                        <span>房屋户型：</span>
+                        <span class="free-asterisk">*</span>
+                        <div class="free-ilis">
+                            <select class="free-ssel">
+                                <option>1室</option>
+                            </select>
+                            <select class="free-ssel">
+                                <option>1厅</option>
+                            </select>
+                            <select class="free-ssel">
+                                <option>1厨</option>
+                            </select>
+                            <select class="free-sele">
+                                <option>1卫</option>
+                            </select>
+                            <select class="free-sele">
+                                <option>1阳台</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="free-item">
+                        <span>手机号码：</span>
+                        <span class="free-asterisk">*</span>
+                        <div class="free-ilis">
+                            <input class="free-binp" placeholder="报价结果将发送到您的手机" type="text">
+                        </div>
+                    </div>
+                    <div class="free-item">
+                        <span>您的姓名：</span>
+                        <span class="free-asterisk">*</span>
+                        <div class="free-ilis">
+                            <input class="free-binp" placeholder="如何称呼您" type="text">
+                        </div>
+                    </div>
+                    <div class="free-text">
+                        方案家温馨提示：您的信息将被严格保密！稍后客服人员将以客服总机0537-1111111电话与您取得联系，请保持电话畅通。
+                    </div>
+                </div>
+                <div class="free-middle">
+                    <div class="free-circular">
+                        <span>开始</span>
+                        <span>计算</span>
+                    </div>
+                </div>
+                <div class="free-right">
+                    <div class="con-ftpri">
+                        <span class="free-bfs1">您家的装修预算</span>
+                        <span><span class="free-tpri">1256521</span>元</span>
+                    </div>
+                    <div class="free-plis">
+                        <div>
+                            <span>材料费：</span>
+                            <span class="free-num">49562</span>
+                            <span>元</span>
+                        </div>
+                        <div>
+                            <span>人工费：</span>
+                            <span class="free-num">95021</span>
+                            <span>元</span>
+                        </div>
+                        <div>
+                            <span>设计费：</span>
+                            <span class="free-num">5155</span>
+                            <span>元</span>
+                        </div>
+                        <div>
+                            <span>质检费：</span>
+                            <span class="free-num">2150</span>
+                            <span>元</span>
+                        </div>
+                    </div>
+                    <div class="free-text">
+                        装修预算数据由方案家历史服务<span class="free-org">3500万</span>业主装修数据、各大城市装修公司合同数据经过大数据实时分析计算。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 免费报价弹窗end -->
+
+<!-- 专属装修优惠弹窗begin -->
+<div class="modal fade offe-free" id="disc-deco">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close-ofr" data-dismiss="modal">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <img class="img-disc" src="/fimages/popup/img_popup.png">
+            <div class="cont-disc">
+                <input class="disc-inpu" placeholder="请输入您的姓名" type="text">
+                <input class="disc-inpu" placeholder="请输入您的电话" type="text">
+                <div class="con-darea">
+                    <select class="disc-area sele-prov" id="disd">
+                        <option>选择省</option>
+                    </select>
+                    <select class="disc-area sele-city" id="disd-citi">
+                        <option>选择市</option>
+                    </select>
+                    <select class="disc-area" id="disd-area">
+                        <option>选择区</option>
+                    </select>
+                </div>
+                <select class="disc-type">
+                    <option>选择优惠项目类型</option>
+                    <option>买房</option>
+                    <option>装修</option>
+                    <option>材料软装</option>
+                </select>
+                <button class="btn-disc" id="disc-btn" type="button">立即预约</button>
+                <div class="disc-text">
+                    方案家温馨提示：您的信息将被严格保密！稍后客服人员将以客服总机0537-1111111电话与您取得联系，请保持电话畅通。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 专属装修优惠弹窗end -->
+
+
+<!-- 免费量房咨询弹窗begin -->
+<div class="modal fade offe-free" id="hous-surv">
+    <div class="modal-dialog">
+        <div class="modal-content modal-wbg">
+            <div class="modal-header mhead-wbg">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body mbody-wbg">
+                <h5 class="texa-cent">免费预约量房</h5>
+                <div class="hous-text">今天已有<span class="free-org">1234</span>位业主成功预约</div>
+                <div class="popup-lis">
+                    <div class="popu-pbet">
+                        <select class="pbet-sele sele-prov" id="hoss">
+                            <option>选择省</option>
+                        </select>
+                        <select class="pbet-sele sele-city" id="hoss-citi">
+                            <option>选择市</option>
+                        </select>
+                        <select class="pbet-sele" id="hoss-area">
+                            <option>选择区</option>
+                        </select>
+                    </div>
+                    <input class="popu-inpu" placeholder="请输入您所在的小区" type="text">
+                    <input class="popu-inpu" placeholder="请输入您的姓名" type="text">
+                    <input class="popu-inpu" placeholder="请输入您的手机号码" type="text">
+                </div>
+                <button class="pbtn-appo" type="button">立即预约</button>
+                <div class="popu-text">
+                    方案家温馨提示：您的信息将被严格保密！稍后客服人员将以客服总机0537-1111111电话与您取得联系，请保持电话畅通。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 免费量房咨询弹窗end -->
+
+
+<!-- 预约成功弹窗begin -->
+<div class="modal fade offe-free" id="appo-succ">
+    <div class="modal-dialog">
+        <div class="modal-content appo-wbg">
+            <div class="modal-header mhead-wbg">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body mbody-wbg">
+                <img class="img-asucc" src="/fimages/popup/img_success.png">
+                <div class="appo-title">预约成功</div>
+                <div class="appo-text">
+                    恭喜您已免费获取（预约）成功，稍后客服将电话与您联系，确定您的具体需求，请注意接听。
+                </div>
+                <button class="pbtn-appo" data-dismiss="modal" type="button">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 预约成功弹窗end -->
+
+
+<!-- 免费公装咨询弹窗begin -->
+<div class="modal fade offe-free" id="publ-cons">
+    <div class="modal-dialog">
+        <div class="modal-content modal-wbg">
+            <div class="modal-header mhead-wbg">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body mbody-wbg">
+                <h5 class="texa-cent">免费公装咨询</h5>
+                <div class="popup-lis">
+                    <input class="popu-inpu" placeholder="请输入您的姓名" type="text">
+                    <input class="popu-inpu" placeholder="请输入您的电话" type="text">
+                    <div class="popu-pbet">
+                        <select class="pbet-sele sele-prov" id="pubc">
+                            <option>选择省</option>
+                        </select>
+                        <select class="pbet-sele sele-city" id="pubc-citi">
+                            <option>选择市</option>
+                        </select>
+                        <select class="pbet-sele" id="pubc-area">
+                            <option>选择区</option>
+                        </select>
+                    </div>
+                    <select class="publ-type">
+                        <option>请选择公装类型</option>
+                    </select>
+                </div>
+                <button class="pbtn-appo" type="button">立即预约</button>
+                <div class="popu-text">
+                    方案家温馨提示：您的信息将被严格保密！稍后客服人员将以客服总机0537-1111111电话与您取得联系，请保持电话畅通。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 免费公装咨询弹窗end -->
+
+
+<!-- 免费购房咨询弹窗begin -->
+<div class="modal fade offe-free" id="hous-purc">
+    <div class="modal-dialog">
+        <div class="modal-content modal-wbg">
+            <div class="modal-header mhead-wbg">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body mbody-wbg">
+                <h5 class="texa-cent">免费购房咨询</h5>
+                <div class="popup-lis">
+                    <input class="popu-inpu" placeholder="请输入您的姓名" type="text">
+                    <input class="popu-inpu" placeholder="请输入您的电话" type="text">
+                    <div class="popu-pbet">
+                        <select class="pbet-sele sele-prov" id="houp">
+                            <option>选择省</option>
+                        </select>
+                        <select class="pbet-sele sele-city" id="houp-citi">
+                            <option>选择市</option>
+                        </select>
+                        <select class="pbet-sele" id="houp-area">
+                            <option>选择区</option>
+                        </select>
+                    </div>
+                    <input class="popu-inpu" placeholder="请输入您的意向楼盘（如：汤品一号）" type="text">
+                </div>
+                <button class="pbtn-appo" type="button">立即预约</button>
+                <div class="popu-text">
+                    方案家温馨提示：您的信息将被严格保密！稍后客服人员将以客服总机0537-1111111电话与您取得联系，请保持电话畅通。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 免费购房咨询弹窗end -->

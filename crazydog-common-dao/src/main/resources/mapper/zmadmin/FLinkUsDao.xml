@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FLinkUsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FLinkUsEntity" id="fLinkUsMap">
+        <result property="itemid" column="itemid"/>
+        <result property="city" column="city"/>
+        <result property="mobile" column="mobile"/>
+        <result property="address" column="address"/>
+        <result property="image" column="image"/>
+        <result property="company" column="company"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

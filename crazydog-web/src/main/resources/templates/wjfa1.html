@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>我家方案</title>
+	<link rel="stylesheet" href="/fcss/plugins/bootstrap.min.css">
+	<script src="/fjs/plugins/jquery.min.js"></script>
+	<script src="/fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/fcss/plugins/swiper.min.css">
+  <script src="/fjs/plugins/swiper.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/elementUI.css">
+  <script src="/fjs/plugins/vue.js"></script>
+  <script src="/fjs/plugins/elementUI.js"></script>
+  <link rel="stylesheet" href="/fcss/common.css">
+  <link rel="stylesheet" href="/fcss/wjfa.css">
+  </head>
+  <script>
+      $(function () {
+          $(".headerpage").load("/commonHeader.html");
+        $(".bottompage").load("/commonBottom.html");
+      })
+  </script>
+  <body>
+    <div>
+      <!-- 页头begin -->
+        <div class="headerpage"></div>
+
+
+      <!-- 页头end -->
+      <div class="padd-lr">
+        <!-- 搜索begin -->
+        <div class="con-wsear">
+          <div class="con-wsinp">
+            <input class="wsea-inpu" placeholder="" type="text">
+          </div>
+          <button class="btn-wsear" type="button">搜索</button>
+        </div>
+        <!-- 搜索end -->
+        <div class="con-wbrea">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-wbre" href="/index.html">首页</a></li>
+            <li class="breadcrumb-item active">我家方案</li>
+          </ol>
+        </div>
+        <!-- 广告轮播begin -->
+        <div class="swiper-container wj1-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="posi-rela">
+                <img width="100%" src="/fimages/wjfa/img_ad.png">
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination aind-spag wj1-spagi"></div>
+        </div>
+        <!-- 广告轮播end -->
+        <!-- 区域筛选begin -->
+        <div class="con-wscr">
+          <span class="wscr-title">区域</span>
+          <a class="wscr-item active-wscr"  th:each="areac,stat :${fAreaEntities}"   th:if="${areaid2==areac.areaId}" th:text="${areac.areaName}" th:href="@{/fprogrammevillage/wjfa1.html(areaId2=${areac.areaId})}" >市中</a>
+          <a class="wscr-item"  th:each="areac,stat :${fAreaEntities}"   th:if="${areaid2!=areac.areaId}" th:text="${areac.areaName}" th:href="@{/fprogrammevillage/wjfa1.html(areaId2=${areac.areaId})}">太白湖新区</a>
+
+        </div>
+        <!-- 区域筛选end -->
+        <div class="wdat-list">
+          <a class="wdat-item" th:each="fv :${fProgrammeVillagePage.list}" th:href="@{/fprogrammehouse/wjfa2.html(fvId=${fv.itemid})}">
+            <div class="con-iwdit">
+              <img class="img-wdite" th:src="${fv.image}">
+              <div class="pano-disp">
+                <sup class="sup-point">·</sup>
+                <img class="img-iconvr" src="/fimages/index/icon_vr.png">
+                <span class="text-pdis">全景展示</span>
+              </div>
+              <img class="img-wicon" src="/fimages/index/icon_3d.png">
+            </div>
+            <div class="wdat-napr">
+              <span class="wdat-name" th:text="${fv.title}">碧桂园·凤栖台</span>
+              <span class="wdat-price">
+                <span th:text="${fv.price}"></span>元/m<sup>2</sup>
+              </span>
+            </div>
+            <div class="wdat-addr" th:text="${fv.address}">火炬路与香港路交汇处东南角</div>
+          </a>
+
+
+
+        </div>
+        <!-- 分页begin -->
+        <div class="con-wpagi" id="wpagi-con">
+          <el-pagination class="wjfa-pagi" layout="prev, pager, next" :page-count="pCount"
+          :current-page="cPage" @current-change="handleCurrentChange"></el-pagination>
+        </div>
+        <!-- 分页end -->
+      </div>
+      <img class="img-popup" data-target="#free-offe" data-toggle="modal" src="/fimages/wjfa/img_popup.png">
+      <block class="bottompage"></block>
+    </div>
+    <script src="/fjs/wjfa.js"></script>
+    <script th:inline="javascript">
+      // 分页begin
+      var pageCount = [[${fProgrammeVillagePage.totalPage}]];//总页数  totalPage
+      console.log(pageCount)
+      var currentPage = [[${fProgrammeVillagePage.currPage}]];//当前页  currPage
+      var area1 = null;
+      var area2 = null;
+      var areaid1 = window.location.href.split("areaId1=");
+      if (areaid1.length == 2) {
+        area1 = areaid1[1].split("&")[0];
+
+      }
+
+      var areaid2 = window.location.href.split("areaId2=");
+      if (areaid2.length == 2) {
+        area2 = areaid2[1].split("&")[0];
+      }
+      new Vue({
+        el: '#wpagi-con',
+        data: function(){
+          return {
+            pCount: pageCount,
+            cPage: currentPage
+          }
+        },
+        methods: {
+          handleCurrentChange: function(val){
+            window.location.href='/fprogrammevillage/wjfa1.html?areaId1='+area1+'&areaId2='+area2+'&page='+val;
+            // 点击上一页、下一页或页号，改变当前页时触发
+            // val 改变后的页号
+          }
+        }
+      });
+      // 分页end
+    </script>
+  </body>
+</html>

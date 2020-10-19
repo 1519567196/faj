@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>标题</title>
+    <link rel="stylesheet" href="/fcss/plugins/bootstrap.min.css">
+    <script src="/fjs/plugins/jquery.min.js"></script>
+    <script src="/fjs/plugins/bootstrap.bundle.min.js"></script>
+    <script src="/fjs/plugins/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/fcss/common.css">
+    <link rel="stylesheet" href="/fcss/lpDetails.css">
+</head>
+<script th:inline="javascript">
+    $(function () {
+        $(".headerpage").load("/commonHeader.html");
+        $(".bottompage").load("/commonBottom.html");
+
+    })
+</script>
+
+<body>
+<div>
+    <!-- 页头begin -->
+    <div class="headerpage"></div>
+    <!-- 页头end -->
+    <div class="lpin-bg padd-lr">
+        <div class="con-lisea">
+            <div class="con-wsinp">
+                <input class="wsea-inpu" placeholder="请输入楼盘/地名/开发商等" type="text">
+            </div>
+            <button class="btn-wsear" type="button">搜索</button>
+        </div>
+    </div>
+    <div class="padd-lr">
+        <div class="con-wbrea">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="link-wbre" href="index.html">首页</a></li>
+                <li class="breadcrumb-item"><a class="link-wbre" href="xinFang.html">新房</a></li>
+                <li class="breadcrumb-item active">楼盘首页</li>
+            </ol>
+        </div>
+        <div class="lpde-name">中南 · 漫悦湾</div>
+        <div class="lpde-marb">
+            <div class="lpin-otag">在售</div>
+            <div class="lpin-ztag">住宅</div>
+            <div class="lpin-btag">洋房</div>
+            <div class="lpin-gtag">品牌地产</div>
+            <div class="lpin-gtag">低密度</div>
+            <div class="lpin-gtag">公园</div>
+        </div>
+        <div class="lpli-list">
+            <a class="lpli-item" href="lpIndex.html">
+                <div class="lpli-text">楼盘首页</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item active-lpli" href="lpDetails.html">
+                <div class="lpli-text">楼盘详情</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item" href="lpDongtai.html">
+                <div class="lpli-text">楼盘动态</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item" href="lpHuxing.html">
+                <div class="lpli-text">户型</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item" href="lpXiangce.html">
+                <div class="lpli-text">楼盘相册</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item" href="lpPinglun.html">
+                <div class="lpli-text">楼盘点评</div>
+                <div class="lpli-line"></div>
+            </a>
+            <a class="lpli-item" href="">
+                <div class="lpli-text">房价走势</div>
+                <div class="lpli-line"></div>
+            </a>
+        </div>
+        <div class="lpde-padl">
+            <div class="lpde-mtit">基本信息</div>
+            <div class="lpde-cont">
+                <div class="lpde-frss">
+                    <span>价格：</span>
+                    <div>
+                        <div>普通住宅均价<span class="lpde-org">8600元/平方米</span></div>
+                        <div>花园洋房均价<span class="lpde-org">9600元/平方米</span></div>
+                    </div>
+                </div>
+                <div class="lpde-frws">
+                    <div class="ldfw-item">
+                        楼盘名称：中南·漫悦湾
+                    </div>
+                    <div class="ldfw-item">
+                        项目特色：品牌地产 低密度 公园 超高绿化
+                    </div>
+                    <div class="ldfw-item">
+                        物业类别：住宅 别墅
+                    </div>
+                    <div class="ldfw-item">
+                        产权年限：70年
+                    </div>
+                    <div class="ldfw-item">
+                        建筑类别：多层
+                    </div>
+                    <div class="ldfw-item">
+                        装修状况：非毛坯
+                    </div>
+                    <div class="ldfw-item">
+                        装修状况：非毛坯
+                    </div>
+                    <div class="ldfw-item">
+                        楼盘地址：崇文大道与蓼河交汇处东北侧
+                    </div>
+                    <div class="ldfw-item">
+                        环线位置：暂无数据
+                    </div>
+                </div>
+            </div>
+            <div class="lpde-mtit">销售信息</div>
+            <div class="lpde-cont">
+                <div class="lpde-frws">
+                    <div class="ldfw-item">
+                        销售状态：在售
+                    </div>
+                    <div class="ldfw-item">
+                        楼盘优惠：暂无折扣
+                    </div>
+                    <div class="ldfw-item">
+                        开盘时间：2020年7月5日2#、5#、7-9#、14#、16#楼已开
+                    </div>
+                    <div class="ldfw-item">
+                        交房时间：2020年8月30日
+                    </div>
+                    <div class="ldfw-item">
+                        售楼地址：高新区菱花路与东外环交汇西南
+                    </div>
+                    <div class="ldfw-item">
+                        咨询电话：4000008963
+                    </div>
+                    <div class="ldfw-item">
+                        主力户型：三居(3) 四居(2)
+                    </div>
+                </div>
+                <div>预售许可证：</div>
+                <table class="lpde-tabl">
+                    <tr>
+                        <th>预售证号</th>
+                        <th>发证时间</th>
+                        <th>绑定楼栋</th>
+                    </tr>
+                    <tr>
+                        <td>济高新房开预字[2018]第10号</td>
+                        <td>2018-10-19</td>
+                        <td>1#2#3#4#5#6#7#8#</td>
+                    </tr>
+                    <tr>
+                        <td>济高新房开预字[2018]第1号</td>
+                        <td>2018-09-21</td>
+                        <td>10#13#14#9#</td>
+                    </tr>
+                    <tr>
+                        <td>济房开预字[2018]第54号</td>
+                        <td>2018-09-13</td>
+                        <td>11#12#</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="lpde-mtit">周边设施</div>
+            <div class="lpde-cont">
+                <div class="lpde-mab2">
+                    交通信息：项目附近有39路、B1路、C605路等多路公交车
+                </div>
+                <div class="lpde-mab2">
+                    医院信息：第一人民医院（东院区）
+                </div>
+                <div class="lpde-mab2">
+                    周边学校：孔子国际学校，济宁海达行知学校、济宁技师学院
+                </div>
+                <div class="lpde-mab2">
+                    综合商场：印象吟龙湾商业街、贵和商场（高新体院馆店）、红星爱琴海购物广场、奥特莱斯综合体
+                </div>
+                <div class="lpde-mab2">
+                    公园景观：蓼河公园、高新区体育馆、科技馆、图书馆、影视馆、圣都国际会议中心、橘子酒店、香港大厦
+                </div>
+                <div class="lpde-mab2">
+                    其他配套：中国银行、建设银行、农业银行、工商银行、农商银行、中国邮政储蓄银行、中国邮政
+                </div>
+                <div class="lpde-mab2">
+                    小区配套：信报箱、健身设施、地下停车场、垃圾回收点、消防设施
+                </div>
+            </div>
+            <div class="lpde-mtit">小区规划</div>
+            <div class="lpde-cont lpde-frws">
+                <div class="ldfw-item">
+                    占地面积：45981.0㎡
+                </div>
+                <div class="ldfw-item">
+                    停车配比：暂无数据
+                </div>
+                <div class="ldfw-item">
+                    建筑面积：86472.9㎡
+                </div>
+                <div class="ldfw-item">
+                    规划户数：508
+                </div>
+                <div class="ldfw-item">
+                    容 积 率：住宅：1.5
+                </div>
+                <div class="ldfw-item">
+                    楼层状况：9-11层
+                </div>
+                <div class="ldfw-item">
+                    绿 化 率：49 %
+                </div>
+                <div class="ldfw-item">
+                    楼栋总数：14
+                </div>
+                <div class="ldfw-item">
+                    停 车 位：514
+                </div>
+                <div class="ldfw-item">
+                    物 业 费：1.75元/㎡
+                </div>
+                <div class="ldfw-item">
+                    物业公司：中南置地
+                </div>
+            </div>
+            <div class="lpde-mtit">项目介绍</div>
+            <div class="lpde-cont">
+                <p class="lpde-linb">
+                    中南·漫悦湾项目总占地约45981㎡，总建筑面积约86472.9㎡，规划建设11栋11层小高层、1栋10层小高层、2栋9层小高层。整体规划分为两个组团，14幢建筑沿蓼河依次分布，涵盖123㎡、141㎡共508席2种产品。项目本着健康环保的康居理念，
+                    产品均为精装修交付， 的用材用料均为中南战略合作的一线品牌。户型舒适宽敞、灵活可变；1.5的超低密度、1：1的车位配比、七重立体园林体系，园林绿化 达40%以上
+                </p>
+                <p class="lpde-linb">
+                    中南·漫悦湾项目总占地约45981㎡，总建筑面积约86472.9㎡，规划建设11栋11层小高层、1栋10层小高层、2栋9层小高层。整体规划分为两个组团，14幢建筑沿蓼河依次分布，涵盖123㎡、141㎡共508席2种产品。项目本着健康环保的康居理念
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- 页尾begin -->
+    <block class="bottompage"></block>
+    <!-- 页尾end -->
+</div>
+<script src="/fjs/common.js"></script>
+</body>
+</html>

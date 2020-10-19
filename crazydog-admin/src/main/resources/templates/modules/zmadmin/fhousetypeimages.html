@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>楼盘户型相册</title>
+		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/layui/css/layui.css">
+<!--    <script src="${request.contextPath}/statics/plugins/layer/layer.js"></script>-->
+
+    <script src="${request.contextPath}/statics/js/modules/showMaxImg.js"></script>
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/showMaxImg.css">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fhousetypeimages:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousetypeimages:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousetypeimages:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="showAddImg"   id="contextForm" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal layui-form">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">图片名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" lay-verify="required" v-model="fHouseTypeImages.title" placeholder="图片名称"/>
+                        </div>
+                    </div>
+
+
+            <div v-show="showImg">
+
+                    <div class="col-sm-2 control-label">图片</div>
+                    <div class="col-sm-10">
+                        <div class="form-inline" style="width: 800px">
+                            <div class="form-group">
+                                <img :src="img" class="img-thumbnail" style="max-width: 300px">
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">图片</div>
+                <!--            <img src="fHouseImages.image">-->
+                <div class="col-sm-10 form-inline">
+                    <input type="file"  name="file" id="fileImg" />
+                    <input type="button"  class="btn btn-default btn-small" @click="upload('fileImg')" value="上传"/>
+                </div>
+            </div>
+
+
+
+
+            <div  class="form-group layui-form-item">
+                <div class="col-sm-2 control-label"><font color="red">*</font>楼盘</div>  <div class="col-sm-10 layui-input-inline">
+
+                <select    id="houseId" v-model="fHouseTypeImages.houseId" placeholder="请选择楼盘" lay-verify="required" style="">
+                    <option v-for="(item,index) in selHouVal" :key="item.itemid" :value="item.itemid"
+                            >{{item.title}}</option>
+                </select>
+            </div>
+            </div>
+
+
+
+<!--											                    <div class="form-group">-->
+<!--                        <div class="col-sm-2 control-label">标签</div>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" v-model="fHouseTypeImages.tags" placeholder="标签"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">标签</div>
+                <div class="col-sm-10">
+                    <!--                            <input type="text" class="form-control" v-model="fFitupCompany.tag1" placeholder="标签1，多个用;隔开"/>-->
+                    <el-tag
+                            :key="tag"
+                            v-for="tag in dynamicTags"
+                            closable
+                            :disable-transitions="false"
+                            @close="handleClose1(tag)">
+                        {{tag}}
+                    </el-tag>
+                    <el-input
+                            class="input-new-tag"
+                            v-if="inputVisible&&bj"
+                            v-model="inputValue"
+                            ref="saveTagInput"
+                            size="small"
+                            @keyup.enter.native="handleInputConfirm"
+                            @blur="handleInputConfirm"
+                    >
+                    </el-input>
+                    <el-button v-else-if="!inputVisible" class="button-new-tag" size="small" @click="showInput">+ 添加标签</el-button>
+
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">朝向</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouseTypeImages.chaoXiang" placeholder="朝向"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+            <div class="col-sm-2 control-label">面积</div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" v-model="fHouseTypeImages.mianJi"   lay-verify="required" placeholder="面积"/>
+            </div>
+        </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">均价</div>
+                <div class="col-sm-10 ">
+                    <input type="text" class="form-control layui-input" lay-verify="number"  v-model="fHouseTypeImages.price" placeholder="均价"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">销售状态</div>
+                <div class="col-sm-10 layui-input-inline">
+                    <select  id ="saleStatus" v-model="fHouseTypeImages.saleStatus" :value="fHouseTypeImages.saleStatus" lay-verify="required" placeholder="请选择销售状态" style="">
+                        <option   value="0"
+                                >未知<option/>
+                        <option   value="1"
+                                 >在售<option/>
+                        <option   value="2"
+                                 >售罄<option/>
+                    </select>                </div>
+            </div>
+
+
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdateImg"  lay-submit=""  lay-filter="demo2"  value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+
+
+<div v-show="!showList&&!showAddImg" class="panel panel-default">
+    <div class="panel-heading">{{title}}</div>
+    <form class="form-horizontal layui-form">
+        <div class="form-group">
+            <div class="col-sm-2 control-label">相册名称</div>
+            <div class="col-sm-10 layui-form-item">
+                <input type="text" class="form-control"  lay-verify="required"  v-model="fHouseTypeImages.imageAlbumName" placeholder="相册名称"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label"></div>
+            <input type="button" class="btn btn-primary"   @click="saveOrUpdate"  lay-submit=""  lay-filter="demo1"  value="确定"/>
+            &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+        </div>
+    </form>
+</div>
+
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhousetypeimages.js?_${.now?long}"></script>
+<script src="${request.contextPath}/statics/layui/layui.js?_${.now?long}"></script>
+
+<script>
+
+
+    layui.use(['form', 'layedit', 'laydate'], function() {
+        var form = layui.form
+        form.on('submit(demo2)', function(data){
+
+        })
+        form.on('submit(demo1)', function(data){
+
+        })});
+</script>
+</body>
+</html>

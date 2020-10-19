@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>招聘</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fjob:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fjob:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fjob:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">职位名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.job" placeholder="职位名称"/>
+                        </div><span style="color: red">*</span>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">招聘人数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.count" placeholder="招聘人数"/>
+                        </div><span style="color: red">*</span>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">工作地点</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.workplace" placeholder="工作地点"/>
+                        </div><span style="color: red">*</span>
+                    </div>
+											                    <!--<div class="form-group">
+                        <div class="col-sm-2 control-label">内容</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.content" placeholder="内容"/>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">内容</div>
+                        <div class="col-sm-10">
+                                                    <textarea  name="fJob.content" v-model="fJob.content"
+                                                               type="text/plain" style="width:400px;height:100px;"> <p
+                                                            v-html="fJob.content"></textarea>
+                        </div>
+                    </div>
+											                  <!--  <div class="form-group">
+                        <div class="col-sm-2 control-label">添加时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.addtime" placeholder="添加时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">添加人id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.addUserid" placeholder="添加人id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">修改时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.updatetime" placeholder="修改时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fJob.areaid" placeholder="所属地区id"/>
+                        </div>
+                    </div>-->
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+
+        <div id="showDetail" class="" style="display: none; ">
+            <div  id="showDetailDIV" align="center" style="padding:20px; font-size: large;">
+            </div>
+        </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fjob.js?_${.now?long}"></script>
+</body>
+</html>

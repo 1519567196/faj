@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FPediaDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FPediaEntity" id="fPediaMap">
+        <result property="itemid" column="itemid"/>
+        <result property="title" column="title"/>
+        <result property="views" column="views"/>
+        <result property="from" column="from"/>
+        <result property="tags" column="tags"/>
+        <result property="goods" column="goods"/>
+        <result property="subTitle" column="sub_title"/>
+        <result property="content" column="content"/>
+        <result property="isDelete" column="is_delete"/>
+        <result property="subject" column="subject"/>
+        <result property="typeid" column="typeid"/>
+        <result property="subCateIds" column="sub_cate_ids"/>
+        <result property="recommend" column="recommend"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="areaid" column="areaid"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

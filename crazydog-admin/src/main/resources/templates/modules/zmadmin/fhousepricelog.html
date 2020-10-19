@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>房价走势记录表</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fhousepricelog:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousepricelog:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousepricelog:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal" id="form-priceLog">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘</div>
+                        <div class="col-sm-10">
+                            <select   v-model="fHousePriceLog.houseid" placeholder="请选择楼盘" style="" name="required">
+                                <option v-for="(item,index) in selHouVal" :key="item.itemid" :value="item.itemid"
+                                        :label="item.title"/>
+                            </select>                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">均价</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number"   autocomplete="off"  v-model="fHousePriceLog.averagePrice" placeholder="均价"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">起价</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number" v-model="fHousePriceLog.startPrice" placeholder="起价"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">年月份{{fHousePriceLog.mouth}}</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" v-model="fHousePriceLog.mouth" id="yearMouth"  autocomplete="off"   placeholder=" 记录年月份"  >                        </div>-->
+                            <div class="container">                   <el-date-picker
+                                    v-model="value2"
+                                    format="yyyy-MM"
+                                    value-format="yyyy-MM"
+                                    type="month" id="yearMouth"
+                                    placeholder="选择月">
+                            </el-date-picker>
+                            </div></div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">描述</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHousePriceLog.remark" placeholder="描述"/>
+                        </div>
+                    </div>
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhousepricelog.js?_${.now?long}"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FCaseSkuDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FCaseSkuEntity" id="fCaseSkuMap">
+        <result property="itemid" column="itemid"/>
+        <result property="attrValueId" column="attr_value_id"/>
+        <result property="attrId" column="attr_id"/>
+        <result property="caseId" column="case_id"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>材建-品牌</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fmaterialbrand:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fmaterialbrand:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fmaterialbrand:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal"  id="form-materialbrand">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">logo</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fMaterialBrand.logo" placeholder="logo"/>-->
+
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"material"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove1"
+                                    :on-change="handleChange1"
+                                    :on-success="onSuccess1"
+                                    :file-list="fileListLogo"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">品牌名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="required" v-model="fMaterialBrand.brandName" placeholder=""/>
+                        </div>
+                    </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">排序，越大越靠前</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="fMaterialBrand.sort" placeholder="排序，越大越靠前"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">建材主分类</div>
+                <div class="col-sm-10">
+                    <select   v-model="selOne" placeholder="请选择建材主分类" style=""  @change="selectAttr1()"  name="required">
+                        <option v-for="(item,index) in selMaterialVal" :key="item.itemid" :value="item.itemid"
+                                :label="item.title"/>
+                    </select>
+
+                    <!--                            <input type="text" class="form-control" v-model="fMaterialBrand.materialTypeId" placeholder="建材分类id"/>-->
+                </div>
+            </div>
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">建材分类</div>
+                        <div class="col-sm-10">
+                            <select   v-model="materialTypeId" placeholder="请选择建材分类" style="" name="required">
+                                <option v-for="(item,index) in selMaterialTypeVal" :key="item.itemid" :value="item.itemid"
+                                        :label="item.type"/>
+                            </select>
+
+<!--                            <input type="text" class="form-control" v-model="fMaterialBrand.materialTypeId" placeholder="建材分类id"/>-->
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主图</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fMaterialBrand.image" placeholder="主图"/>-->
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"material"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+                        </div>
+                    </div>
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fmaterialbrand.js?_${.now?long}"></script>
+</body>
+</html>

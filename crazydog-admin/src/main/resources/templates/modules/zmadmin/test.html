@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <!--        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">-->
+    <#include "/header.html">
+</head>
+
+<body>
+<div id="app">
+    <div class="block">
+        <span class="demonstration">默认 click 触发子菜单</span>
+        <el-cascader
+                v-model="value"
+                :options="options"
+                :props="{ expandTrigger: 'hover' ,
+                        value:'areaId',
+                        label:'areaName',
+                        children:'childList'
+
+                }"
+                @change="handleChange"></el-cascader>
+    </div>
+
+</div>
+</body>
+<!-- import Vue before Element -->
+<!--<script src="https://unpkg.com/vue/dist/vue.js"></script>-->
+<!--&lt;!&ndash;&lt;!&ndash; import JavaScript &ndash;&gt;&ndash;&gt;-->
+<!--<script src="https://unpkg.com/element-ui/lib/index.js"></script>-->
+<script>
+    $(function () {
+
+        var url = "sys/farea/treeList";
+        $.ajax({
+            type: "POST",
+            url: baseURL + url,
+            contentType: "application/json",
+            // data: JSON.stringify(vm.fProgrammeVillage),
+            success: function (r) {
+                if (r.code === 0) {
+                    console.log(r)
+                    vm.options = r.list;
+                } else {
+                    alert(r.msg);
+                }
+            }
+        });
+
+    });
+    var vm = new Vue({
+        el:'#app',
+        data: {
+
+            value: [],
+            options: []
+
+        },
+        methods: {
+            handleChange(value) {
+                console.log(value);
+            }
+        }
+    });
+
+</script>
+</html>

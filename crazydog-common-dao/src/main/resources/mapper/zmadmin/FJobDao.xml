@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FJobDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FJobEntity" id="fJobMap">
+        <result property="iobId" column="iob_id"/>
+        <result property="job" column="job"/>
+        <result property="count" column="count"/>
+        <result property="workplace" column="workplace"/>
+        <result property="content" column="content"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="areaid" column="areaid"/>
+    </resultMap>
+
+
+</mapper>

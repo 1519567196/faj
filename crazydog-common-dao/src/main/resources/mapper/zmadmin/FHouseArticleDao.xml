@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FHouseArticleDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FHouseArticleEntity" id="fHouseArticleMap">
+        <result property="itemid" column="itemid"/>
+        <result property="title" column="title"/>
+        <result property="subTitle" column="sub_title"/>
+        <result property="content" column="content"/>
+        <result property="views" column="views"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="articleTypeId" column="article_type_id"/>
+        <result property="areaid" column="areaid"/>
+        <result property="houseId" column="house_id"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

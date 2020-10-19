@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>广告</title>
+		<#include "/header.html">
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/lang/zh_CN.js"></script>
+
+    <script charset="utf-8" src="${request.contextPath}/statics/libs/chosen.jquery.min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/vue-resource.js"></script>
+    <script src="${request.contextPath}/statics/libs/bootstrap-table.min.js"></script>
+    <script src="${request.contextPath}/statics/plugins/layui/lay/modules/laydate.js?"></script>
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+
+            <div class="form-group col-sm-2">
+                <input type="hidden" id="typeid" v-model="fAdvert.adPlaceId"/>
+                <div class="col-sm-3" style="padding: 0;line-height: 34px;">请选择广告位</div>
+                <div class="col-sm-9">
+
+                    <select  id="q_project" class="form-control" @keyup.enter="query"  onchange="getItemid()">
+                        <option  selected>请选择广告位</option>
+                        <template v-for="option in typeList">
+                            <option :value="option.itemid">{{ option.title }}</option>
+                        </template>
+                    </select>
+                </div>
+            </div>
+            <a class="btn btn-default" @click="query">查询</a>
+
+			<#if shiro.hasPermission("sys:fadvert:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fadvert:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fadvert:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+<!--														                    <div class="form-group">-->
+<!--                        <div class="col-sm-2 control-label">广告位位置</div>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" v-model="fAdvert.adPlaceId" placeholder="广告位位置"/>-->
+
+
+
+<!--                        </div>-->
+<!--                    </div>-->
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">广告位位置</div>
+                <div class="col-sm-10">
+                    <select v-model="fAdvert.adPlaceId" class="form-control">
+                        <template v-for="option in typeList">
+
+                            <option :value="option.itemid" v-if="option.itemid == fAdvert.adPlaceId" selected>{{option.title }}
+                            </option>
+                            <option :value="option.itemid" v-if="option.itemid != fAdvert.adPlaceId">{{option.title }}
+                            </option>
+                        </template>
+                    </select>
+                </div>
+                <span style="color: red">*</span>
+            </div>
+
+            <!--<div class="form-group">
+                <div class="col-sm-2 control-label">图片</div>
+                <div class="col-sm-10">
+                    <img id="imgurl" style="width:100px;height:100px;" v-bind:src="fAdvert.imgurl"/>
+                    <a class="btn btn-primary" id="uploadImgurl"><i class="fa fa-plus"></i>&nbsp;上传图片</a><span
+                        style="color: red">上传尺寸：600*600*</span>
+                </div>
+            </div>-->
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">图片:</div>
+                <div class="col-sm-10">
+                    <ul class="clearfix">
+                        <img id="imgurl" v-mode="fAdvert.imgurl"   v-if="img" :src="img" style="height: 200px;width: 200px" />
+                        <input class="upload" @change='add_img'  type="file" >
+                    </ul>
+                    <span>（图片尺寸370*285，修改时,如果不上传,表示不修改图片）</span>
+                </div>
+            </div>
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.title" placeholder="标题"/>
+                        </div>
+                        <span style="color: red">*</span>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">跳转链接</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.tourl" placeholder="跳转链接"/>
+                        </div>
+                         <span style="color: red">*</span>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">排序</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.sort" placeholder="排序 越大越靠前"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">状态</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fAdvert.status" placeholder="状态，默认0  1禁用"/>-->
+                            <input type="radio" v-model="fAdvert.status" name="status" value="0">启用
+                            <input type="radio" v-model="fAdvert.status" name="status" value="1">禁用
+                        </div>
+                    </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">添加时时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.addtime" placeholder="添加时时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">操作人id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.adduserid" placeholder="操作人id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">修改时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.updatetime" placeholder="修改时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fAdvert.areaid" placeholder="所属地区id"/>
+                        </div>
+                    </div>-->
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fadvert.js?_${.now?long}"></script>
+
+<script>
+    function getItemid() {
+
+        // $("#proName").val($('#q_project option:selected').text());//选中的文本
+        $("#typeid").val($('#q_project option:selected').val());//选中的值
+    }
+
+
+</script>
+</body>
+</html>

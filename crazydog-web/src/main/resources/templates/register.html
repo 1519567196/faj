@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>标题</title>
+	<link rel="stylesheet" href="./fcss/plugins/bootstrap.min.css">
+	<script src="./fjs/plugins/jquery.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="./fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <script src="./fjs/plugins/vue.js"></script>
+  <link rel="stylesheet" href="./fcss/common.css">
+  <link rel="stylesheet" href="./fcss/register.css">
+  </head>
+  <body>
+    <div>
+      <!-- 页头begin -->
+      <div class="page-header">
+        <div>
+          <i class="fa fa-map-marker colo-oraf" aria-hidden="true"></i>
+          <span>济宁</span>
+          <a class="colo-oraf no-underline" href="">[切换]</a>
+        </div>
+        <div class="colo-grey9">
+          <div class="con-phone">
+            <i class="fa fa-phone colo-white" aria-hidden="true"></i>
+          </div>
+          <span class="text-heat">客服电话：0537-XXXXXXX&nbsp;&nbsp;服务时间：周一至周日</span>
+          <div class="con-phone">
+            <i class="fa fa-user colo-white" aria-hidden="true"></i>
+          </div>
+          <a class="colo-grey9 no-underline" href="login.html">登录</a>
+          <span>|</span>
+          <a class="colo-grey9 no-underline" href="register.html">注册</a>
+        </div>
+      </div>
+      <div class="con-nav">
+        <img class="img-logo" src="fimages/img_logo.png">
+        <div class="navi-list">
+          <div class="navi-item active-nav">
+            <a class="navt-link no-underline" href="index.html">首页</a>
+            <div class="navt-line"></div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">我家方案</a>
+            <div class="navt-line"></div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">装修</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">免费报价</a>
+              <a class="navs-link" href="">免费设计</a>
+              <a class="navs-link" href="">免费验房量房</a>
+              <a class="navs-link" href="">装修咨询</a>
+              <a class="navs-link" href="">装修公司排行</a>
+              <a class="navs-link" href="zxbk.html">装修百科</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">房地产</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">新房信息</a>
+              <a class="navs-link" href="">地图搜房</a>
+              <a class="navs-link" href="">楼盘排行</a>
+              <a class="navs-link" href="">房产买卖流程</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">硬装馆</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">主材馆</a>
+              <a class="navs-link" href="">辅材馆</a>
+              <a class="navs-link" href="">建材百科</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">软装馆</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">家具品牌馆</a>
+              <a class="navs-link" href="">家电品牌馆</a>
+              <a class="navs-link" href="">软装品牌馆</a>
+              <a class="navs-link" href="">装饰摆件</a>
+              <a class="navs-link" href="">搭配指南</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">公装</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">免费量尺</a>
+              <a class="navs-link" href="">免费报价</a>
+              <a class="navs-link" href="">公装公司推荐</a>
+              <a class="navs-link" href="">公装案例</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">业主讨论区</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">买房讨论</a>
+              <a class="navs-link" href="">装修讨论</a>
+            </div>
+          </div>
+          <div class="navi-item">
+            <a class="navt-link no-underline" href="">方案家服务</a>
+            <div class="navt-line"></div>
+            <div class="nav-smenu">
+              <a class="navs-link" href="">免费获取专属优惠</a>
+              <a class="navs-link" href="">贷款类服务</a>
+              <a class="navs-link" href="">预留</a>
+            </div>
+          </div>
+        </div>
+        <!-- 搜索begin -->
+        <div class="con-search">
+          <img class="img-search" src="fimages/icon_search.png">
+        </div>
+        <!-- 搜索end -->
+      </div>
+      <!-- 页头end -->
+      <div class="con-relo">
+        <img width="100%" src="fimages/register/img_bg.png">
+        <div class="regi-faaj">方案家</div>
+        <div class="regi-logi" id="logi-regi">
+          <div class="con-lregi">
+            <a class="link-regi active-regi" href="">注册</a>
+            <a class="link-regi" href="login.html">登录</a>
+          </div>
+          <div class="con-rinpu">
+            <input class="regi-phone" id="phone-regi" placeholder="请输入手机号" type="text">
+          </div>
+          <div class="regi-tip" id="rti-phone">手机号码格式错误！</div>
+          <div class="con-rinpu">
+            <input class="regi-password" id="password-regi" placeholder="请设置密码" type="password">
+            <img class="img-password" id="password-img" src="fimages/register/icon_password.png">
+          </div>
+          <div class="regi-tip" id="rti-password">一</div>
+          <div class="con-rvcod">
+            <div class="con-rinpu">
+              <input class="regi-vcod" placeholder="验证码" type="text">
+            </div>
+            <button class="btn-rvcod" id="rvcod-btn" type="button">获取验证码</button>
+          </div>
+          <div class="regi-tip" id="rti-rvcod">一</div>
+          <button class="btn-regi" v-bind:class="{'pass-regi': isPass}"  onclick="a()"  id="submitReg"  type="button">注册</button>
+          <div class="con-agree">
+            <input id="check-clause" type="checkbox">
+            <span class="text-agree">
+              <span>我已认真阅读并同意</span>
+              <a class="link-clause no-underline" href="">《服务条款》</a>
+            </span>
+          </div>
+          <div class="texa-cent">
+            <a class="link-breg no-underline" href="">帮助</a>
+            <a class="link-breg no-underline" href="">隐私</a>
+            <a class="link-breg no-underline" href="">条款</a>
+          </div>
+        </div>
+      </div>
+      <!-- 页尾begin -->
+      <div class="page-footer">
+        <div>
+          <div>
+            <a class="footer-link" href="company.html">关于我们</a>
+            <a class="footer-link" href="statement.html">服务声明</a>
+            <a class="footer-link" href="">商务合作</a>
+            <a class="footer-link" href="recruitment.html">招聘信息</a>
+            <a class="footer-link" href="">联系我们</a>
+          </div>
+          <div>
+            <div class="foot-copr">Copyright©2020 济宁方案家有限公司</div>
+            <div class="foot-copr">Beijing SouFun Science&Technology Development Co.,Ltd 版权所有</div>
+            <div class="foot-copr">违法和不良信息举报电话： 010-56318764 举报邮箱： jubao@fang.com</div>
+          </div>
+        </div>
+        <div>
+          <div class="con-ftext">
+            <div class="colo-white">全国统一热线</div>
+            <div class="hotline">400-5555-000</div>
+            <div class="colo-grey8">服务时间:周一至周日</div>
+          </div>
+          <img class="img-fqcod" src="fimages/footer_ewm.jpg">
+        </div>
+      </div>
+      <!-- 页尾end -->
+    </div>
+    <script src="./fjs/register.js"></script>
+    <script src="./fjs/dataHand/register.js"></script>
+    <script>
+      window.addEventListener("load", function(){
+        var rvcodBtn = document.getElementById("rvcod-btn");
+        if (rvcodBtn) {
+          rvcodBtn.addEventListener("click", function(){
+            this.disabled = true;
+            this.classList.add("rego-disa");
+            var time = 60;
+            this.innerText = "获取验证码("+time+"s)";
+            time--;
+            var id = setInterval(function(){
+              if (time <= 0) {
+                clearInterval(id);
+                rvcodBtn.innerText = "获取验证码";
+                rvcodBtn.classList.remove("rego-disa");
+                rvcodBtn.disabled = false;
+              } else {
+                rvcodBtn.innerText = "获取验证码("+time+"s)";
+              }
+              time--;
+            }, 1000);
+          });
+        }
+      });
+    </script>
+  </body>
+  <script src="./fjs/dataHand/register.js" ></script>
+</html>

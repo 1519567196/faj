@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>装修公司</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:ffitupcompany:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:ffitupcompany:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:ffitupcompany:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+<!--<el-dialog :visible.sync="dialogVisibleC">-->
+<!--    <input  type="text"  readonly  v-model="dialogText"/>-->
+<!--</el-dialog>-->
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal" id="form-fitup-company">
+
+
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">企业名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fFitupCompany.companyName" placeholder="企业名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公司形象图</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fFitupCompany.image" placeholder="公司形象图"/>-->
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"fitup"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fFitupCompany.address" placeholder="地址"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">联系电话</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fFitupCompany.mobile" placeholder="联系电话"/>
+                        </div>
+                    </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">排序，越大越靠前</div>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" v-model="fFitupCompany.sort" placeholder="排序，越大越靠前"/>
+                </div>
+            </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">经度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="jingdu"   autocomplete="off" v-model="fFitupCompany.longitude" placeholder="经度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">纬度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="weidu" autocomplete="off" v-model="fFitupCompany.latitude" placeholder="纬度"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">状态</div>
+                        <div class="col-sm-10">
+                            <select  id ="saleStatus" v-model="fFitupCompany.status"  placeholder="请选择状态" style="">
+                                <option   value="0" label="正常"/>
+                                <option   value="1"  label="删除"
+                                />
+
+                            </select>
+
+                        </div>
+                    </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">施工类型</div>
+                <div class="col-sm-10">
+                    <select  id ="allHalfContracting" v-model="fFitupCompany.allHalfContracting"  placeholder="请选择状态" style="">
+                        <option   value="1" label="全包"/>
+                        <option   value="2"  label="半包"
+                        />
+
+                    </select>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">工期（施工时长）</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="fFitupCompany.allorhalfTimes" placeholder="工期"/>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">营业时间</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="fFitupCompany.businessHours" placeholder="营业时间"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">售后质保</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="fFitupCompany.warranty" placeholder="售后质保"/>
+                </div>
+            </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">企业简介</div>
+                        <div class="col-sm-10">
+                            <textarea type="text" class="form-control" v-model="fFitupCompany.content" placeholder="企业简介"></textarea>
+                        </div>
+                    </div>
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">评分</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number" autocomplete="off" v-model="fFitupCompany.score" placeholder="评分"/>
+                        </div>
+                    </div>
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">案例数量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number5" autocomplete="off" v-model="fFitupCompany.caseCount" placeholder="案例数量"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">设计师人数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number5" autocomplete="off" v-model="fFitupCompany.designerCount" placeholder="设计师人数"/>
+                        </div>
+                    </div>
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">基本标签（1）</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fFitupCompany.tag1" placeholder="标签1，多个用;隔开"/>-->
+                            <el-tag
+                                    :key="tag"
+                                    v-for="tag in dynamicTags"
+                                    closable
+                                    :disable-transitions="false"
+                                    @close="handleClose1(tag)">
+                                {{tag}}
+                            </el-tag>
+                            <el-input
+                                    class="input-new-tag"
+                                    v-if="inputVisible&&bj"
+                                    v-model="inputValue"
+                                    ref="saveTagInput"
+                                    size="small"
+                                    @keyup.enter.native="handleInputConfirm"
+                                    @blur="handleInputConfirm"
+                            >
+                            </el-input>
+                            <el-button v-else-if="!inputVisible" class="button-new-tag" size="small" @click="showInput">+ 添加标签</el-button>
+
+
+
+                        </div>
+                    </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">详细标签（2）</div>
+                <div class="col-sm-10">
+                <el-tag
+                        v-for="(tag,index) in tag2s"
+                        :key="tag.index"
+                        closable  @close="handleClose2(tag)"
+                >
+                    {{tag}}
+                </el-tag>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">添加详细标签</div>
+                <div class="col-sm-10">
+                    <table>
+                        <tr><td>标签标题</td><td>标签内容</td><td>操作</td></tr>
+                        <tr><td> <input type="text" class="form-control" v-model="tag2Title" placeholder=""/></td>
+                            <td><input type="text" class="form-control" v-model="tag2Content" placeholder=""/></td>
+                            <td>     <el-button type="success"  @click="saveTag2s" icon="el-icon-check" circle></el-button>
+
+                               </td></tr>
+
+
+                    </table>
+
+
+</div>
+
+            </div>
+            <el-collapse v-model="activeNames" >
+                <el-collapse-item title="装修公司规格属性" name="0">
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">规格属性</div>
+                        <el-tag
+                                v-for="(tag,index) in attrandattrValue"
+                                :key="tag.index"
+                                closable  @close="handleClose3(tag)"
+                        >
+                            {{tag.attr}}:{{tag.attrValue}}
+                        </el-tag>
+                    </div>
+
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>属性</div>  <div class="col-sm-10">
+
+                        <select   v-model="attr"  @change="selectAttr1()" placeholder="请选择属性" style="">
+                            <option v-for="(item,index) in attrs" :key="item.itemid" :value="item.itemid"
+                                    :label="item.title"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>属性值</div>  <div class="col-sm-10">
+
+                        <el-select v-model="attrValue" @change="selectAttr()"   multiple filterable  placeholder="请选择">
+                            <el-option
+                                    v-for="item in attrValues"
+                                    :key="item.valueId"
+                                    :label="item.title"
+                                    :value="item.valueId">
+                            </el-option>
+                        </el-select>
+
+
+                    </div>
+                    </div>
+                </el-collapse-item>
+
+            </el-collapse>
+
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/ffitupcompany.js?_${.now?long}"></script>
+<style>
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
+    }
+</style>
+</body>
+</html>

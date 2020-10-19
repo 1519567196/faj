@@ -1,0 +1,26 @@
+<!-- 页尾begin -->
+<div class="page-footer">
+    <div>
+        <div>
+            <a class="footer-link" href="company.html">关于我们</a>
+            <a class="footer-link" href="statement.html">服务声明</a>
+            <a class="footer-link" href="">商务合作</a>
+            <a class="footer-link" href="recruitment.html">招聘信息</a>
+            <a class="footer-link" href="">联系我们</a>
+        </div>
+        <div>
+            <div class="foot-copr">Copyright©2020 济宁方案家有限公司</div>
+            <div class="foot-copr">Beijing SouFun Science&Technology Development Co.,Ltd 版权所有</div>
+            <div class="foot-copr">违法和不良信息举报电话： 010-56318764 举报邮箱： jubao@fang.com</div>
+        </div>
+    </div>
+    <div>
+        <div class="con-ftext" th:inline="text">
+            <div class="colo-white">全国统一热线</div>
+            <div class="hotline" >[[${LinkUs.mobile}]]</div>
+            <div class="colo-grey8">服务时间:[[${LinkUs.workTime}]]</div>
+        </div>
+        <img class="img-fqcod" th:src="${LinkUs.image}">
+    </div>
+</div>
+<!-- 页尾end -->

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FAppointmentDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FAppointmentEntity" id="fAppointmentMap">
+        <result property="itemid" column="itemid"/>
+        <result property="memberName" column="member_name"/>
+        <result property="mobile" column="mobile"/>
+        <result property="provinceid" column="provinceid"/>
+        <result property="cityid" column="cityid"/>
+        <result property="townid" column="townid"/>
+        <result property="village" column="village"/>
+        <result property="isReply" column="is_reply"/>
+        <result property="type" column="type"/>
+        <result property="addtime" column="addtime"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="areaid" column="areaid"/>
+    </resultMap>
+
+
+</mapper>

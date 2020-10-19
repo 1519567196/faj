@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FFitupCompanyDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FFitupCompanyEntity" id="fFitupCompanyMap">
+        <result property="itemid" column="itemid"/>
+        <result property="companyName" column="company_name"/>
+        <result property="image" column="image"/>
+        <result property="address" column="address"/>
+        <result property="mobile" column="mobile"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="status" column="status"/>
+        <result property="content" column="content"/>
+        <result property="warranty" column="warranty"/>
+        <result property="businessHours" column="business_hours"/>
+        <result property="score" column="score"/>
+        <result property="allInclusive" column="all_inclusive"/>
+        <result property="caseCount" column="case_count"/>
+        <result property="designerCount" column="designer_count"/>
+        <result property="tag2" column="tag2"/>
+        <result property="tag1" column="tag1"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="areaid" column="areaid"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

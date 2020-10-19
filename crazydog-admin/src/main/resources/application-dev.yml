@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    druid:
+      first:  #数据源1
+        url: jdbc:mysql://192.168.6.230:3306/fanganjia_db?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: gyly1234@2018
+      second:  #数据源2
+        url: jdbc:mysql://10.10.168.18:3306/fanganjia_db?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+        username: root
+        password: 123456
+      initial-size: 2
+      max-active: 5
+      min-idle: 5
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      #validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      stat-view-servlet:
+        enabled: false
+        url-pattern: /druid/*
+        #login-username: admin
+        #login-password: admin
+      filter:
+        stat:
+          log-slow-sql: true
+          slow-sql-millis: 1000
+          merge-sql: false
+        wall:
+          config:
+            multi-statement-allow: true
+file:
+  path: G:/fanganjia/statics/
+#图片地址
+upload:
+  savePath: G:/fanganjia/statics/
+  #文件上传回显路径
+  pathNginx: http://localhost:81
+  #富文本 图片上传文件夹
+  fwbImgPath: textimage
+  #富文本 音视频上传文件夹
+  fwbVideoPath: media

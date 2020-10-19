@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>装修相册</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fimages:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fimages:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fimages:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal"  id="form-fimage">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">图片名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fImages.title" placeholder="图片名称"/>
+                        </div>
+                    </div>
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属企业</div>
+                        <div class="col-sm-10">
+
+
+                            <select   v-model="fImages.companyid" placeholder="请选择所属企业" style="" name="required">
+                                <option v-for="(item,index) in selCompanyVal" :key="item.itemid" :value="item.itemid"
+                                        :label="item.companyName"/>
+                            </select>
+<!--                            <input type="text" class="form-control" v-model="fImages.companyid" placeholder="所属企业id"/>-->
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">图片地址</div>
+                        <div class="col-sm-10">
+
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"fitup"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+<!--                            <input type="text" class="form-control" v-model="fImages.image" placeholder="图片地址"/>-->
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">排序，越大越靠前</div>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" v-model="fImages.sort" placeholder="排序，越大越靠前"/>
+                        </div>
+                    </div>
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary"  value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fimages.js?_${.now?long}"></script>
+</body>
+</html>

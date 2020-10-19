@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FMaterialBrandDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FMaterialBrandEntity" id="fMaterialBrandMap">
+        <result property="itemid" column="itemid"/>
+        <result property="logo" column="logo"/>
+        <result property="brandName" column="brand_name"/>
+        <result property="materialTypeId" column="material_type_id"/>
+        <result property="image" column="image"/>
+        <result property="addtime" column="addtime"/>
+        <result property="addUserid" column="add_userid"/>
+        <result property="updatetime" column="updatetime"/>
+        <result property="areaid" column="areaid"/>
+    </resultMap>
+<select id="selectByBrandId" parameterType="java.lang.Integer" resultType="com.resjz.common.dao.zmadmin.entity.FMaterialBrandEntity">
+    select * from f_material_brand where material_type_id = #{materialBrandId}
+</select>
+
+</mapper>

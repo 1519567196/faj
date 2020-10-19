@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>标题</title>
+	<link rel="stylesheet" href="./fcss/plugins/bootstrap.min.css">
+	<script src="./fjs/plugins/jquery.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="./fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./fcss/common.css">
+  <link rel="stylesheet" href="./fcss/zxbk.css">
+  </head>
+  <script>
+    $(function () {
+      $(".headerpage").load("/commonHeader.html");
+      $(".bottompage").load("/commonBottom.html");
+    })
+  </script>
+  <body>
+    <div>
+      <!-- 页头begin -->
+      <div class="headerpage"></div>
+
+
+      <!-- 页头end -->
+      <div class="padd-lr">
+        <div class="con-wbrea">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-wbre" href="index.html">首页</a></li>
+            <li class="breadcrumb-item active">装修百科</li>
+          </ol>
+        </div>
+      </div>
+      <img width="100%" src="fimages/zxbk/img_banner.png">
+      <div class="con-zxnav">
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_liucheng.png">
+          <div class="zxvm-title">装修流程</div>
+          <span th:each="decorationProcess :${list1}">
+          <a class="zxnav-item" href="#dpro-zxbk" th:text="${decorationProcess.title}">装修准备</a>
+<!--          <a class="zxnav-item" href="#dpro-zxbk">装修施工</a>-->
+<!--          <a class="zxnav-item" href="#dpro-zxbk">拎包入住</a>-->
+            </span>
+        </div>
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_paihang.png">
+          <div class="zxvm-title">装修公司排行</div>
+          <a class="zxnav-item" href="#dcra-zxbk">货比三家</a>
+          <a class="zxnav-item" href="#dcra-zxbk">装修施工</a>
+        </div>
+
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_gonglue.png">
+          <div class="zxvm-title">装修攻略</div>
+          <span th:each="decorationProcess :${list2}">
+          <div class="zxnav-item zxbk-tsub"  th:text="${decorationProcess.title}">装修风向标</div>
+<!--          <div class="zxnav-item zxbk-tsub">装修风水</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">实装案例</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">装修风格</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">装修课堂</div>-->
+          </span>
+        </div>
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_baike.png">
+          <div class="zxvm-title">建材百科</div>
+          <span th:each="decorationProcess :${list3}">
+          <div class="zxnav-item zxbk-tsub" th:text="${decorationProcess.title}">建材品牌</div>
+<!--          <div class="zxnav-item zxbk-tsub">建材精选</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">建材攻略</div>-->
+          </span>
+        </div>
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_zhinan.png">
+          <div class="zxvm-title">搭配指南</div>
+          <span th:each="decorationProcess :${list4}">
+          <div class="zxnav-item zxbk-tsub" th:text="${decorationProcess.title}">家具</div>
+<!--          <div class="zxnav-item zxbk-tsub">家电</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">软装配饰</div>-->
+          </span>
+        </div>
+        <div class="zxbk-mite">
+          <img class="img-zmite" src="fimages/zxbk/icon_anli.png">
+          <div class="zxvm-title">公装案例</div>
+          <span  th:each="case :${list5}">
+          <div class="zxnav-item zxbk-tsub"  th:text="${case.title}"  onclick="location.href='login.html'">酒店</div>
+
+<!--          <div class="zxnav-item zxbk-tsub">办公</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">商场</div>-->
+<!--          <div class="zxnav-item zxbk-tsub">门面</div>-->
+          </span>
+        </div>
+      </div>
+      <!-- 装修流程begin -->
+      <div class="con-zmodel" id="dpro-zxbk">
+        <h5 class="zxbk-mtitle">装修流程</h5>
+        <div class="padd-lr zxbk-dpro">
+          <!-- 装修准备begin -->
+          <div class="zdpr-item">
+            <div class="posi-rela">
+              <img width="100%" src="fimages/zxbk/img_ready.png">
+              <div class="zdpr-btex">
+                <div class="zdt-title">装修准备</div>
+                <div class="zdt-cont">装修好复杂，先从哪入手？</div>
+                <div class="zdt-line"></div>
+              </div>
+            </div>
+            <div class="zdli-list">
+              <a class="zdpr-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_liangfang_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_liangfang_nor2.png">
+                <div class="zdli-text">收房量房</div>
+              </a>
+              <a class="zdpr-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_yusuan_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_yusuan_nor2.png">
+                <div class="zdli-text">核算预算</div>
+              </a>
+              <a class="zdpr-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_design_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_design_nor2.png">
+                <div class="zdli-text">设计阶段</div>
+              </a>
+              <a class="zdpr-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_contract_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_contract_nor2.png">
+                <div class="zdli-text">签订合同</div>
+              </a>
+            </div>
+          </div>
+          <!-- 装修准备end -->
+          <!-- 装修施工begin -->
+          <div class="zdpr-item">
+            <div class="posi-rela">
+              <img width="100%" src="fimages/zxbk/img_construction.png">
+              <div class="zdpr-btex">
+                <div class="zdt-title">装修施工</div>
+                <div class="zdt-cont">过程不琐碎，水电泥木油</div>
+                <div class="zdt-line"></div>
+              </div>
+            </div>
+            <div class="zdli-list">
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_chaichu_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_chaichu_nor2.png">
+                <div class="zdli-text">改拆</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_fangshui1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_fangshui2.png">
+                <div class="zdli-text">防水</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_niwa_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_niwa_nor2.png">
+                <div class="zdli-text">泥瓦</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_shuidian_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_shuidian_nor2.png">
+                <div class="zdli-text">水电</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_mugong_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_mugong_nor2.png">
+                <div class="zdli-text">木工</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_youqi_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_youqi_nor2.png">
+                <div class="zdli-text">油漆</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_jungong_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_jungong_nor2.png">
+                <div class="zdli-text">竣工</div>
+              </a>
+              <a class="zdco-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_more_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_more_nor2.png">
+                <div class="zdli-text">更多</div>
+              </a>
+            </div>
+          </div>
+          <!-- 装修施工end -->
+          <!-- 拎包入住begin -->
+          <div class="zdpr-item">
+            <div class="posi-rela">
+              <img width="100%" src="fimages/zxbk/img_check in.png">
+              <div class="zdpr-btex">
+                <div class="zdt-title">拎包入住</div>
+                <div class="zdt-cont">收尾不马虎，家从心出发</div>
+                <div class="zdt-line"></div>
+              </div>
+            </div>
+            <div class="zdli-list">
+              <a class="zcin-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_ruanzhuang_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_ruanzhuang_nor2.png">
+                <div class="zdli-text">软装配置</div>
+              </a>
+              <a class="zcin-link no-underline" href="">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_checkin_nor1.png">
+                <img class="img-zdpr" src="fimages/zxbk/icon/icon_checkin_nor2.png">
+                <div class="zdli-text">即将入住</div>
+              </a>
+            </div>
+          </div>
+          <!-- 拎包入住end -->
+        </div>
+      </div>
+      <!-- 装修流程end -->
+      <!-- 装修公司排行begin -->
+      <div class="con-zmodel" id="dcra-zxbk">
+        <h5 class="zxbk-mtitle">装修公司排行</h5>
+        <div class="zxbk-subtitle">货比三家 择优而选</div>
+        <div class="padd-lr zxbk-dcra">
+          <div class="zdpr-item">
+            <div class="posi-rela" th:if="${fFitupCompanyEntities.size()}>=1">
+              <a href="">
+                <img width="100%" th:src="${fFitupCompanyEntities[0].image}">
+                <img class="img-dcran" src="fimages/zxbk/icon_no1.png">   <!--第一-->
+                <div class="con-dcrte">
+                  <span class="dcrt-name" th:text="${fFitupCompanyEntities[0].companyName}">曲阜尚层装饰设计有限公司</span>
+                  <span class="dcrt-city" th:text="|[${fFitupCompanyEntities[0].areaName}]|">[曲阜市]</span>
+                </div>
+              </a>
+            </div>
+            <div class="zxdc-list">
+              <a class="zxdc-item no-underline" href="" th:each="comp1 :${listComp1}">
+                <img class="img-ztitl" src="fimages/zxbk/icon_title.png">
+                <span class="zxdc-name" th:text="${comp1.companyName}">济宁品胜装饰工程有限公司</span>
+                <span class="zxdc-city" th:text="|[${comp1.areaName}]|">[高新区]</span>
+              </a>
+
+            </div>
+          </div>
+          <div class="zdpr-item">
+            <div class="posi-rela" th:if="${fFitupCompanyEntities.size()}>=2">
+              <a href="">
+                <img width="100%" th:src="${fFitupCompanyEntities[1].image}">
+                <img class="img-dcran" src="fimages/zxbk/icon_no2.png">
+                <div class="con-dcrte">
+                  <span class="dcrt-name" th:text="${fFitupCompanyEntities[1].companyName}">济宁百纳装饰有限公司</span>
+                  <span class="dcrt-city"  th:text="|[${fFitupCompanyEntities[1].areaName}]|">[任城区]</span>
+                </div>
+              </a>
+            </div>
+            <div class="zxdc-list">
+              <a class="zxdc-item no-underline" href="" th:each="comp2 :${listComp2}">
+                <img class="img-ztitl" src="fimages/zxbk/icon_title.png">
+                <span class="zxdc-name" th:text="${comp2.companyName}">济宁品胜装饰工程有限公司</span>
+                <span class="zxdc-city" th:text="|[${comp2.areaName}]|">[高新区]</span>
+              </a>
+
+
+            </div>
+          </div>
+          <div class="zdpr-item">
+            <div class="posi-rela" th:if="${fFitupCompanyEntities.size()}>=3">
+              <a href="">
+                <img width="100%" th:src="${fFitupCompanyEntities[2].image}">
+                <img class="img-dcran" src="fimages/zxbk/icon_no3.png">
+                <div class="con-dcrte">
+                  <span class="dcrt-name" th:text="${fFitupCompanyEntities[2].companyName}">济宁市博程装饰工程有限公司</span>
+                  <span class="dcrt-city" th:text="|[${fFitupCompanyEntities[2].areaName}]|">[北湖区]</span>
+                </div>
+              </a>
+            </div>
+            <div class="zxdc-list">
+              <a class="zxdc-item no-underline" href="" th:each="comp3 :${listComp3}">
+                <img class="img-ztitl" src="fimages/zxbk/icon_title.png">
+                <span class="zxdc-name" th:text="${comp3.companyName}">济宁品胜装饰工程有限公司</span>
+                <span class="zxdc-city" th:text="|[${comp3.areaName}]|">[高新区]</span>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 装修公司排行end -->
+      <!-- 装修攻略begin -->
+      <div class="con-zmodel">
+        <h5 class="zxbk-mtitle">装修攻略</h5>
+        <div class="zxbc-list">
+          <span  th:each="l2,st : ${list2}">
+            <span  th:if="${st.index}==0">
+                 <div class="zxbc-item active-zxbc" data-switch="dstr-zxbk" th:text="${l2.title}">装修风向标</div>
+
+            </span>
+             <span  th:if="${st.index}>0">
+  <div class="zxbc-item" data-switch="dstr-zxbk" th:text="${l2.title}">装修风水</div>
+            </span>
+          </span>
+
+
+
+        </div>
+        <div class="padd-lr" id="dstr-zxbk">
+          <!-- 装修风向标begin -->
+          <div class="zxbk-dstr active-dstr" th:each="l2,st : ${list2}" th:if="${st.index}==0">
+
+            <div class="zxgl-item" th:each="content2 :${contents2}" th:if="${content2.typeid}==${l2.itemid}">
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${content2.imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${content2.title}">五金</div>
+<!--                    <div class="eobm-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${content2.subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <!-- 装修风向标end -->
+          <!-- 装修风水begin -->
+          <div class="zxbk-dstr" th:each="l2,st : ${list2}" th:if="${st.index}>0">
+
+            <div class="zxgl-item" th:each="content2 :${contents2}" th:if="${content2.typeid}==${l2.itemid}">
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${content2.imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${content2.title}">五金</div>
+<!--                    <div class="eobm-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${content2.subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- 装修风水end -->
+
+        </div>
+      </div>
+      <!-- 装修攻略end -->
+      <!-- 建材百科begin -->
+      <div class="con-zmodel">
+        <h5 class="zxbk-mtitle">建材百科</h5>
+        <div class="zxbc-list">
+            <span  th:each="l3,st : ${list3}">
+            <span  th:if="${st.index}==0">
+<!--                 <div class="zxbc-item active-zxbc" data-switch="dstr-zxbk" th:text="${l3.title}">装修风向标</div>-->
+<div class="zxbc-item active-zxbc" data-switch="eobm-zxbk" th:text="${l3.title}">建材品牌</div>
+            </span>
+             <span  th:if="${st.index}>0">
+<!--  <div class="zxbc-item" data-switch="dstr-zxbk" >装修风水</div>-->
+               <div class="zxbc-item" data-switch="eobm-zxbk" th:text="${l3.title}">建材精选</div>
+            </span>
+          </span>
+<!--          -->
+<!--          -->
+<!--          <div class="zxbc-item" data-switch="eobm-zxbk">建材攻略</div>-->
+        </div>
+        <div class="padd-lr" id="eobm-zxbk">
+            <span  th:each="l3,st : ${listBaiKeResults3}">
+                    <span  th:if="${st.index}==0">
+          <!-- 建材品牌begin -->
+          <div class="zxbk-dstr active-dstr">
+
+              <div class="eobm-item" >
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe1[0].title}">五金</div>
+<!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe1[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+                <div class="eobm-item"  th:if="${l3.listBaiKe2.size()>0}">
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe2[0].title}">五金</div>
+                    <!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe2[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+
+                <div class="eobm-item"  th:if="${l3.listBaiKe3.size()>0}">
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe3[0].title}">五金</div>
+                    <!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe3[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+
+          </div>
+                       </span>
+
+          <!-- 建材品牌end -->
+                 <span  th:if="${st.index}>0">
+          <!-- 建材精选begin -->
+          <div class="zxbk-dstr">
+
+                           <div class="eobm-item" >
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe1[0].title}">五金</div>
+                    <!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe1[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+                 <span  th:if="${l3.listBaiKe2.size()>0}">
+              <div class="eobm-item" >
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe2[0].title}">五金</div>
+                    <!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe2[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+                 </span>
+                <span  th:if="${l3.listBaiKe3.size()>0}">
+              <div class="eobm-item" >
+              <div class="con-eoimg">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].imgUrl}">
+                  <div class="eobm-otex">
+                    <div th:text="${l3.listBaiKe3[0].title}">五金</div>
+                    <!--                    <div class="eobm-otte" th:text="${listBaiKe1[0].subTitle}">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="eobm-otte" th:text="${l3.listBaiKe3[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="eobm-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <ul class="eobm-list">
+                <li th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}">
+                  <a class="no-underline" href="">
+                    <div class="eobm-title" th:text="${listBaiKe.title}">【橱柜】如何打造厨房安全清洁环境？</div>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+                </span>
+
+          </div>
+                 </span>
+          <!-- 建材精选end -->
+
+
+            </span>
+        </div>
+      </div>
+      <!-- 建材百科end -->
+      <!-- 搭配指南begin -->
+      <div class="con-zmodel">
+        <h5 class="zxbk-mtitle">搭配指南</h5>
+        <div class="zxbc-list">
+
+
+                       <span  th:each="l3,st : ${list4}">
+                      <span  th:if="${st.index}==0">
+          <div class="zxbc-item active-zxbc" data-switch="mgui-zxbk" th:text="${l3.title}">家具</div>
+                      </span>
+                                      <span  th:if="${st.index}>0">
+          <div class="zxbc-item" data-switch="mgui-zxbk" th:text="${l3.title}">家电</div>
+
+                                      </span>
+                       </span>
+        </div>
+        <div class="padd-lr" id="mgui-zxbk">
+                      <span  th:each="l3,st : ${listBaiKeResults4}">
+                    <span  th:if="${st.index}==0">
+
+
+          <!-- 家具begin -->
+          <div class="zxbk-dstr active-dstr">
+            <div class="mgui-item" th:if="${l3.listBaiKe1.size()>0}">
+              <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe1[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe1[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+<!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+<!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+<!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe2.size()>0}">
+                         <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe2[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe2[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe3.size()>0}">
+                           <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe3[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe3[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+          </div>
+
+
+                       </span>
+
+
+                 <span  th:if="${st.index}>0">
+          <!-- 家具end -->
+          <!-- 家电begin -->
+          <div class="zxbk-dstr">
+                      <div class="mgui-item" th:if="${l3.listBaiKe1.size()>0}">
+              <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe1[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe1[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+                        <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+                        <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+                        <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe2.size()>0}">
+                         <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe2[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe2[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe3.size()>0}">
+                           <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].imgUrl}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe3[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe3[0].subTitle}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>-->
+              <!--              <a class="mgui-link" href="">粉刷毛坯墙壁有哪些步骤?</a>-->
+            </div>
+          </div>
+                 </span>
+                      </span>
+          <!-- 家电end -->
+
+        </div>
+      </div>
+      <!-- 搭配指南end -->
+      <!-- 公装案例begin -->
+      <div class="con-zmodel">
+        <h5 class="zxbk-mtitle">公装案例</h5>
+        <div class="zxbc-list">
+                         <span  th:each="l3,st : ${list5}">
+                      <span  th:if="${st.index}==0">
+          <div class="zxbc-item active-zxbc" data-switch="case-zxbk" th:text="${l3.title}">酒店</div>
+                      </span>
+                             <span  th:if="${st.index}>0">
+          <div class="zxbc-item" data-switch="case-zxbk" th:text="${l3.title}">办公</div>
+                             </span>
+                         </span>
+        </div>
+
+
+
+        <div class="padd-lr" id="case-zxbk">
+            <span  th:each="l3,st : ${listBaiKeResults5}">
+                    <span  th:if="${st.index}==0">
+          <!-- 酒店begin -->
+          <div class="zxbk-dstr active-dstr">
+            <div class="mgui-item" th:if="${l3.listBaiKe1.size()>0}">
+              <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe1[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe1[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe2.size()>0}">
+                        <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe2[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe2[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe3.size()>0}">
+                       <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe3[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe3[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+          </div>
+                    </span>
+          <!-- 酒店end -->
+                 <span  th:if="${st.index}>0">
+          <!-- 办公begin -->
+          <div class="zxbk-dstr">
+            <div class="mgui-item" th:if="${l3.listBaiKe1.size()>0}">
+              <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe1[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe1[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe1[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe1}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe2.size()>0}">
+                        <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe2[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe2[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe2[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe2}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+            <div class="mgui-item" th:if="${l3.listBaiKe3.size()>0}">
+                       <div class="mgui-otex">
+                <a href="">
+                  <img width="100%" th:src="${l3.listBaiKe3[0].mainImg}">
+                  <div class="mgui-nhov" th:text="${l3.listBaiKe3[0].title}">客厅安装石膏线好不好? 客厅如何安装石膏线?</div>
+                  <div class="mgui-hove">
+<!--                    <div class="mgui-otte">一招教你如何挑选卫浴家具五金 谨防各种骗局</div>-->
+                    <div class="mgui-otte" th:text="${l3.listBaiKe3[0].abstractContent}">
+                      卫浴间的家具五金种类繁多，大致包括水龙头地漏、下水器、软管、阀门、毛巾架、置物架、镜子等等。
+                    </div>
+                    <div class="mgui-deta">了解详情 &gt;</div>
+                  </div>
+                </a>
+              </div>
+              <a class="mgui-link" href="" th:each=" listBaiKe,stat :${l3.listBaiKe3}" th:if="${stat.index>=1}" th:text="${listBaiKe.title}">粉刷毛坯墙壁有哪些步骤? 毛坯墙壁粉刷效果图</a>
+
+            </div>
+          </div>
+                 </span>
+          <!-- 办公end -->
+
+
+                    </span>
+        </div>
+      </div>
+      <!-- 公装案例end -->
+      <!-- 页尾begin -->
+      <block class="bottompage"></block>
+      <!-- 页尾end -->
+    </div>
+    <script src="./fjs/zxbk.js"></script>
+  </body>
+</html>

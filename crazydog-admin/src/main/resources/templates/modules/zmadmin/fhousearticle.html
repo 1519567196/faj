@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>楼盘动态</title>
+    <#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+            <#if shiro.hasPermission("sys:fhousearticle:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousearticle:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhousearticle:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+<div v-show="!showList" class="panel panel-default">
+    <div class="panel-heading">{{title}}</div>
+    <form class="form-horizontal">
+        <div class="form-group">
+                <div class="col-sm-2 control-label"> <font color="red">*</font>标题</div>
+            <div class="col-sm-10">
+                <input type="text"  required class="form-control" placeholder="标题" v-model="fHouseArticle.title" placeholder=""/>
+                   </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label">摘要</div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" v-model="fHouseArticle.subTitle" placeholder="摘要"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>内容</div>
+            <div class="col-sm-10">
+                <!--                            <input type="" class="form-control" v-model="fHouseArticle.content" placeholder="内容"/>-->
+                <textarea class="form-control" required v-model="fHouseArticle.content" placeholder="内容"></textarea>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>资讯文章分类</div>
+            <div class="col-sm-10">
+<!--                <input type="text" class="form-control" required v-model="fHouseArticle.articleTypeId" placeholder="材料文章分类id"/>-->
+                <select   v-model="fHouseArticle.articleTypeId" placeholder="请选择文章分类" style="">
+                    <option v-for="(item,index) in selArticleType" :key="item.typeid" :value="item.typeid"
+                            :label="item.typeName"/>
+                </select>
+            </div>
+        </div>
+
+        <div  class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>省</div>  <div class="col-sm-10">
+
+                <select @change="getOptions1"  v-model="selected1" placeholder="请选择省" style="">
+                    <option v-for="(item,index) in selOneVal" :key="item.aId" :value="item.areaId"
+                               :label="item.areaName"/>
+                </select>
+              </div>
+        </div>
+        <div  class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>市</div>  <div class="col-sm-10">
+
+            <select @change="getOptions2" v-model="selected2" placeholder="请选择市" style="">
+                <option v-for="(item,index) in selTwoVal" :key="item.aId" :value="item.areaId"
+                        :label="item.areaName"/>
+            </select>
+        </div>
+        </div>
+        <div  class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>区</div>  <div class="col-sm-10">
+
+            <select @change="getOptions33" v-model="selected3" placeholder="请选择区" style="">
+                <option v-for="(item,index) in selThreeVal" :key="item.aId" :value="item.areaId"
+                        :label="item.areaName"/>
+            </select>
+        </div>
+        </div>
+
+        <div  class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>楼盘</div>  <div class="col-sm-10">
+
+            <select   v-model="fHouseArticle.houseId" placeholder="请选择楼盘" style="">
+                <option v-for="(item,index) in selHouVal" :key="item.itemid" :value="item.itemid"
+                        :label="item.title"/>
+            </select>
+        </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label"></div>
+            <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+            &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+        </div>
+    </form>
+</div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhousearticle.js?_${.now?long}"></script>
+</body>
+</html>

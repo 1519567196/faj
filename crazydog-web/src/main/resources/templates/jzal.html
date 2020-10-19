@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/html">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>家装案例</title>
+	<link rel="stylesheet" href="./fcss/plugins/bootstrap.min.css">
+	<script src="./fjs/plugins/jquery.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.bundle.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./fcss/plugins/swiper.min.css">
+	<script src="fjs/plugins/swiper.min.js"></script>
+  <link rel="stylesheet" href="./fcss/plugins/elementUI.css">
+  <script src="fjs/plugins/vue.js"></script>
+  <script src="fjs/plugins/elementUI.js"></script>
+	<link rel="stylesheet" href="./fcss/common.css">
+	<link rel="stylesheet" href="./fcss/jzal.css">
+</head>
+
+<body>
+	<div>
+		<!-- 页头begin -->
+		<div class="page-header">
+			<div>
+				<i class="fa fa-map-marker colo-oraf" aria-hidden="true"></i>
+				<span>济宁</span>
+				<a class="colo-oraf no-underline" href="">[切换]</a>
+			</div>
+			<div class="colo-grey9">
+				<div class="con-phone">
+					<i class="fa fa-phone colo-white" aria-hidden="true"></i>
+				</div>
+				<span class="text-heat">客服电话：0537-XXXXXXX&nbsp;&nbsp;服务时间：周一至周日</span>
+				<div class="con-phone">
+					<i class="fa fa-user colo-white" aria-hidden="true"></i>
+				</div>
+				<a class="colo-grey9 no-underline" href="login.html">登录</a>
+				<span>|</span>
+				<a class="colo-grey9 no-underline" href="register.html">注册</a>
+			</div>
+		</div>
+		<div class="con-nav">
+			<img class="img-logo" src="fimages/img_logo.png">
+			<div class="navi-list">
+				<div class="navi-item active-nav">
+					<a class="navt-link no-underline" href="index.html">首页</a>
+					<div class="navt-line"></div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">我家方案</a>
+					<div class="navt-line"></div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">装修</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<span class="navs-link" data-toggle="modal" data-target="#free-offe">免费报价</span>
+						<a class="navs-link" href="">免费设计</a>
+						<a class="navs-link" href="">免费验房量房</a>
+						<a class="navs-link" href="">装修咨询</a>
+						<a class="navs-link" href="">装修公司排行</a>
+						<a class="navs-link" href="zxbk.html">装修百科</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">房地产</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">新房信息</a>
+						<a class="navs-link" href="">地图搜房</a>
+						<a class="navs-link" href="">楼盘排行</a>
+						<a class="navs-link" href="">房产买卖流程</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">硬装馆</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">主材馆</a>
+						<a class="navs-link" href="">辅材馆</a>
+						<a class="navs-link" href="">建材百科</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">软装馆</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">家具品牌馆</a>
+						<a class="navs-link" href="">家电品牌馆</a>
+						<a class="navs-link" href="">软装品牌馆</a>
+						<a class="navs-link" href="">装饰摆件</a>
+						<a class="navs-link" href="">搭配指南</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">公装</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">免费量尺</a>
+						<a class="navs-link" href="">免费报价</a>
+						<a class="navs-link" href="">公装公司推荐</a>
+						<a class="navs-link" href="">公装案例</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">业主讨论区</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">买房讨论</a>
+						<a class="navs-link" href="">装修讨论</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">方案家服务</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">免费获取专属优惠</a>
+						<a class="navs-link" href="">贷款类服务</a>
+						<a class="navs-link" href="">预留</a>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索begin -->
+			<div class="con-search">
+				<img class="img-search" src="fimages/icon_search.png">
+			</div>
+			<!-- 搜索end -->
+		</div>
+		<!-- 免费报价弹窗begin -->
+		<!-- <div class="modal fade offe-free" id="free-offe">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="close-ofr" data-dismiss="modal">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</div>
+					<img class="img-ofree" src="fimages/popup/img_money.png">
+					<div class="cont-ofre">
+						<div>
+							<div>
+								<span>装修计算器</span>
+								<span class="text-ofr1">今天已有1222位业主获得了装修预算</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- 免费报价弹窗end -->
+		<!-- 页头end -->
+		<!-- 搜索begin -->
+		<div class="con-wsear">
+			<div class="con-wsinp">
+				<input class="wsea-inpu" placeholder="请输入案例名称" type="text" id="searchtitle">
+			</div>
+			<button class="btn-wsear" type="button" onclick="gosearch()">搜索</button>
+		</div>
+    <!-- 搜索end -->
+    <div class="main">
+      <div class="padd-lr">
+        <div class="con-wbrea">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="link-wbre" href="index.html">首页</a></li>
+            <li class="breadcrumb-item active">家装案例</li>
+          </ol>
+        </div>
+        <!-- 广告begin -->
+        <div class="swiper-container ia1-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" th:each="adv : ${advertList}">
+              <div class="posi-rela">
+<!--                <img width="100%" src="fimages/index/img_ad_0.png">-->
+				  <a th:href="${adv.tourl}"><img width="100%" th:src="${adv.imgurl}"  th:alt="${adv.title}"></a>
+                <div class="tind-adve">广告</div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination aind-spag ia1-spagi"></div>
+        </div>
+
+
+        <!-- 广告end -->
+        <!-- 查询条件begin -->
+        <div class="query-condition" >
+          <div class="query1">
+            <div class="query-title">面积</div>
+            <div class="query-term" >
+              <ul>
+                <li class="defaut current" th:onclick="'getUrl(\'mj\');'">全部</li>
+                  <span th:each="List : ${squareList}">
+
+                  <li th:onclick="'getUrl(\'mj\',\''+${List.valueId}+'\');'"  th:text="${List.title}">60m以下</li>m<sup class="sup">2</sup>
+                  </span>
+              </ul>
+            </div>
+          </div>
+          <div class="query1">
+            <div class="query-title">户型</div>
+            <div class="query-term">
+              <ul>
+                <li class="defaut current" onclick="getUrl(house_typeid,)">全部</li>
+                  <span th:each="List:${housetypeList}">
+                      <li  th:onclick="'getUrl(\'hx\',\''+${List.valueId}+'\');'" th:text="${List.title}"></li>
+                  </span>
+              </ul>
+            </div>
+          </div>
+          <div class="query1">
+            <div class="query-title">风格</div>
+            <div class="query-term">
+              <ul>
+                <li class="defaut current" onclick="getUrl(styleid,null)">全部</li>
+                  <span th:each="List:${styleList}">
+                      <li th:onclick="'getUrl(\'fg\',\''+${List.valueId}+'\');'" th:text="${List.title}"></li>
+                  </span>
+              </ul>
+            </div>
+          </div>
+          <div class="query1">
+            <div class="query-title">预算</div>
+            <div class="query-term">
+              <ul>
+                <li class="defaut current" onclick="getUrl(moneyid,null)">全部</li>
+                  <span th:each="List:${moneyList}">
+                      <li th:onclick="'getUrl(\'ys\',\''+${List.valueId}+'\');'" th:text="${List.title}"></li>
+                  </span>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- 查询条件end -->
+        <!-- 案例展示begin -->
+        <div class="list">
+
+          <div class="list-box" th:each="fFitupCompanyCasesList : ${fFitupCompanyCasespage.list}">
+            <div class="img">
+              <img style="width: 100%;" th:src="${fFitupCompanyCasesList.mainImg}" th:alt="标题">
+            </div>
+            <div class="content">
+<!--              <div class="title" th:text="${fFitupCompanyCasesList.title}">拾得大地幸福 · 长城脚下饮马川</div>-->
+				<a class="title" th:text="${fFitupCompanyCasesList.title}" th:href="'/cases/'+${fFitupCompanyCasesList.caseId}">拾得大地幸福 · 长城脚下饮马川</a>
+              <div class="label">
+                <span th:text="${fFitupCompanyCasesList.style}">现代</span>
+                <span>|</span>
+                <span th:text="${fFitupCompanyCasesList.houseType}">四居室</span>
+                <span>|</span>
+                <span th:text="${fFitupCompanyCasesList.squareNum}">156m<sup class="sup">2</sup></span>
+                <span>|</span>
+                <span th:text="${fFitupCompanyCasesList.companyName}">永恒长城里</span>
+              </div>
+              <div class="baojia">免费报价</div>
+            </div>
+          </div>
+
+        </div>
+        <!-- 分页begin -->
+        <div class="con-wpagi" id="wpagi-con">
+          <el-pagination class="wjfa-pagi" layout="prev, pager, next" :page-count="pCount"
+          :current-page="cPage" @current-change="handleCurrentChange"></el-pagination>
+        </div>
+        <!-- 分页end -->
+
+
+		  <script src="/fjs/jzal.js"></script>
+		  <script th:inline="javascript">
+			  // 分页begin
+			  var pageCount = [[${fFitupCompanyCasespage.totalPage}]];//总页数  totalPage
+			  console.log(pageCount)
+			  var currentPage = [[${fFitupCompanyCasespage.currPage}]];//当前页  currPage
+
+			  new Vue({
+				  el: '#wpagi-con',
+				  data: function(){
+					  return {
+						  pCount: pageCount,
+						  cPage: currentPage
+					  }
+				  },
+				  methods: {
+					  handleCurrentChange: function(val){
+						  console.log(val)
+						  window.location.href='/jzal?page='+val;
+						  window.location.href='/ltzx?type='+type+'&page='+val;
+						  // 点击上一页、下一页或页号，改变当前页时触发
+						  // val 改变后的页号
+					  }
+				  }
+			  });
+
+		  </script>
+        <!-- 案例展示end -->
+        <div class="hongbao">
+          <img style="width: 100%;" src="fimages/jzal/img_hongbao.png" alt="">
+        </div>
+      </div>
+    </div>
+		<!-- 页尾begin -->
+		<div class="page-footer">
+			<div>
+				<div>
+					<a class="footer-link" href="company.html">关于我们</a>
+					<a class="footer-link" href="statement.html">服务声明</a>
+					<a class="footer-link" href="">商务合作</a>
+					<a class="footer-link" href="recruitment.html">招聘信息</a>
+					<a class="footer-link" href="">联系我们</a>
+				</div>
+				<div>
+					<div class="foot-copr">Copyright©2020 济宁方案家有限公司</div>
+					<div class="foot-copr">Beijing SouFun Science&Technology Development Co.,Ltd 版权所有</div>
+					<div class="foot-copr">违法和不良信息举报电话： 010-56318764 举报邮箱： jubao@fang.com</div>
+				</div>
+			</div>
+			<div>
+				<div class="con-ftext">
+					<div class="colo-white">全国统一热线</div>
+					<div class="hotline">400-5555-000</div>
+					<div class="colo-grey8">服务时间:周一至周日</div>
+				</div>
+				<img class="img-fqcod" src="fimages/footer_ewm.jpg">
+			</div>
+		</div>
+		<!-- 页尾end -->
+	</div>
+	<input type="hidden" id="mj" th:value="${mj}"/>
+	<input type="hidden" id="fg" th:value="${fg}"/>
+	<input type="hidden" id="hx" th:value="${hx}"/>
+	<input type="hidden" id="ys" th:value="${ys}"/>
+	<script src="./fjs/jzal.js"></script>
+    <script>
+        function gosearch() {
+            var title = $("#searchtitle").val();
+            console.log("ddddd=="+title);
+            window.location.href="/caseSearch?title="+title;
+        }
+
+
+        //查询
+		function getUrl(type,id){
+            var mj = $("#mj").val();
+			var fg = $("#fg").val();
+			var hx = $("#hx").val();
+			var ys = $("#ys").val();
+			/*1.选获取地址栏路径；
+			2.判断地址栏有无? ,如有就拼接“&areaid=id”，如没有“?areaid=id”;*/
+			var href =  window.location.href;
+			if(type == 'mj'){
+
+				console.log("href" + href)
+				//window.open(href + "?mj="+id+"&fg="+fg+"&hx="+hx+"&ys="+ys);
+				window.location.href="/jzal?mj="+id+"&fg="+fg+"&hx="+hx+"&ys="+ys;
+			}
+			if(type == 'hx'){
+				window.location.href="/jzal?mj="+mj+"&fg="+fg+"&hx="+id+"&ys="+ys;
+			}
+			if(type == 'fg'){
+				window.location.href="/jzal?mj="+mj+"&fg="+id+"&hx="+hx+"&ys="+ys;
+			}
+			if(type == 'ys'){
+				window.location.href="/jzal?mj="+mj+"&fg="+fg+"&hx="+hx+"&ys="+id;
+			}
+
+			/*var herf = window.location.href;
+			if (herf.split("?").length > 0 ) {
+				herf=herf+"&"+type+"="+id;
+				window.location.href=herf;
+			}else{
+				herf=herf+"?"+type+"="+id;
+			}*/
+		}
+    </script>
+</body>
+
+</html>

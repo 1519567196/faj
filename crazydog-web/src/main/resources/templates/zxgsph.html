@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>标题</title>
+	<link rel="stylesheet" href="./fcss/plugins/bootstrap.min.css">
+	<script src="./fjs/plugins/jquery.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.bundle.min.js"></script>
+	<script src="./fjs/plugins/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="./fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./fcss/plugins/swiper.min.css">
+	<script src="fjs/plugins/swiper.min.js"></script>
+  <link rel="stylesheet" href="./fcss/plugins/elementUI.css">
+  <script src="fjs/plugins/vue.js"></script>
+  <script src="fjs/plugins/elementUI.js"></script>
+	<link rel="stylesheet" href="./fcss/common.css">
+	<link rel="stylesheet" href="./fcss/zxgsph.css">
+</head>
+
+<body>
+	<div>
+		<!-- 页头begin -->
+		<div class="page-header">
+			<div>
+				<i class="fa fa-map-marker colo-oraf" aria-hidden="true"></i>
+				<span>济宁</span>
+				<a class="colo-oraf no-underline" href="">[切换]</a>
+			</div>
+			<div class="colo-grey9">
+				<div class="con-phone">
+					<i class="fa fa-phone colo-white" aria-hidden="true"></i>
+				</div>
+				<span class="text-heat">客服电话：0537-XXXXXXX&nbsp;&nbsp;服务时间：周一至周日</span>
+				<div class="con-phone">
+					<i class="fa fa-user colo-white" aria-hidden="true"></i>
+				</div>
+				<a class="colo-grey9 no-underline" href="login.html">登录</a>
+				<span>|</span>
+				<a class="colo-grey9 no-underline" href="register.html">注册</a>
+			</div>
+		</div>
+		<div class="con-nav">
+			<img class="img-logo" src="fimages/img_logo.png">
+			<div class="navi-list">
+				<div class="navi-item active-nav">
+					<a class="navt-link no-underline" href="index.html">首页</a>
+					<div class="navt-line"></div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">我家方案</a>
+					<div class="navt-line"></div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">装修</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<span class="navs-link" data-toggle="modal" data-target="#free-offe">免费报价</span>
+						<a class="navs-link" href="">免费设计</a>
+						<a class="navs-link" href="">免费验房量房</a>
+						<a class="navs-link" href="">装修咨询</a>
+						<a class="navs-link" href="">装修公司排行</a>
+						<a class="navs-link" href="zxbk.html">装修百科</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">房地产</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">新房信息</a>
+						<a class="navs-link" href="">地图搜房</a>
+						<a class="navs-link" href="">楼盘排行</a>
+						<a class="navs-link" href="">房产买卖流程</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">硬装馆</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">主材馆</a>
+						<a class="navs-link" href="">辅材馆</a>
+						<a class="navs-link" href="">建材百科</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">软装馆</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">家具品牌馆</a>
+						<a class="navs-link" href="">家电品牌馆</a>
+						<a class="navs-link" href="">软装品牌馆</a>
+						<a class="navs-link" href="">装饰摆件</a>
+						<a class="navs-link" href="">搭配指南</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">公装</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">免费量尺</a>
+						<a class="navs-link" href="">免费报价</a>
+						<a class="navs-link" href="">公装公司推荐</a>
+						<a class="navs-link" href="">公装案例</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">业主讨论区</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">买房讨论</a>
+						<a class="navs-link" href="">装修讨论</a>
+					</div>
+				</div>
+				<div class="navi-item">
+					<a class="navt-link no-underline" href="">方案家服务</a>
+					<div class="navt-line"></div>
+					<div class="nav-smenu">
+						<a class="navs-link" href="">免费获取专属优惠</a>
+						<a class="navs-link" href="">贷款类服务</a>
+						<a class="navs-link" href="">预留</a>
+					</div>
+				</div>
+			</div>
+			<!-- 搜索begin -->
+			<div class="con-search">
+				<img class="img-search" src="fimages/icon_search.png">
+			</div>
+			<!-- 搜索end -->
+		</div>
+		<!-- 免费报价弹窗begin -->
+		<!-- <div class="modal fade offe-free" id="free-offe">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="close-ofr" data-dismiss="modal">
+						<i class="fa fa-times" aria-hidden="true"></i>
+					</div>
+					<img class="img-ofree" src="fimages/popup/img_money.png">
+					<div class="cont-ofre">
+						<div>
+							<div>
+								<span>装修计算器</span>
+								<span class="text-ofr1">今天已有1222位业主获得了装修预算</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+		<!-- 免费报价弹窗end -->
+		<!-- 页头end -->
+		<!-- 搜索begin -->
+		<div class="con-wsear">
+			<div class="con-wsinp">
+				<input class="wsea-inpu" placeholder="" type="text">
+			</div>
+			<button class="btn-wsear" type="button">搜索</button>
+		</div>
+		<!-- 搜索end -->
+		<div class="padd-lr">
+			<div class="con-wbrea">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a class="link-wbre" href="index.html">首页</a></li>
+					<li class="breadcrumb-item active">装修公司排行榜</li>
+				</ol>
+			</div>
+			<!-- 广告begin -->
+			<div class="swiper-container ia1-swiper">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="posi-rela">
+							<img width="100%" src="fimages/index/img_ad_0.png">
+							<div class="tind-adve">广告</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="posi-rela">
+							<img width="100%" src="fimages/index/img_ad_0.png">
+							<div class="tind-adve">广告</div>
+						</div>
+					</div>
+					<div class="swiper-slide">
+						<div class="posi-rela">
+							<img width="100%" src="fimages/index/img_ad_0.png">
+							<div class="tind-adve">广告</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-pagination aind-spag ia1-spagi"></div>
+			</div>
+			<!-- 广告end -->
+			<!-- 查询条件begin -->
+			<div class="query-condition">
+				<div class="query1">
+					<div class="query-title">商圈&emsp;&emsp;</div>
+					<div class="query-term">
+						<ul>
+							<li class="defaut current">不限</li>
+							<li>嘉祥县</li>
+							<li>金乡县</li>
+							<li>梁山县</li>
+							<li>曲阜市</li>
+							<li>任城区</li>
+							<li>市中区</li>
+							<li>泗水县</li>
+							<li>微山县</li>
+							<li>汶上县</li>
+							<li>兖州市</li>
+							<li>鱼台县</li>
+							<li>邹城市</li>
+							<li>太白湖新区</li>
+						</ul>
+					</div>
+				</div>
+				<div class="query1">
+					<div class="query-title">承接价位</div>
+					<div class="query-term">
+						<ul>
+							<li class="defaut current">不限</li>
+							<li>1.5万以下</li>
+							<li>1.5万-3万</li>
+							<li>3万-5万</li>
+							<li>5万-10万</li>
+							<li>10万-15万</li>
+							<li>15万-20万</li>
+							<li>20万-30万</li>
+							<li>30万以上</li>
+						</ul>
+					</div>
+				</div>
+				<div class="query1">
+					<div class="query-title">装修类型</div>
+					<div class="query-term">
+						<ul>
+							<li class="defaut current">不限</li>
+							<li>新房</li>
+							<li>二手房</li>
+							<li>别墅</li>
+							<li>局装</li>
+							<li>软装</li>
+							<li>工装</li>
+						</ul>
+					</div>
+				</div>
+				<div class="query1">
+					<div class="query-title">施工方式</div>
+					<div class="query-term">
+						<ul>
+							<li class="defaut current">不限</li>
+							<li>半包</li>
+							<li>全包</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 查询条件end -->
+			<!-- 主干内容begin -->
+			<div class="main">
+				<!-- 内容左侧列表begin  -->
+				<div class="left">
+					<div class="filter">
+						<span class="filter-condition fiter-active">综合排序</span>
+						<span class="filter-condition">案例最多</span>
+					</div>
+					<div class="list">
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<!-- 模拟公司数据begin -->
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<div class="list-box">
+							<div class="company-img">
+								<img style="width: 100%;" src="./fimages/index/example7.png" alt="">
+							</div>
+							<div class="detail">
+								<div class="name-box">
+									<span class="name">济宁业之峰装修旗舰店</span>
+									<div class="star"></div>
+									<span class="grade">3.5分</span>
+								</div>
+								<div class="program">
+									<div class="way">全包</div>
+									<div class="example">
+										<span>案例</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+									<div class="designer">
+										<span>设计师</span><span style="color: #FF7E00;margin-left: 5px;">10</span>
+									</div>
+								</div>
+								<div class="address">地址：金宇装饰城c馆4楼</div>
+								<div>
+									<span class="label label1">实景展示体验</span>
+									<span class="label label2">实景展示体验</span>
+								</div>
+							</div>
+							<div class="get-price">免费获取设计报价</div>
+						</div>
+						<!-- 模拟公司数据end -->
+						<!-- 分页begin -->
+						<div class="con-wpagi" id="wpagi-con">
+							<el-pagination class="wjfa-pagi" layout="prev, pager, next" :page-count="pCount"
+							:current-page="cPage" @current-change="handleCurrentChange"></el-pagination>
+						</div>
+						<!-- 分页end -->
+					</div>
+				</div>
+				<!-- 内容左侧列表end  -->
+				<!-- 内容右侧推广begin  -->
+				<div class="right">
+					<div class="posi-rela">
+						<img width="100%" src="fimages/zxbkList/img_youhui.png">
+						<div class="con-zlyte">
+							<div>专属<span class="zlyh-org">购房</span>优惠</div>
+							<div class="zlyh-text">免费领取方案家专属优惠</div>
+						</div>
+					</div>
+					<div class="con-zlyfo">
+						<input class="zlyh-inpu" placeholder="请输入您的姓名" type="text">
+						<input class="zlyh-inpu" placeholder="请输入您的电话" type="text">
+						<div class="con-darea">
+							<select class="zlyh-area sele-prov" id="xfan">
+								<option>选择省</option>
+							</select>
+							<select class="zlyh-area sele-city" id="xfan-citi">
+								<option>选择市</option>
+							</select>
+							<select class="zlyh-area" id="xfan-area">
+								<option>选择区</option>
+							</select>
+						</div>
+						<button class="btn-disc" type="button">立即领取</button>
+					</div>
+					<div class="zxqd">
+						<p class="zxqd-title">装修公司最新签单</p>
+						<table>
+							<thead>
+								<tr>
+									<th>业主</th>
+									<th>小区名称</th>
+									<th>公司名称</th>
+								</tr>
+							</tr>
+							<tbody>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+								<tr>
+									<td>陆先生</td>
+									<td>恒大天堂</td>
+									<td>济宁业之峰装饰</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="yztj">
+						<div class="yztj-title">
+							<img src="fimages/zxgsph/hot.png" style="width: 20px; height:20px;" alt="">
+							<span class="zxqd-title" style="padding-left: 5px;">优质推荐</span>
+						</div>
+						<ul>
+							<li class="artical-list">
+								<div class="index">1</div>
+								<div class="artical-title">长春亚克力板材哪家有在卖？谁能够说说...</div>
+							</li>
+							<li class="artical-list">
+								<div class="index">2</div>
+								<div class="artical-title">长春亚克力板材哪家有在卖？谁能够说说...</div>
+							</li>
+							<li class="artical-list">
+								<div class="index">3</div>
+								<div class="artical-title">长春亚克力板材哪家有在卖？谁能够说说...</div>
+							</li>
+							<li class="artical-list">
+								<div class="index">4</div>
+								<div class="artical-title">长春亚克力板材哪家有在卖？谁能够说说...</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- 内容右侧推广end  -->
+
+			</div>
+			<!-- 主干内容end -->
+
+
+
+
+		</div>
+
+
+
+		<!-- 页尾begin -->
+		<div class="page-footer">
+			<div>
+				<div>
+					<a class="footer-link" href="company.html">关于我们</a>
+					<a class="footer-link" href="statement.html">服务声明</a>
+					<a class="footer-link" href="">商务合作</a>
+					<a class="footer-link" href="recruitment.html">招聘信息</a>
+					<a class="footer-link" href="">联系我们</a>
+				</div>
+				<div>
+					<div class="foot-copr">Copyright©2020 济宁方案家有限公司</div>
+					<div class="foot-copr">Beijing SouFun Science&Technology Development Co.,Ltd 版权所有</div>
+					<div class="foot-copr">违法和不良信息举报电话： 010-56318764 举报邮箱： jubao@fang.com</div>
+				</div>
+			</div>
+			<div>
+				<div class="con-ftext">
+					<div class="colo-white">全国统一热线</div>
+					<div class="hotline">400-5555-000</div>
+					<div class="colo-grey8">服务时间:周一至周日</div>
+				</div>
+				<img class="img-fqcod" src="fimages/footer_ewm.jpg">
+			</div>
+		</div>
+		<!-- 页尾end -->
+	</div>
+	<script src="./fjs/zxgsph.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>楼盘相册</title>
+		<#include "/header.html">
+    <script src="${request.contextPath}/statics/js/modules/showMaxImg.js"></script>
+    <link rel="stylesheet" href="${request.contextPath}/statics/css/showMaxImg.css">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fhouseimages:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhouseimages:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhouseimages:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+
+<#if shiro.hasPermission("sys:fhouseimages:save")>
+<a class="btn btn-primary" @click="addImg"><i class="fa fa-plus"></i>&nbsp;添加图片</a>
+</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+<div v-show="showAddImg" class="panel panel-default">
+    <div class="panel-heading">{{title}}</div>
+    <form class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label">图片名称</div>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" v-model="fHouseImages.title" placeholder="图片名称"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label">图片分类</div>
+            <div class="col-sm-10">
+                <input type="text"  readonly class="form-control" v-model="fHouseImages.imageAlbumName" placeholder="相册名称"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label">图片排序（越大越靠前）</div>
+            <div class="col-sm-10">
+                <input type="number"   class="form-control" v-model="fHouseImages.rank" placeholder="图片排序"/>
+            </div>
+        </div>
+
+        <div  class="form-group">
+            <div class="col-sm-2 control-label"><font color="red">*</font>楼盘</div>  <div class="col-sm-10">
+
+            <select   v-model="fHouseImages.houseId" placeholder="请选择楼盘" style="">
+                <option v-for="(item,index) in selHouVal" :key="item.itemid" :value="item.itemid"
+                        :label="item.title"/>
+            </select>
+        </div>
+        </div>
+
+        <div v-show="showImg">
+            <div class="form-group" v-for="(img,index) in imgs">
+                <div class="col-sm-2 control-label">图片</div>
+                <div class="col-sm-10">
+                    <div class="form-inline" style="width: 800px">
+                        <div class="form-group">
+                            <img :src="img" class="img-thumbnail" style="max-width: 300px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label">图片</div>
+<!--            <img src="fHouseImages.image">-->
+            <div class="col-sm-10 form-inline">
+                <input type="file"  name="file" id="fileImg" />
+                <input type="button"  class="btn btn-default btn-small" @click="upload('fileImg')" value="上传"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-2 control-label"></div>
+            <input type="button" class="btn btn-primary" @click="saveImg" value="确定"/>
+            &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+        </div>
+
+
+    </form>
+</div>
+
+
+
+    <div v-show="!showList&&!showAddImg" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">相册名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouseImages.imageAlbumName" placeholder="相册名称"/>
+                        </div>
+                    </div>
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhouseimages.js?_${.now?long}"></script>
+
+</body>
+</html>

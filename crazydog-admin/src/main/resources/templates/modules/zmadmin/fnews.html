@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>房产资讯</title>
+		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/themes/default/default.css"/>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/libs/chosen.jquery.min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/vue-resource.js"></script>
+    <script src="${request.contextPath}/statics/libs/bootstrap-table.min.js"></script>
+    <script src="${request.contextPath}/statics/plugins/layui/lay/modules/laydate.js?"></script>
+
+
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fnews:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fnews:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fnews:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.title" placeholder="标题"/>
+                        </div>
+                        <span style="color: red">*</span>
+                    </div>
+											                   <!-- <div class="form-group">
+                        <div class="col-sm-2 control-label">分类id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.typeid" placeholder="分类id"/>
+                        </div>
+                    </div>-->
+            <div class="form-group">
+                <div class="col-sm-2 control-label">选择分类</div>
+                <div class="col-sm-10">
+                    <select v-model="fNews.typeid" class="form-control">
+                        <template v-for="option in typeList">
+                            <option :value="option.typeid" v-if="option.typeid == fNews.typeid" selected>{{ option.typeName }}
+                            </option>
+                            <option :value="option.typeid" v-if="option.typeid != fNews.typeid">{{ option.typeName}}
+                            </option>
+                        </template>
+                    </select>
+                </div>
+                <span style="color: red">*</span>
+            </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主图url</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.image" placeholder="主图url"/>
+                        </div>
+                    </div>-->
+            <div class="form-group">
+                <div class="col-sm-2 control-label">图片:</div>
+                <div class="col-sm-10">
+                    <ul class="clearfix">
+                        <img id="imgurl"    v-if="img" :src="img" style="height: 200px;width: 200px" />
+                        <input class="upload" @change='add_img'  type="file" >
+                    </ul>
+                    <span>（图片尺寸370*285，修改时,如果不上传,表示不修改图片）</span>
+                </div>
+
+            </div>
+
+							<!--				                    <div class="form-group">
+                        <div class="col-sm-2 control-label">内容</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.content" placeholder="内容"/>
+                        </div>
+                    </div>-->
+            <div class="form-group">
+                <div class="col-sm-2 control-label">内容</div>
+                <div class="col-sm-10">
+                            <textarea id="activity_detail" name="content" v-model="fNews.content"
+                                      type="text/plain" style="width:1024px;height:500px;"></textarea>
+                </div>
+            </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">来源</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.from" placeholder="来源"/>
+                        </div>
+                    </div>
+											                   <!-- <div class="form-group">
+                        <div class="col-sm-2 control-label">浏览量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.views" placeholder="浏览量"/>
+                        </div>
+                    </div>-->
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">是否推荐</div>
+                <div class="col-sm-10">
+                    <input type="radio" v-model="fNews.isRecommend" name="status" value="0">否
+                    <input type="radio" v-model="fNews.isRecommend" name="status" value="1">是
+                </div>
+            </div>
+											                   <!-- <div class="form-group">
+                        <div class="col-sm-2 control-label">添加时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.addtime" placeholder="添加时间"/>
+                        </div>
+                    </div>-->
+											                    <!--<div class="form-group">
+                        <div class="col-sm-2 control-label">添加人id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.addUserid" placeholder="添加人id"/>
+                        </div>
+                    </div>-->
+											                    <!--<div class="form-group">
+                        <div class="col-sm-2 control-label">修改时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.updatetime" placeholder="修改时间"/>
+                        </div>
+                    </div>-->
+											                    <!--<div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fNews.areaid" placeholder="所属地区id"/>
+                        </div>
+                    </div>-->
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fnews.js?_${.now?long}"></script>
+</body>
+</html>

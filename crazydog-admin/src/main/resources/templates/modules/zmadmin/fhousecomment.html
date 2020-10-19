@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>楼盘点评表</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fhousecomment:save")>
+<!--            <a class="btn btn-primary" @click="details"><i class="fa fa-plus"></i>&nbsp;查看点评详情</a>-->
+
+            <el-popover
+                    title="标题"
+                    placement="bottom-start"
+                    width="200"
+                    trigger="manual"
+                    v-model="visible"
+                   >
+
+
+                <div  >
+                    价格评分：    {{fHouseComment.priceScore}}<br>
+                    地段评分：    {{fHouseComment.placeScore}}<br>
+                    交通评分：    {{fHouseComment.trafficScore}}<br>
+                    配套评分：    {{fHouseComment.matchingScore}}<br>
+                    环境评分：    {{fHouseComment.environScore}}<br>
+                    点评内容：    {{fHouseComment.content}}<br>
+
+                </div>
+                <el-button slot="reference" @click="details">点评详情</el-button>
+            </el-popover>
+			</#if>
+<!--			<#if shiro.hasPermission("sys:fhousecomment:update")>-->
+<!--            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>-->
+<!--			</#if>-->
+			<#if shiro.hasPermission("sys:fhousecomment:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+    <#if shiro.hasPermission("sys:fhousecomment:delete")>
+    <a class="btn btn-primary" @click="setInvisible"><i class="fa fa-pencil-square-o"></i>&nbsp;设置不可见</a>
+</#if>
+<#if shiro.hasPermission("sys:fhousecomment:delete")>
+<a class="btn btn-primary" @click="setHot"><i class="fa fa-pencil-square-o"></i>&nbsp;推上热门</a>
+</#if>
+        </div>
+        <table id="jqGrid"></table>
+
+        <div id="jqGridPager"></div>
+    </div>
+
+
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhousecomment.js?_${.now?long}"></script>
+</body>
+</html>

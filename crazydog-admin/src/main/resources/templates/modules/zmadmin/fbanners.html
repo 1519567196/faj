@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>banner图</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fbanners:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fbanners:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fbanners:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+							<!--							                    <div class="form-group">
+                        <div class="col-sm-2 control-label">类别 1是banner图，2是城市全景图</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.type" placeholder="类别 1是banner图，2是城市全景图"/>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">类别</div>
+                        <div class="col-sm-10" >
+                            <input type="radio" v-model="fBanners.type" name="type" value="1" @change="ishidden" >banner图
+                            <input type="radio" v-model="fBanners.type" name="type" value="2" @change="ishidden" >城市全景图
+                        </div>
+                    </div>
+											                    <div class="form-group" id="banner">
+                        <div class="col-sm-2 control-label">banner图链接</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.image" placeholder="banner图链接" />
+                        </div>
+                    </div>
+
+											                    <div class="form-group" id="vr">
+                        <div class="col-sm-2 control-label">vr 链接</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.vrUrl" placeholder="vr 链接"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">跳转链接</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.toUrl" placeholder="跳转链接"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">排序</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.sort" placeholder="排序，越大越靠前"/>
+                        </div>
+                    </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">添加时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.addtime" placeholder="添加时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">属所地区id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.areaid" placeholder="属所地区id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">添加人员id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.addUserid" placeholder="添加人员id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">修改时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBanners.updatetime" placeholder="修改时间"/>
+                        </div>
+                    </div>-->
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fbanners.js?_${.now?long}"></script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我加方案-户型表</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fprogrammehouse:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammehouse:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammehouse:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal"  id="form-programme-house">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="required"  v-model="fProgrammeHouse.title" placeholder="标题"/>
+                        </div>
+                    </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">户型结构</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"  name="required"  v-model="fProgrammeHouse.houseStructure" placeholder="几室几厅几卫几厨等等"/>
+                </div>
+            </div>
+
+<!--											                    <div class="form-group">-->
+<!--                        <div class="col-sm-2 control-label">小区id(关联我加方案小区表)</div>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" v-model="fProgrammeHouse.programmeVillageId" placeholder="小区id(关联我加方案小区表)"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+            <div  class="form-group">
+                <div class="col-sm-2 control-label"><font color="red">*</font>小区</div>  <div class="col-sm-10">
+
+                <select   v-model="fProgrammeHouse.programmeVillageId" placeholder="请选择小区" style="">
+                    <option v-for="(item,index) in selVillageVal" :key="item.itemid" :value="item.itemid"
+                            :label="item.title"/>
+                </select>
+            </div>
+            </div>
+
+
+
+
+
+
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">图片地址</div>
+                        <div class="col-sm-10">
+
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"programme"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否有全景,默认0,1有</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fProgrammeHouse.isVr" placeholder="是否有全景,默认0,1有"/>-->
+                            <select  id ="saleStatus" v-model="fProgrammeHouse.isVr"  placeholder="请选择是否有全景" style="">
+                                <option   value="0" label="无全景"/>
+                                <option   value="1"  label="有全景"
+                                />
+
+                            </select>
+
+                        </div>
+                    </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">户型类别（默认其它）</div>
+                <div class="col-sm-10">
+                    <!--                            <input type="text" class="form-control" v-model="fProgrammeHouse.isVr" placeholder="是否有全景,默认0,1有"/>-->
+                    <select v-model="fProgrammeHouse.houseType" placeholder="请选择户型类别" style="">
+                    <option value="1" label="一居室"/>
+                    <option value="2" label="二居室"/>
+                    <option value="3" label="三居室"/>
+                    <option value="4" label="四居室"/>
+                    <option value="5" label="复式"/>
+                    <option value="6" label="跃层"/>
+                    <option value="7" label="别墅"/>
+                    <option value="8" label="其它"/>
+
+                </select>
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">建筑面积</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fProgrammeHouse.builtArea" placeholder="建筑面积"/>
+                        </div>
+                    </div>
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary"  value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fprogrammehouse.js?_${.now?long}"></script>
+</body>
+</html>

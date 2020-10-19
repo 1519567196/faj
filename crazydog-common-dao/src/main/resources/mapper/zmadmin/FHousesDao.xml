@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FHousesDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FHousesEntity" id="fHousesMap">
+        <result property="itemid" column="itemid"/>
+        <result property="title" column="title"/>
+        <result property="address" column="address"/>
+        <result property="townid" column="townid"/>
+        <result property="longitude" column="longitude"/>
+        <result property="latitude" column="latitude"/>
+        <result property="openTime" column="open_time"/>
+        <result property="tags" column="tags"/>
+        <result property="price" column="price"/>
+        <result property="addtime" column="addtime"/>
+        <result property="areaid" column="areaid"/>
+        <result property="teSe" column="te_se"/>
+        <result property="wuYeType" column="wu_ye_type"/>
+        <result property="zhuangXiu" column="zhuang_xiu"/>
+        <result property="huanXian" column="huan_xian"/>
+        <result property="chanQuan" column="chan_quan"/>
+        <result property="youHui" column="you_hui"/>
+        <result property="saleStatus" column="sale_status"/>
+        <result property="content" column="content"/>
+        <result property="openHouses" column="open_houses"/>
+        <result property="deliveryTime" column="delivery_time"/>
+        <result property="saleAddress" column="sale_address"/>
+        <result property="telphone" column="telphone"/>
+        <result property="mainHuXing" column="main_hu_xing"/>
+        <result property="xuKeZheng" column="xu_ke_zheng"/>
+        <result property="zhanDi" column="zhan_di"/>
+        <result property="jianZhu" column="jian_zhu"/>
+        <result property="rongJi" column="rong_ji"/>
+        <result property="lvHua" column="lv_hua"/>
+        <result property="cheWei" column="che_wei"/>
+        <result property="wuYeCompany" column="wu_ye_company"/>
+        <result property="tingChe" column="ting_che"/>
+        <result property="huShu" column="hu_shu"/>
+        <result property="louCeng" column="lou_ceng"/>
+        <result property="wuYeMoney" column="wu_ye_money"/>
+        <result property="dongShu" column="dong_shu"/>
+        <result property="jiaoTong" column="jiao_tong"/>
+        <result property="yiYuan" column="yi_yuan"/>
+        <result property="xueXiao" column="xue_xiao"/>
+        <result property="shangChang" column="shang_chang"/>
+        <result property="gongYuan" column="gong_yuan"/>
+        <result property="qiTa" column="qi_ta"/>
+        <result property="peiTao" column="pei_tao"/>
+        <result property="updatetime" column="updatetime"/>
+    </resultMap>
+
+
+</mapper>

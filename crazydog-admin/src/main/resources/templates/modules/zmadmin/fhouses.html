@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>楼盘</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fhouses:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhouses:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fhouses:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal" id="form-test"  role="form">
+            <el-collapse v-model="activeNames" @change="handleChange">
+                <el-collapse-item title="楼盘基础信息" name="1">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘（房产）名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" name="required" autocomplete="off" class="form-control" v-model="fHouses.title" placeholder="楼盘（房产）名称"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘主图</div>
+                        <div class="col-sm-10">
+                            <!--                            <input type="text" readonly class="form-control" name="required" v-model="fProgrammeVr.vrImg" placeholder="vr首图"/>-->
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"house"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘户型参考面积</div>
+                        <div class="col-sm-10">
+                            <input type="text" name="required" autocomplete="off" class="form-control" v-model="fHouses.htypeFloorSpace" placeholder="楼盘户型面积"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">均价</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="number"   v-model="fHouses.price" placeholder="均价"/>
+            （最终客户端展示以此楼盘户型最低价为准）            </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">装修情况</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.zhuangXiu" placeholder="装修情况"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">物业类别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.wuYeType" placeholder="物业类别"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">建筑类别</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.jianzhuType" placeholder="建筑类别"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">项目特色</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.teSe" placeholder="项目特色"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">环线位置</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.huanXian" placeholder="环线位置"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">产权年限</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.chanQuan" placeholder="产权年限"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">详细地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.address" placeholder="详细地址"/>
+                        </div>
+                    </div>
+
+
+                </el-collapse-item>
+
+                <el-collapse-item title="楼盘销售信息" name="2">
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">销售状态</div>
+                        <div class="col-sm-10 ">
+                            <select  id ="saleStatus" v-model="fHouses.saleStatus"  placeholder="请选择销售状态" style="">
+                                <option   value="0" label="未知"/>
+                                <option   value="1"  label="在售"
+                                />
+                                <option   value="2" label="售罄"
+                                />
+                                <option   value="3" label="待售"
+                                />
+                            </select>                </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label"> 近期开盘</div>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="fHouses.latelyOpen"     placeholder=" 近期开盘"  >
+
+                            <!--                            <input type="text" class="form-control" v-model="fHouses.openTime" placeholder=" 开盘时间"/>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label"> 开盘时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" v-model="fHouses.openTime" id="datetimepicker"    placeholder=" 开盘时间"  >
+
+<!--                            <input type="text" class="form-control" v-model="fHouses.openTime" placeholder=" 开盘时间"/>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">已开楼盘</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.openHouses" placeholder="已开楼盘"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">售楼地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.saleAddress" placeholder="售楼地址"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主力户型</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.mainHuXing" placeholder="主力户型"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">预售许可证（放图片）</div><!--上传图片-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" v-model="fHouses.xuKeZheng" placeholder="预售许可证（放图片）"/>-->
+<!--                        </div>-->
+
+                        <div v-show="showImg">
+                                <div class="col-sm-2 control-label">图片</div>
+                                <div class="col-sm-10">
+                                    <div class="form-inline" style="width: 800px">
+                                        <div class="form-group">
+                                            <img :src="img" class="img-thumbnail" style="max-width: 300px">
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">图片</div>
+                            <!--            <img src="fHouseImages.image">-->
+                            <div class="col-sm-10 form-inline">
+                                <input type="file"  name="file" id="fileImg" />
+                                <input type="button"  class="btn btn-default btn-small" @click="upload('fileImg')" value="上传"/>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">优惠</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.youHui" placeholder="优惠"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">交房时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.deliveryTime" placeholder="交房时间"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">咨询电话</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.telphone" placeholder="咨询电话"/>
+                        </div>
+                    </div>
+
+                </el-collapse-item>
+
+
+
+
+
+
+
+                <el-collapse-item title="楼盘周边设施" name="3">
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">交通信息</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.jiaoTong" placeholder="交通信息"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">医院信息</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.yiYuan" placeholder="医院信息"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">周边学校</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.xueXiao" placeholder="周边学校"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">综合商场</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.shangChang" placeholder="综合商场"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">公园景观</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.gongYuan" placeholder="公园景观"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">其他配置</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.qiTa" placeholder="其他配置"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">小区配套</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.peiTao" placeholder="小区配套"/>
+                        </div>
+                    </div>
+                </el-collapse-item>
+
+
+                <el-collapse-item title="小区规划" name="4">
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">占地面积</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.zhanDi" placeholder="占地面积"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">建筑面积</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.jianZhu" placeholder="建筑面积"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">容积率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.rongJi" placeholder="容积率"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">绿化率</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.lvHua" placeholder="绿化率"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">停车配比</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.tingChe" placeholder="停车配比"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">物业公司</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.wuYeCompany" placeholder="物业公司"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">停车位</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.cheWei" placeholder="停车位"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">计划户数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.huShu" placeholder="计划户数"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼层状况</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.louCeng" placeholder="楼层状况"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼栋总数</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.dongShu" placeholder="楼栋总数"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">物业费</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fHouses.wuYeMoney" placeholder="物业费"/>
+                        </div>
+                    </div>
+
+
+                </el-collapse-item>
+
+
+                <el-collapse-item title="楼盘地理信息" name="6">
+
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">经度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="jingdu"  v-model="fHouses.longitude" placeholder="经度"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">纬度</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"   name="weidu" v-model="fHouses.latitude" placeholder="纬度"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘所在地区</div>  </div>
+                    <!--                        <div class="col-sm-10">-->
+                    <!--                            <input type="text" class="form-control" v-model="fHouses.townid" placeholder="楼盘所在地区id"/>-->
+                    <!--                        </div>-->
+
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>省</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions1(1)"  v-model="selected1" placeholder="请选择省" style="">
+                            <option v-for="(item,index) in selOneVal" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>市</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions2(1)" v-model="selected2" placeholder="请选择市" style="">
+                            <option v-for="(item,index) in selTwoVal" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>区</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions33(1)" v-model="selected3" placeholder="请选择区" style="">
+                            <option v-for="(item,index) in selThreeVal" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区</div>
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text"     class="form-control" v-model="fHouses.areaid" placeholder="所属地区id"/>-->
+<!--                        </div>-->
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>省</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions1(2)"  v-model="selected21" placeholder="请选择省" style="">
+                            <option v-for="(item,index) in selOneVal1" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>市</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions2(2)" v-model="selected22" placeholder="请选择市" style="">
+                            <option v-for="(item,index) in selTwoVal1" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>区</div>  <div class="col-sm-10">
+
+                        <select @change="getOptions33(2)" v-model="selected23" placeholder="请选择区" style="">
+                            <option v-for="(item,index) in selThreeVal1" :key="item.aId" :value="item.areaId"
+                                    :label="item.areaName"/>
+                        </select>
+                    </div>
+                    </div>
+
+
+                </el-collapse-item>
+
+                <el-collapse-item title="其它" name="5">
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">楼盘标签，多个用;分开</div>
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text"  class="form-control" v-model="fHouses.tags" placeholder="楼盘标签，多个用;分开"/>-->
+<!--                        </div>-->
+
+                        <el-tag
+                                :key="tag"
+                                v-for="tag in dynamicTags"
+                                closable
+                                :disable-transitions="false"
+                                @close="handleClose1(tag)">
+                            {{tag}}
+                        </el-tag>
+                        <el-input
+                                class="input-new-tag"
+                                v-if="inputVisible&&bj"
+                                v-model="inputValue"
+                                ref="saveTagInput"
+                                size="small"
+                                @keyup.enter.native="handleInputConfirm"
+                                @blur="handleInputConfirm"
+                        >
+                        </el-input>
+                        <el-button v-else-if="!inputVisible" class="button-new-tag" size="small" @click="showInput">+ New Tag</el-button>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">规格属性</div>
+                        <el-tag
+                                v-for="(tag,index) in attrandattrValue"
+                                :key="tag.index"
+                                closable  @close="handleClose(tag)"
+                              >
+                            {{tag.attr}}:{{tag.attrValue}}
+                        </el-tag>
+                    </div>
+
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>属性</div>  <div class="col-sm-10">
+
+                        <select   v-model="attr"  @change="selectAttr1()" placeholder="请选择属性" style="">
+                            <option v-for="(item,index) in attrs" :key="item.itemid" :value="item.itemid"
+                                    :label="item.title"/>
+                        </select>
+                    </div>
+                    </div>
+                    <div  class="form-group">
+                        <div class="col-sm-2 control-label"><font color="red">*</font>属性值</div>  <div class="col-sm-10">
+
+                        <el-select v-model="attrValue" @change="selectAttr()"   multiple filterable  placeholder="请选择">
+                            <el-option
+                                    v-for="item in attrValues"
+                                    :key="item.valueId"
+                                    :label="item.title"
+                                    :value="item.valueId">
+                            </el-option>
+                        </el-select>
+
+
+                    </div>
+                    </div>
+
+<!--               规格属性     -->
+
+
+                </el-collapse-item>
+
+            </el-collapse>
+
+
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">项目介绍</div>
+                <div class="col-sm-10">
+                    <textarea  class="form-control" v-model="fHouses.content" placeholder="项目介绍"></textarea>
+                </div>
+            </div>
+
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit"     class="btn btn-primary"
+                       @click="saveOrUpdate"
+                       value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fhouses.js?_${.now?long}"></script>
+</body>
+<style>
+    .el-tag + .el-tag {
+        margin-left: 10px;
+    }
+    .button-new-tag {
+        margin-left: 10px;
+        height: 32px;
+        line-height: 30px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .input-new-tag {
+        width: 90px;
+        margin-left: 10px;
+        vertical-align: bottom;
+    }
+</style>
+</html>

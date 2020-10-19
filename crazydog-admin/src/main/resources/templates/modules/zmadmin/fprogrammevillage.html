@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我家方案-小区</title>
+		<#include "/header.html">
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:fprogrammevillage:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammevillage:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fprogrammevillage:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal" id="form-programme-village">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  name="required" v-model="fProgrammeVillage.title" placeholder="标题"/>
+                        </div>
+                    </div>
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主图</div>
+                        <div class="col-sm-10">
+
+
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"programme"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    on-success="dealImg"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+                        </div>
+                    </div>
+
+
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">单价</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="number" v-model="fProgrammeVillage.price" placeholder="单价"/>
+                        </div>
+                    </div>
+
+
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">详细地址</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" v-model="fProgrammeVillage.address" placeholder=""/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">选择地区</div>
+                <div class="col-sm-10">
+                <el-cascader
+                        v-model="value"
+                        :options="options"
+                        :props="{ expandTrigger: 'click' ,
+                        value:'areaId',
+                        label:'areaName',
+                        children:'childList',
+                        checkStrictly: true,
+
+
+                }"
+                        @change="handleChange1"></el-cascader>
+            </div>
+            </div>
+
+
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary"  value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fprogrammevillage.js?_${.now?long}"></script>
+</body>
+</html>

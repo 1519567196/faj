@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>标题</title>
+  <link rel="stylesheet" href="/fcss/plugins/bootstrap.min.css">
+  <script src="/fjs/plugins/jquery.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/fcss/plugins/swiper.min.css">
+  <script src="/fjs/plugins/swiper.min.js"></script>
+  <script src="/fjs/plugins/highcharts.js"></script>
+  <link rel="stylesheet" href="/fcss/common.css">
+  <link rel="stylesheet" href="/fcss/lpIndex.css">
+</head>
+<script th:inline="javascript">
+  $(function () {
+    $(".headerpage").load("/commonHeader.html");
+    $(".bottompage").load("/commonBottom.html");
+
+  })
+</script>
+<body>
+<div>
+  <!-- 页头begin -->
+  <div class="headerpage"></div>
+  <!-- 页头end -->
+  <div class="lpin-bg padd-lr">
+    <div class="con-lisea">
+      <div class="con-wsinp">
+        <input class="wsea-inpu" placeholder="请输入楼盘/地名/开发商等" type="text">
+      </div>
+      <button class="btn-wsear" type="button">搜索</button>
+    </div>
+  </div>
+  <div class="padd-lr">
+    <div class="con-wbrea">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="link-wbre" href="/index.html">首页</a></li>
+        <li class="breadcrumb-item"><a class="link-wbre" href="/xinFang.html">新房</a></li>
+        <li class="breadcrumb-item active">楼盘首页</li>
+      </ol>
+    </div>
+    <div class="lpli-list">
+      <a class="lpli-item active-lpli" href="">
+        <div class="lpli-text">楼盘首页</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="lpDetails.html">
+        <div class="lpli-text">楼盘详情</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="lpDongtai.html">
+        <div class="lpli-text">楼盘动态</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="lpHuxing.html">
+        <div class="lpli-text">户型</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="lpXiangce.html">
+        <div class="lpli-text">楼盘相册</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="lpPinglun.html">
+        <div class="lpli-text">楼盘点评</div>
+        <div class="lpli-line"></div>
+      </a>
+      <a class="lpli-item" href="">
+        <div class="lpli-text">房价走势</div>
+        <div class="lpli-line"></div>
+      </a>
+    </div>
+    <div class="lpin-sece">
+      <div class="lpis-big">
+        <img class="img-lpbig" id="lpbig-img" src="">
+        <div class="lpin-sest">
+<!--          左侧点击按钮-->
+          <div class="swiper-button-prev lpim-spre">
+            <img class="img-leri" src="/fimages/lpIndex/icon_left.png">
+          </div>
+<!--          图片-->
+          <div class="swiper-container lpi-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" th:each="hImges :${fhIndex.info['hImges']}">
+                <a href="#">
+                  <div class="posi-rela">
+                    <img class="img-lpfeg" th:src="${hImges.image}">
+                    <div class="lpin-abso">
+                      <div class="lpin-xcit"><block th:text="${hImges.imgSort}"></block>(<block th:text="${hImges.imgCount}"></block>)</div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+<!--          右侧点击按钮-->
+          <div class="swiper-button-next lpim-snex">
+            <img class="img-leri" src="/fimages/lpIndex/icon_right.png">
+          </div>
+        </div>
+      </div>
+      <div class="lpis-small">
+        <div class="lpin-name" th:text="${fhIndex.title}">中南·漫悦湾</div>
+        <div>
+          <div class="lpin-otag" th:text="${fhIndex.info.saleStatus}">在售</div>
+
+          <div class="lpin-ztag" th:each="fht :${fhIndex.info['houseType']}" th:text="${fht}">住宅</div>
+<!--          <div class="lpin-btag">洋房</div>-->
+
+          <div class="lpin-gtag"  th:each="tag :${fhIndex.info['tags']}"  th:text="${tag}">品牌地产</div>
+<!--          <div class="lpin-gtag">低密度</div>-->
+<!--          <div class="lpin-gtag">公园</div>-->
+        </div>
+        <div class="lpin-sfsi">
+          <div>
+            均价<span class="lpin-obfs" th:text="${fhIndex.price}">9400</span>元/m²
+          </div>
+          <div class="lpin-frss">
+            <div class="lpin-dhsl" >
+              主力户型：<block th:text="${fhIndex.mainHuXing}"></block>
+            </div>
+<!--            <a class="lpin-wsno no-underline" href="">查看全部</a>-->
+          </div>
+          <div class="lpin-frss">
+            <div class="lpin-dhsl">
+              项目地址：<block th:text="${fhIndex.info.areaAddress}"></block>
+            </div>
+<!--            <a class="lpin-wsno no-underline" href="">查看地图</a>-->
+          </div>
+          <div>近期开盘：<block th:text="${fhIndex.latelyOpen}"></block></div>
+          <a class="lpin-mart no-underline" href="/fhousesDetails/lpDetails.html?houseId=1">更多详细信息>></a>
+        </div>
+<!--        广告-->
+        <img class="img-lpind" src="/fimages/lpIndex/img_discount.png">
+      </div>
+    </div>
+    <!--    楼盘动态-->
+    <div class="lpin-mode">
+      <div class="lpim-gang"></div>
+      <div class="lpim-fle1 lpim-borb">
+        <div class="fonw-bold"><block th:text="${fhIndex.title}"></block>楼盘动态</div>
+        <div class="lpim-righ">
+          <a class="no-underline" href="">查看全部  >></a>
+        </div>
+      </div>
+    </div>
+    <!--    楼盘动态 内容-->
+    <div class="lpin-mcpa">
+      <a class="lpin-dong"  th:each=" fa :${fhIndex.info['articleList']}"    href="">
+        <div class="lpid-fler">
+          <div class=""
+               th:classappend="${fa.articleTypeId!=0?'lpin-gtag':'lpid-otag'}"
+               th:text="${fa.articleTypeName}">楼盘动态</div>
+          <span class="lpid-name" th:text="${fa.title}">中南漫悦湾 阔景大宅 四开间南向大面宽</span>
+          <span class="lpid-date" th:text="${fa.addDate}">2020-02-15</span>
+        </div>
+        <p class="lpid-cont" th:text="${fa.subTitle}">
+          济宁中南漫悦湾约141m²阔景大宅，四开间南向大面宽，首创双宽厅，彰显待客礼仪之道，四室朝阳，更朗阔的采光，更通透的空间呼吸感，生活的舒畅与荣耀展露无遗；济宁中南漫悦湾采光性能优越，于生活之中悦享家的舒适。
+        </p>
+      </a>
+
+    </div>
+    <!-- 广告位1轮播begin -->
+    <div class="swiper-container ln1-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination aind-spag ln1-spagi"></div>
+    </div>
+    <!-- 广告位1轮播end -->
+<!--    中南漫悦湾户型-->
+    <div class="lpin-mode">
+      <div class="lpim-gang"></div>
+      <div class="lpim-fle1 lpim-borb">
+        <div class="fonw-bold"><block th:text="${fhIndex.title}"></block>户型</div>
+        <div class="lpim-righ">
+          <span class="lpim-marr">
+            <block th:each="fht :${fhIndex.info['htImges']}" >
+            <block th:text="|   ${fht.sortName}(${fht.imgCount})|"></block>
+            </block>
+            </span>
+          <a class="no-underline" href="">查看全部  >></a>
+        </div>
+      </div>
+    </div>
+<!--    中南漫悦湾户型内容-->
+    <div class="lpin-mcpa lpin-frs2">
+      <div class="lifr-item" th:each=" ftm : ${fhIndex.info['htImgeContent']}">
+        <img class="img-lifr" th:src="${ftm.image}">
+        <div class="lifr-frse">
+          <span class="lifr-left" th:text="${ftm.title}">1室1厅1厨1卫</span>
+          <div class="lpin-otag" th:text="${ftm.saleStatus==1?'在售':ftm.saleStatus==2?'售罄':'未知'}">在售</div>
+        </div>
+        <div class="lifr-text">建面 <block th:text="${ftm.mianJi}"></block>
+          朝向<block th:text="${ftm.chaoXiang}"></block></div>
+        <div>
+          <div class="lpin-etag" th:each="tag,index :${#strings.arraySplit(ftm.tags,';')}" th:text="${index==0?}">采光充足</div>
+          <div class="lpin-ltag" th:each="tag,index :${#strings.arraySplit(ftm.tags,';')}" th:text="${index==1?}">全明通透</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- 广告位2轮播begin -->
+    <div class="swiper-container ln2-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination aind-spag ln2-spagi"></div>
+    </div>
+    <!-- 广告位2轮播end -->
+<!--    中南漫悦湾位置及周边-->
+    <div class="lpin-mode">
+      <div class="lpim-gang"></div>
+      <div class="lpim-fle1">
+        <div class="fonw-bold">中南漫悦湾位置及周边</div>
+      </div>
+    </div>
+<!--    地图-->
+    <div class="lpin-ccma">
+      <div class="lpin-cmap" id="cmap-lpin"></div>
+    </div>
+
+<!--    中南漫悦湾楼盘相册-->
+    <div class="lpin-mode">
+      <div class="lpim-gang"></div>
+      <div class="lpim-fle1 lpim-borb">
+        <div class="fonw-bold">中南漫悦湾楼盘相册</div>
+        <div class="lpim-righ">
+          <a class="no-underline" href="">查看全部  >></a>
+        </div>
+      </div>
+    </div>
+<!--    中南漫悦湾楼盘相册内容-->
+    <div class="lpin-mcpa lpin-frs2">
+      <div class="lifr-item posi-rela">
+        <a href="">
+          <img width="100%" src="/fimages/lpIndex/example3.png">
+          <div class="lifr-rito">
+            <img class="img-pictu" src="/fimages/lpIndex/test1.png">
+            <span>5</span>
+          </div>
+          <div class="lifr-lrbo">效果图</div>
+        </a>
+      </div>
+      <div class="lifr-item posi-rela">
+        <a href="">
+          <img width="100%" src="/fimages/lpIndex/example3.png">
+          <div class="lifr-rito">
+            <img class="img-pictu" src="/fimages/lpIndex/test1.png">
+            <span>5</span>
+          </div>
+          <div class="lifr-lrbo">效果图</div>
+        </a>
+      </div>
+      <div class="lifr-item posi-rela">
+        <a href="">
+          <img width="100%" src="/fimages/lpIndex/example3.png">
+          <div class="lifr-rito">
+            <img class="img-pictu" src="/fimages/lpIndex/test1.png">
+            <span>5</span>
+          </div>
+          <div class="lifr-lrbo">效果图</div>
+        </a>
+      </div>
+      <div class="lifr-item posi-rela">
+        <a href="">
+          <img width="100%" src="/fimages/lpIndex/example3.png">
+          <div class="lifr-rito">
+            <img class="img-pictu" src="/fimages/lpIndex/test1.png">
+            <span>5</span>
+          </div>
+          <div class="lifr-lrbo">效果图</div>
+        </a>
+      </div>
+    </div>
+    <!-- 广告位3轮播begin -->
+    <div class="swiper-container ln3-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination aind-spag ln3-spagi"></div>
+    </div>
+    <!-- 广告位3轮播end -->
+
+<!--    中南漫悦湾房价指数-->
+    <div class="lpin-mode">
+      <div class="lpim-gang"></div>
+      <div class="lpim-fle1 lpim-borb">
+        <div class="fonw-bold">中南漫悦湾房价指数</div>
+      </div>
+    </div>
+    <div>
+<!--      中南漫悦湾房价指数  结果-->
+      <div class="lpin-fras">
+        <div>
+          <div class="lpin-stit">中南·漫悦湾8月均价</div>
+          <div class="lpin-scot">9500元/m²  环比  持平</div>
+        </div>
+        <div>
+          <div class="lpin-stit">高新区8月新房均价</div>
+          <div class="lpin-scot">8226元/m²  环比  持平</div>
+        </div>
+        <div>
+          <div class="lpin-stit">高新区城区8月新房均价</div>
+          <div class="lpin-scot">8226元/m²  环比  持平</div>
+        </div>
+      </div>
+<!--      图表-->
+      <div id="hcha-lpin"></div>
+    </div>
+    <!-- <img class="img-ltest" src="/fimages/lpIndex/example4.png"> -->
+    <!-- 广告位4轮播begin -->
+    <div class="swiper-container ln4-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination aind-spag ln4-spagi"></div>
+    </div>
+    <!-- 广告位4轮播end -->
+<!--    楼盘列表-->
+    <div class="lpin-frse">
+      <div class="lpin-cota">
+        <div class="lpin-ttle">热门楼盘</div>
+        <table class="lpin-tabl">
+          <tr>
+            <th>楼盘名称</th>
+            <th>城区</th>
+            <th>价格</th>
+          </tr>
+          <tr>
+            <td>中垠悦城</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>城投天汇多彩</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>公用瑞马悦府</td>
+            <td>兖州</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>冠鲁明德华府</td>
+            <td>太白湖新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>东方维也纳</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>保利时光印象</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>碧桂园济州府</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>京杭新都汇</td>
+            <td>太白湖新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>华都国滨府</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+        </table>
+      </div>
+      <div class="lpin-cota">
+        <div class="lpin-ttle">济宁新盘</div>
+        <table class="lpin-tabl">
+          <tr>
+            <th>楼盘名称</th>
+            <th>城区</th>
+            <th>价格</th>
+          </tr>
+          <tr>
+            <td>中垠悦城</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>城投天汇多彩</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>公用瑞马悦府</td>
+            <td>兖州</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>冠鲁明德华府</td>
+            <td>太白湖新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>东方维也纳</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>保利时光印象</td>
+            <td>任城区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>碧桂园济州府</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>京杭新都汇</td>
+            <td>太白湖新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+          <tr>
+            <td>华都国滨府</td>
+            <td>高新区</td>
+            <td>均价<span class="lpin-org">8200</span>元/m²</td>
+          </tr>
+        </table>
+      </div>
+      <div class="lpin-cota">
+        <div class="lpin-ttle">本月新盘</div>
+        <table class="lpin-tabl">
+          <tr>
+            <th>楼盘名称</th>
+            <th>城区</th>
+            <th>价格</th>
+          </tr>
+        </table>
+        <div class="lpin-nodata">暂无数据</div>
+      </div>
+    </div>
+  </div>
+  <!-- 页尾begin -->
+  <block class="bottompage"></block>
+  <!-- 页尾end -->
+</div>
+<script src="/fjs/common.js"></script>
+<script src="/fjs/lpIndex.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=fkWdNm4rxUlniXAbKmzn4ZOgoZSM6IOW"></script>
+<script>
+  // 地图
+  var map = new BMap.Map("cmap-lpin");
+  if (true) {
+    // 有经纬度
+    var lng = 116.717517;//经度
+    var lat = 35.429165;//纬度
+    var mpoint = new BMap.Point(lng, lat);
+    map.centerAndZoom(mpoint, 18);
+    map.addOverlay(new BMap.Marker(mpoint));
+  } else {
+    // 没有经纬度
+    var myGeo = new BMap.Geocoder();
+    myGeo.getPoint("中南漫悦湾", function(point){
+      if (point) {
+        map.centerAndZoom(point, 18);
+        map.addOverlay(new BMap.Marker(point));
+      } else {
+        console.log("地址没有解析到结果!");
+      }
+    },"济宁市");
+  }
+
+  // 数据分析图
+  Highcharts.chart('hcha-lpin', {
+    chart: {
+      type: 'spline'
+    },
+    xAxis: {
+      categories: ['09月', '10月', '11月', '12月', '01月', '02月', '03月', '04月', '05月', '06月', '07月', '08月']  //也应该是封装好的近期月份
+    },
+    series: [{
+      name: '中南·漫悦湾',
+      data: [0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95, 0.95]  //数据传过来的值
+    }, {
+      name: '高新区新房',
+      data: [0.83, 0.83, 0.84, 0.84, 0.83, 0.84, 0.83, 0.84]
+    }, {
+      name: '高新区城区新房',
+      data: []
+    }],
+    title: {
+      text: ''
+    },
+    subtitle: {
+      text: ''
+    },
+    yAxis: {
+      title: {
+        text: ''
+      },
+      labels: {
+        format: '{value}w'
+      }
+    },
+    legend: {
+      layout: 'horizontal',
+      align: 'center',
+      verticalAlign: 'bottom'
+    },
+    plotOptions: {
+      series: {
+        marker: {
+          enabled: false
+        }
+      }
+    },
+    credits: {
+      enabled: false
+    },
+    responsive: {
+      rules: [{
+        condition: {
+          maxWidth: 500
+        },
+        chartOptions: {
+          legend: {
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom'
+          }
+        }
+      }]
+    }
+  });
+</script>
+</body>
+</html>

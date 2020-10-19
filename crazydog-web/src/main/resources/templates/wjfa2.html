@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>标题</title>
+  <link rel="stylesheet" href="/fcss/plugins/bootstrap.min.css">
+  <script src="/fjs/plugins/jquery.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.bundle.min.js"></script>
+  <script src="/fjs/plugins/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/fcss/plugins/swiper.min.css">
+  <script src="/fjs/plugins/swiper.min.js"></script>
+  <link rel="stylesheet" href="/./fcss/plugins/elementUI.css">
+  <script src="/fjs/plugins/vue.js"></script>
+  <script src="/fjs/plugins/elementUI.js"></script>
+  <link rel="stylesheet" href="/fcss/common.css">
+  <link rel="stylesheet" href="/fcss/wjfa.css">
+</head>
+<script>
+    $(function () {
+        $(".headerpage").load("/commonHeader.html");
+      $(".bottompage").load("/commonBottom.html");
+    })
+</script>
+<body>
+<div>
+  <!-- 页头begin -->
+    <div class="headerpage"></div>
+
+
+
+  <!-- 页头end -->
+  <div class="padd-lr">
+    <!-- 搜索begin -->
+    <div class="con-wsear">
+      <div class="con-wsinp">
+        <input class="wsea-inpu" placeholder="" id="search" type="text">
+      </div>
+      <button class="btn-wsear" type="button" onclick="getfvId(100)">搜索</button>
+    </div>
+    <!-- 搜索end -->
+    <div class="con-wbrea">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="link-wbre" href="/index.html">首页</a></li>
+        <li class="breadcrumb-item active">我家方案</li>
+      </ol>
+    </div>
+    <!-- 广告轮播begin -->
+    <div class="swiper-container wj1-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="posi-rela">
+            <img width="100%" src="/fimages/wjfa/img_ad.png">
+            <div class="tind-adve">广告</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination aind-spag wj1-spagi"></div>
+    </div>
+    <!-- 广告轮播end -->
+    <!-- 区域筛选begin -->
+    <div class="con-wscr">
+      <span class="wscr-title">户型筛选</span>
+      <a class="wscr-item "  th:classappend="${fHousesTypeClass==0}?'active-wscr'" href="javascript:void(0);" onclick="getfvId(0)">全部</a>
+      <a class="wscr-item"  th:classappend="${fHousesTypeClass==1}?'active-wscr'"   href="javascript:void(0);" onclick="getfvId(1)">一居室</a>
+      <a class="wscr-item" th:classappend="${fHousesTypeClass==2}?'active-wscr'"   href="javascript:void(0);" onclick="getfvId(2)">二居室</a>
+      <a class="wscr-item"  th:classappend="${fHousesTypeClass==3}?'active-wscr'" href="javascript:void(0);" onclick="getfvId(3)">三居室</a>
+      <a class="wscr-item"  th:classappend="${fHousesTypeClass==4}?'active-wscr'" href="javascript:void(0);" onclick="getfvId(4)">四居室</a>
+      <a class="wscr-item" th:classappend="${fHousesTypeClass==5}?'active-wscr'"  href="javascript:void(0);" onclick="getfvId(5)">复式</a>
+      <a class="wscr-item"  th:classappend="${fHousesTypeClass==6}?'active-wscr'" href="javascript:void(0);" onclick="getfvId(6)">跃层</a>
+      <a class="wscr-item"  th:classappend="${fHousesTypeClass==7}?'active-wscr'" href="javascript:void(0);" onclick="getfvId(7)">别墅</a>
+      <a class="wscr-item" th:classappend="${fHousesTypeClass==8}?'active-wscr'"  href="javascript:void(0);" onclick="getfvId(8)">其它</a>
+    </div>
+    <!-- 区域筛选end -->
+    <div class="wdat-list">
+      <div class="wdat-item" data-toggle="modal" th:each="fh :${fProgrammeHouses.list}">
+        <div class="con-iwdit">
+          <img class="img-wdite" th:src="${fh.image}">
+          <div class="pano-disp">
+            <sup class="sup-point">·</sup>
+            <img class="img-iconvr" src="/fimages/index/icon_vr.png">
+            <span class="text-pdis">全景展示</span>
+          </div>
+          <img class="img-wicon" src="/fimages/index/icon_3d.png">
+        </div>
+        <div class="w2da-name" th:text="${fh.title}">瑞马大都会高层旧金山户型</div>
+        <div class="w2da-intr">
+          <span th:text="${fh.houseStructure}">3室2厅1卫1厨</span>
+          <span th:text="${fh.builtArea}">建面112㎡</span>
+        </div>
+        <!-- 弹窗begin -->
+        <div class="modal fade offe-free">
+          <div class="modal-dialog">
+            <div class="modal-content wjfa-wbg">
+              <div class="modal-header mhead-wbg">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body mbody-wbg">
+                <div class="wpop-title" th:text="${fh.title}">瑞马大都会高层旧金山户型及免费全景方案</div>
+                <div class="wpop-text" th:text="|${fh.houseStructure} / ${fh.builtArea}">3室2厅1卫1厨 / 建面120㎡</div>
+                <div class="con-wpcot">
+                  <div class="wpop-aldi">
+                    <div class="wpop-bimg">
+                      <img class="img-wacti" src="">
+                    </div>
+                    <div class="wpop-cswi">
+                      <div class="swiper-button-prev wpop-spre">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                      </div>
+                      <div class="swiper-container swiper-wpop">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide" th:each="fhm :${fh.imgesList}">
+                            <div class="posi-rela">
+                              <img class="img-waldi" th:src="${fhm.image}">
+                              <div class="wpsw-text">
+                                <div class="wpsw-ctex" th:text="${fhm.title}">
+                                  一层
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                        </div>
+                      </div>
+                      <div class="swiper-button-next wpop-snex">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="wjfa-vrlist">
+                    <div class="wjfa-vritem" th:each="fhv :${fh.vrList}">
+                      <img width="100%" th:src="${fhv.vrImg}">
+                      <div class="con-wim3d">
+                        <img width="10%" src="/fimages/index/icon_3d.png">
+                      </div>
+                      <div class="wjfa-vima">
+                        <img width="10%" src="/fimages/index/icon_3d.png">
+                        <a class="wjfa-vrlink" th:href="${fhv.vrUrl}">点击进入全景方案</a>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- 弹窗end -->
+      </div>
+
+
+
+
+    </div>
+    <!-- 分页begin -->
+    <div class="con-wpagi" id="wpagi-con">
+      <el-pagination class="wjfa-pagi" layout="prev, pager, next" :page-count="pCount"
+                     :current-page="cPage" @current-change="handleCurrentChange"></el-pagination>
+    </div>
+    <!-- 分页end -->
+  </div>
+  <img class="img-popup" data-target="#free-offe" data-toggle="modal" src="/fimages/wjfa/img_popup.png">
+  <block class="bottompage"></block>
+</div>
+<script src="/fjs/wjfa.js"></script>
+<script charset="utf-8">
+  $(function () {
+    var parm = '';
+    var parm1 = window.location.href.split("parm=")
+    if (parm1.length == 2) {
+      if (parm1[1].split("&").length > 0) {
+        parm = parm1[1].split("&")[0];
+      } else {
+        parm = parm1[1];
+      }
+
+
+    }
+    // decodeURI
+    $("#search").val( decodeURI(parm));
+  })
+
+  function getfvId(i) {
+    console.log(i);
+    var fvId = null;
+    var  fvId1=window.location.href.split("fvId=")
+    if (fvId1.length == 2) {
+      if (fvId1[1].split("&").length > 0) {
+        fvId = fvId1[1].split("&")[0];
+      } else {
+        fvId = fvId1[1];
+      }
+
+      var parm = null;
+      var parm1 = window.location.href.split("parm=")
+      if (parm1.length == 2) {
+        if (parm1[1].split("&").length > 0) {
+          parm = parm1[1].split("&")[0];
+        } else {
+          parm = parm1[1];
+        }
+
+
+      }
+
+    if (i==0){
+      location.replace('/fprogrammehouse/wjfa2.html?fvId='+fvId+'&parm='+parm);
+    }else if (i>=1&&i<=8){
+      location.replace('/fprogrammehouse/wjfa2.html?fvId='+fvId+'&type='+i+'&parm='+parm);
+    }else {
+      var type = null;
+      var type1 = window.location.href.split("type=")
+      if (type1.length == 2) {
+        if (type1[1].split("&").length > 0) {
+          type = type1[1].split("&")[0];
+        } else {
+          type = type1[1];
+        }
+
+
+      }
+      var parm=document.getElementById('search').value;
+      location.replace('/fprogrammehouse/wjfa2.html?fvId='+fvId+'&type='+type+'&parm='+parm);
+    }
+
+    }
+
+
+  }
+
+  var pageCount = [[${fProgrammeHouses.totalPage}]];//总页数  totalPage
+  // console.log(pageCount)
+  var currentPage = [[${fProgrammeHouses.currPage}]];//当前页  currPage
+  var type = null;
+  var fvId = null;
+
+  var type1 = window.location.href.split("type=");
+  var fvId1 = window.location.href.split("fvId=");
+  if (type1.length == 2) {
+    if (type1[1].split("&").length > 0) {
+      type = type1[1].split("&")[0];
+    } else {
+      type = type1[1];
+    }
+
+
+  }
+  if (fvId1.length == 2) {
+    if (fvId1[1].split("&").length > 0) {
+      fvId = fvId1[1].split("&")[0];
+    } else {
+      fvId = fvId1[1];
+    }
+
+
+  }
+  var parm = null;
+  var parm1 = window.location.href.split("parm=")
+  if (parm1.length == 2) {
+    if (parm1[1].split("&").length > 0) {
+      parm = parm1[1].split("&")[0];
+    } else {
+      parm = parm1[1];
+    }
+
+
+  }
+
+
+  new Vue({
+    el: '#wpagi-con',
+    data: function(){
+      return {
+        pCount: pageCount,
+        cPage: currentPage
+      }
+    },
+    methods: {
+      handleCurrentChange: function(val){
+        window.location.href='/fprogrammehouse/wjfa2.html?type='+type+'&fvId='+fvId+'&page='+val+'&parm='+parm;
+
+        // 点击上一页、下一页或页号，改变当前页时触发
+        // val 改变后的页号
+      }
+    }
+  });
+  // 分页end
+</script>
+</body>
+</html>

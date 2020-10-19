@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>方案家</title>
+    <link rel="stylesheet" href="./fcss/plugins/bootstrap.min.css">
+    <script src="./fjs/plugins/jquery.min.js"></script>
+    <script src="./fjs/plugins/bootstrap.bundle.min.js"></script>
+    <script src="./fjs/plugins/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="./fcss/plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./fcss/plugins/swiper.min.css">
+    <script src="fjs/plugins/swiper.min.js"></script>
+    <link rel="stylesheet" href="./fcss/common.css">
+    <link rel="stylesheet" href="./fcss/index.css">
+</head>
+<script>
+    $(function () {
+        $(".headerpage").load("/commonHeader.html");
+        $(".bottompage").load("/commonBottom.html");
+    })
+</script>
+<body>
+<div>
+    <!-- 页头begin -->
+    <div class="headerpage"></div>
+
+
+    <!-- 页头end -->
+    <div class="posi-rela">
+        <!-- 轮播begin -->
+        <div class="swiper-container iba-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="">
+                        <img width="100%" src="fimages/index/img_banner.png">
+                    </a>
+                </div>
+
+                <!-- 测试begin -->
+                <div class="swiper-slide">
+                    <a href="">
+                        <img width="100%" src="fimages/index/img_banner.png">
+                    </a>
+                </div>
+                <!-- 测试end -->
+
+            </div>
+        </div>
+        <!-- 轮播end -->
+        <div class="con-cisea">
+            <div class="con-isear">
+                <div class="con-isinp">
+                    <img class="img-isear" src="fimages/index/search.png">
+                    <input class="inpu-isea" placeholder="输入小区或点击全景图闪点查看我家全景方案" type="text">
+                </div>
+                <button class="btn-isear" type="button">
+                    <img class="img-ibsea" src="fimages/icon_search.png">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="posi-rela">
+        <div class="bgco-grf7">
+            <div class="padd-lr">
+                <div class="index-list">
+                    <div class="index-item">
+                        <img class="img-iitem" src="fimages/index/icon_discount.png">
+                        <div class="texa-cent">免费专属优惠</div>
+                        <div class="iite-text">
+                            <div>买房、装修、家具家电</div>
+                            <div>方案家用户都可享专属优惠</div>
+                        </div>
+                        <div class="iite-hove">
+                            <div class="iiho-text">
+                                <div>买房、装修、家具家电</div>
+                                <div>方案家用户都可享专属优惠</div>
+                            </div>
+                            <button class="btn-recei" type="button">立即领取</button>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <img class="img-iitem" src="fimages/index/icon_plan.png">
+                        <div class="texa-cent">免费方案</div>
+                        <div class="iite-text">
+                            <div>3种不同的风格精准户型方案</div>
+                            <div>区别于无价值的参考方案</div>
+                        </div>
+                        <div class="iite-hove">
+                            <div class="iiho-text">
+                                <div>3种不同的风格精准户型方案</div>
+                                <div>区别于无价值的参考方案</div>
+                            </div>
+                            <button class="btn-recei" type="button">立即领取</button>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <img class="img-iitem" src="fimages/index/icon_price.png">
+                        <div class="texa-cent">免费量房验房报价</div>
+                        <div class="iite-text">
+                            <div>3-5家装饰公司主动式服务</div>
+                            <div>货比三家择优而选</div>
+                        </div>
+                        <div class="iite-hove">
+                            <div class="iiho-text">
+                                <div>3-5家装饰公司主动式服务</div>
+                                <div>货比三家择优而选</div>
+                            </div>
+                            <button class="btn-recei" type="button">立即领取</button>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <img class="img-iitem" src="fimages/index/icon_renovation.png">
+                        <div class="texa-cent">免费公装咨询</div>
+                        <div class="iite-text">
+                            <div>免费测量 免费报价</div>
+                            <div>3-5家公司主动式服务</div>
+                        </div>
+                        <div class="iite-hove">
+                            <div class="iiho-text">
+                                <div>免费测量 免费报价</div>
+                                <div>3-5家公司主动式服务</div>
+                            </div>
+                            <button class="btn-recei" type="button" data-toggle="modal" data-target="#publ-cons">立即领取</button>
+                        </div>
+                    </div>
+                    <div class="index-item">
+                        <img class="img-iitem" src="fimages/index/icon_consult.png">
+                        <div class="texa-cent">免费购房咨询</div>
+                        <div class="iite-text">
+                            <div>一键专属优惠价格</div>
+                            <div>VIP购房服务</div>
+                        </div>
+                        <div class="iite-hove">
+                            <div class="iiho-text">
+                                <div>一键专属优惠价格</div>
+                                <div>VIP购房服务</div>
+                            </div>
+                            <button class="btn-recei" type="button" data-toggle="modal" data-target="#hous-purc">立即领取</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="padd-lr">
+            <!-- 广告位1begin -->
+            <div class="swiper-container ia1-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" th:each="advert : ${advertList}">
+                        <div class="posi-rela">
+                            <img width="100%" th:src="${advert.imgurl}">
+                            <div class="tind-adve" th:text="${advert.title}">广告</div>
+                        </div>
+                    </div>
+
+                    <!-- 测试begin
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div> -->
+                    <!-- 测试end -->
+
+                </div>
+                <div class="swiper-pagination aind-spag ia1-spagi"></div>
+            </div>
+            <!-- 广告位1end -->
+            <div class="mind-titl">
+                <span class="miti-text">装修</span>
+                <div class="mind-item active-mit" onclick="a()">我家方案</div>
+                <div class="mind-item">装修公司排行</div>
+                <div class="mind-item">公装</div>
+                <a class="mind-item" href="/jzal">家装</a>
+                <div class="mind-item">装修百科</div>
+                <div class="mind-item">
+                    <a class="miit-link no-underline" href="">专属装修优惠</a>
+                </div>
+            </div>
+            <div class="con-icadv">
+                <div class="cica-cont">
+                    <div class="sico-list">
+                        <!-- 我家方案begin -->
+                        <div class="sico-item active-sico">
+                            <a class="no-underline" href="">
+                                <div class="vrcm-icon">
+                                    <img width="100%" src="fimages/index/example1.jpg">
+                                    <img class="img-icon3d" src="fimages/index/icon_3d.png">
+                                </div>
+                                <div class="pano-disp">
+                                    <sup class="sup-point">·</sup>
+                                    <img class="img-iconvr" src="fimages/index/icon_vr.png">
+                                    <span class="text-pdis">全景展示</span>
+                                </div>
+                                <div class="pdis-cont">
+                                    【VR全景】长泰瑞马·棠颂全屋VR效果图
+                                </div>
+                            </a>
+                        </div>
+                        <!-- 我家方案end -->
+                        <!-- 装修公司排行begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list" >
+
+
+                                <div class="dcra-item"  th:each="fitupCompany : ${fitupCompanys}">
+                                <a href="">
+                                    <img width="100%" th:src="${fitupCompany.image}">
+                                    <div class="dcra-text">
+                                        <span class="dcra-name" th:text="${fitupCompany.companyName}">曲阜尚层装饰设计有限公司</span>
+                                        <span th:text="${fitupCompany.areaName}">[曲阜市]</span>
+                                    </div>
+                                </a>
+                            </div>
+
+                            </div>
+                        </div>
+                        <!-- 装修公司排行end -->
+                        <!-- 公装begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item" th:each="fFitupCompanyCasesEntity : ${fFitupCompanyCasesEntities}">
+                                    <a href="">
+                                        <img width="100%" th:src="${fFitupCompanyCasesEntity.mainImg}">
+                                        <div class="dcra-text">
+                                            <div class="proo-text" th:text="${fFitupCompanyCasesEntity.title}">
+                                                现代前卫风格幼儿园装修
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- 公装end -->
+                        <!-- 家装begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item" th:each="fFitupCompanyCasesEntity : ${fFitupCompanyCasesEntities}">
+                                    <a href="">
+                                        <img width="100%" th:src="${fFitupCompanyCasesEntity.mainImg}">
+                                        <div class="dcra-text">
+                                            <div class="proo-text" th:text="${fFitupCompanyCasesEntity.title}">
+                                                现代前卫风格幼儿园装修
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- 公装end -->
+                        <!-- 装修百科begin -->
+                        <div class="sico-item">
+                            <div class="con-dency">
+
+                                <div class="denc-left"  >
+                                    <a href="">
+                                        <img width="100%" th:src="${fPediaEntity.imgUrl}">
+                                        <div class="dcra-text" th:text="${fPediaEntity.title}">
+                                            室内设计配色技巧，参考专业建议让你秒变家装设计师！
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="denc-right">
+                                    <a class="denc-item no-underline" href="" th:each="fp:${fPediaEntities}">
+                                        <img class="img-denc" th:src="${fp.imgUrl}">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title" th:text="${fp.title}">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont" th:text="${fp.subTitle}">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- 装修百科end -->
+                    </div>
+                </div>
+                <div class="cica-adve">
+                    <!-- 广告位2begin -->
+                    <div class="swiper-container ia2-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" th:each="advert2 : ${advertList2}">
+                                <div class="posi-rela">
+                                    <img width="100%" th:src="${advert2.imgurl}">
+                                    <div class="tind-adve" th:text="${advert2.title}">广告</div>
+                                </div>
+                            </div>
+                    <!--
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_3.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_3.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_3.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="swiper-pagination aind-spag ia2-spagi"></div>
+                    </div>
+                    <!-- 广告位2end -->
+                </div>
+            </div>
+            <!-- 广告位3begin -->
+            <div class="swiper-container ia3-swiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" th:each="advert3 : ${advertList3}">
+                        <div class="posi-rela">
+                            <img width="100%" th:src="${advert3.imgurl}">
+                            <div class="tind-adve" th:text="${advert3.title}">广告</div>
+                        </div>
+                    </div>
+                <!--
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_1.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>-->
+                </div>
+                <div class="swiper-pagination aind-spag ia3-spagi"></div>
+            </div>
+            <!-- 广告位3end -->
+            <div class="mind-titl">
+                <span class="miti-text">房产</span>
+                <div class="mind-item active-mit" onclick="b()">新房</div>
+                <div class="mind-item">楼盘排行</div>
+                <div class="mind-item">房产资讯</div>
+                <div class="mind-item">
+                    <a class="miit-link no-underline" href="">房产买卖流程·百科</a>
+                </div>
+                <div class="mind-item">
+                    <a class="miit-link no-underline" href="">专属购房优惠</a>
+                </div>
+            </div>
+            <div class="con-icadv">
+                <div class="cica-cont">
+                    <div class="sico-list">
+                        <!-- 新房begin -->
+                        <div class="sico-item active-sico">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">红星瑞马世家[高新区]</span>
+                                            <span class="houi-price">
+                            8500元/m<sup>2</sup>
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            高新区南邻崇文大道，东邻蓼河路
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">公园壹号[高新区]</span>
+                                            <span class="houi-price">
+                            8500元/m<sup>2</sup>
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            高新区光府河以东，吴泰闸路杨桥绿地以南
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">涌泰·观澜[太白湖新区]</span>
+                                            <span class="houi-price">
+                            8100元/m<sup>2</sup>
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            太白湖新区火炬路与京杭路交汇处向西300
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">济州老街[太白湖新区]</span>
+                                            <span class="houi-price">
+                            待定
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            太白湖新区运河南路新城发展东对过
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">融创·济宁府[高新区]</span>
+                                            <span class="houi-price">
+                            7800元/m<sup>2</sup>
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            太白湖新区运河南路新城发展东对过
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 新房end -->
+                        <!-- 楼盘排行begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example2.jpg">
+                                        <div class="dcra-text">
+                                            <span class="dcra-name">曲阜尚层装饰设计有限公司</span>
+                                            <span>[曲阜市]</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example3.jpg">
+                                        <div class="dcra-text">
+                                            <span class="dcra-name">济宁百纳装饰设计有限公司</span>
+                                            <span>[任城区]</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example3.jpg">
+                                        <div class="dcra-text">
+                                            <span class="dcra-name">济宁百纳装饰设计有限公司</span>
+                                            <span>[任城区]</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example3.jpg">
+                                        <div class="dcra-text">
+                                            <span class="dcra-name">济宁百纳装饰设计有限公司</span>
+                                            <span>[任城区]</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example3.jpg">
+                                        <div class="dcra-text">
+                                            <span class="dcra-name">济宁百纳装饰设计有限公司</span>
+                                            <span>[任城区]</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 楼盘排行end -->
+                        <!-- 房产资讯begin -->
+                        <div class="sico-item">
+                            <div class="con-dency">
+                                <div class="denc-left">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example4.jpg">
+                                        <div class="dcra-text">
+                                            室内设计配色技巧，参考专业建议让你秒变家装设计师！
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="denc-right">
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 房产资讯end -->
+                    </div>
+                </div>
+                <div class="cica-adve">
+                    <!-- 广告位4begin -->
+                    <div class="swiper-container ia4-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" th:each="advert4 : ${advertList4}">
+                                <div class="posi-rela">
+                                    <img width="100%" th:src="${advert4.imgurl}">
+                                    <div class="tind-adve" th:text="${advert4.title}">广告</div>
+                                </div>
+                            </div>
+                    <!--
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="swiper-pagination aind-spag ia4-spagi"></div>
+                    </div>
+                    <!-- 广告位4end -->
+                </div>
+            </div>
+            <!-- 广告位5begin -->
+            <div class="swiper-container ia5-swiper">
+                <div class="swiper-wrapper">
+
+                    <div class="swiper-slide" th:each="advert5 : ${advertList5}">
+                        <div class="posi-rela">
+                            <img width="100%" th:src="${advert5.imgurl}">
+                            <div class="tind-adve" th:text="${advert5.title}">广告</div>
+                        </div>
+                    </div>
+
+             <!--
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_1.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="posi-rela">
+                            <img width="100%" src="fimages/index/img_ad_0.png">
+                            <div class="tind-adve">广告</div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="swiper-pagination aind-spag ia5-spagi"></div>
+            </div>
+            <!-- 广告位5end -->
+            <div class="mind-titl">
+                <span class="miti-text">品牌</span>
+                <div class="mind-item active-mit">主材</div>
+                <div class="mind-item">辅材</div>
+                <div class="mind-item">家具</div>
+                <div class="mind-item">家电</div>
+                <div class="mind-item">软装配饰</div>
+                <div class="mind-item">建材百科</div>
+                <div class="mind-item">搭配指南</div>
+                <div class="mind-item">
+                    <a class="miit-link no-underline" href="">专属品牌优惠</a>
+                </div>
+            </div>
+            <div class="con-icadv">
+                <div class="cica-cont">
+                    <div class="sico-list">
+                        <!-- 主材begin -->
+                        <div class="sico-item active-sico">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">简一大理石瓷砖伊莉莎白</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            济宁简一大理石瓷砖
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">大自然零醛智造</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            大自然地板
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">简一大理石瓷砖伊莉莎白</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            济宁简一大理石瓷砖
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">博典纯实木地板</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            圣象地板旗舰店
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example7.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">大自然零醛智造</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            大自然地板
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 主材end -->
+                        <!-- 辅材begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">辅材</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            辅材
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example8.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">辅材</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            辅材
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example8.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">辅材</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            辅材
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example8.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">辅材</span>
+                                            <span class="houi-tag">
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            辅材
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example8.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">辅材</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            辅材
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 辅材end -->
+                        <!-- 家具begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家具</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家具
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example9.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家具</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家具
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example9.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家具</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家具
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example9.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家具</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家具
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example9.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家具</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家具
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 家具end -->
+                        <!-- 家电begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家电</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家电
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example10.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家电</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家电
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example10.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家电</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家电
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example10.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家电</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家电
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example10.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">家电</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            家电
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 家电end -->
+                        <!-- 软装配饰begin -->
+                        <div class="sico-item">
+                            <div class="dcra-list">
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example6.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">软装配饰</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            软装配饰
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example11.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">软装配饰</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            软装配饰
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example11.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">软装配饰</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            软装配饰
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example11.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">软装配饰</span>
+                                            <span class="houi-tag">
+                            送货上门
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            软装配饰
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="dcra-item">
+                                    <a class="no-underline" href="">
+                                        <img width="100%" src="fimages/index/example11.png">
+                                        <div class="name-price">
+                                            <span class="houi-name">软装配饰</span>
+                                            <span class="houi-tag">
+                            三年质保
+                          </span>
+                                        </div>
+                                        <div class="houi-addr">
+                                            软装配饰
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 软装配饰end -->
+                        <!-- 建材百科begin -->
+                        <div class="sico-item">
+                            <div class="con-dency">
+                                <div class="denc-left">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example4.jpg">
+                                        <div class="dcra-text">
+                                            室内设计配色技巧，参考专业建议让你秒变家装设计师！
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="denc-right">
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example5.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">装修装饰也需要关注人文标准</h6>
+                                            <p class="denc-cont">
+                                                其实在说到装修装饰时，有更多的人只是关注到材料及设计的
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 建材百科end -->
+                        <!-- 搭配指南begin -->
+                        <div class="sico-item">
+                            <div class="con-dency">
+                                <div class="denc-left">
+                                    <a href="">
+                                        <img width="100%" src="fimages/index/example4.jpg">
+                                        <div class="dcra-text">
+                                            搭配指南
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="denc-right">
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example12.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">搭配指南</h6>
+                                            <p class="denc-cont">
+                                                搭配指南搭配指南
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example12.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">搭配指南</h6>
+                                            <p class="denc-cont">
+                                                搭配指南搭配指南
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example12.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">搭配指南</h6>
+                                            <p class="denc-cont">
+                                                搭配指南搭配指南
+                                            </p>
+                                        </div>
+                                    </a>
+                                    <a class="denc-item no-underline" href="">
+                                        <img class="img-denc" src="fimages/index/example12.png">
+                                        <div class="denc-text">
+                                            <h6 class="denc-title">搭配指南</h6>
+                                            <p class="denc-cont">
+                                                搭配指南搭配指南
+                                            </p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 搭配指南end -->
+                    </div>
+                </div>
+                <div class="cica-adve">
+                    <!-- 广告位6begin -->
+                    <div class="swiper-container ia6-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" th:each="advert6 : ${advertList6}">
+                                <div class="posi-rela">
+                                    <img width="100%" th:src="${advert6.imgurl}">
+                                    <div class="tind-adve" th:text="${advert6.title}">广告</div>
+                                </div>
+                            </div>
+                    <!--
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="posi-rela">
+                                    <img width="100%" src="fimages/index/img_ad_4.png">
+                                    <div class="tind-adve">广告</div>
+                                </div>
+                            </div>   -->
+                        </div>
+                        <div class="swiper-pagination aind-spag ia6-spagi"></div>
+                    </div>
+                    <!-- 广告位6end -->
+                </div>
+            </div>
+            <div class="mind-titl marg-tb">
+                <span class="miti-text">方案家免费服务</span>
+                <div class="mind-item active-mit">专属特惠价</div>
+                <div class="mind-item">贷款类服务</div>
+            </div>
+            <div class="sico-list">
+                <div class="sico-item active-sico">
+                    <a href="">
+                        <img width="100%" src="fimages/index/example13.png">
+                    </a>
+                </div>
+                <div class="sico-item">
+                    <a href="">
+                        <img width="100%" src="fimages/index/example13.png">
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="bgco-grf4">
+            <div>友情链接</div>
+
+            <a class="index-link no-underline"  th:each="tlink : ${linkList}" th:href="${tlink.url}" th:text="${tlink.title}">济宁房价</a>
+
+
+<!--            <a class="index-link no-underline" href="">济宁房价</a>-->
+<!--            <a class="index-link no-underline" href="">济宁房产交易</a>-->
+<!--            <a class="index-link no-underline" href="">济宁新房</a>-->
+<!--            <a class="index-link no-underline" href="">济宁团购</a>-->
+<!--            <a class="index-link no-underline" href="">济宁装修公司</a>-->
+        </div>
+        <div class="index-sidebar">
+            <div class="isid-list">
+                <div class="isid-item">
+                    <img class="img-isite" src="fimages/index/icon_wechat.png">
+                    <div class="isit-text">公众号</div>
+                    <div class="isit-hove">
+                        <img class="img-oaqrc" src="fimages/footer_ewm.jpg">
+                    </div>
+                </div>
+                <div class="isid-item">
+                    <img class="img-isite" src="fimages/index/icon_app.png">
+                    <div class="isit-text">APP下载</div>
+                    <div class="isit-hove">
+                        <div class="coming-soon">敬请期待</div>
+                    </div>
+                </div>
+                <div class="isid-item">
+                    <img class="img-isite" src="fimages/index/icon_consulting.png">
+                    <div class="isit-text">合作咨询</div>
+                    <div class="isit-hove">
+                        <div>400-5555-000</div>
+                        <div>test@test.com</div>
+                    </div>
+                </div>
+                <div class="isid-item">
+                    <img class="img-isite" src="fimages/index/icon_feedback.png">
+                    <div class="isit-text">意见反馈</div>
+                    <div class="isit-hove">
+                        <div>test@test.com</div>
+                    </div>
+                </div>
+                <div class="isid-item isid-ttop" id="ttop-isid">
+                    <img class="img-isite" src="fimages/index/icon_top.png">
+                    <div class="isit-text">回到顶部</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <block class="bottompage"></block>
+</div>
+<script src="./fjs/common.js"></script>
+<script src="./fjs/index.js"></script>
+<script  type="application/javascript">
+
+    function a() {
+
+        var area=document.getElementById("area").innerText ;
+        window.location.href='/fprogrammevillage/wjfa1.html?areaId1=370800';  //注意此处传的areaId应为获取到的
+
+    }
+
+    function b() {
+
+        var area=document.getElementById("area").innerText ;
+        window.location.href='/fhouses/xinFang.html?areaId1=370800';  //注意此处传的areaId应为获取到的
+
+    }
+</script>
+</body>
+</html>

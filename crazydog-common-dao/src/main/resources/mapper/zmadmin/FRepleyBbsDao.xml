@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.resjz.common.dao.zmadmin.dao.FRepleyBbsDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.resjz.common.dao.zmadmin.entity.FRepleyBbsEntity" id="fRepleyBbsMap">
+        <result property="itemid" column="itemid"/>
+        <result property="bbsid" column="bbsid"/>
+        <result property="repleyContent" column="repley_content"/>
+        <result property="memberid" column="memberid"/>
+        <result property="ip" column="ip"/>
+        <result property="toMemberid" column="to_memberid"/>
+        <result property="areaid" column="areaid"/>
+        <result property="floor" column="floor"/>
+        <result property="addtime" column="addtime"/>
+    </resultMap>
+
+
+</mapper>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>装修公司案例</title>
+		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/themes/default/default.css" />
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <script>
+        var editor;
+        KindEditor.ready(function(K) {
+            editor = K.create('textarea[name="content"]', {
+                resizeType : 1,
+                allowPreviewEmoticons : false,
+                uploadJson : '../../upload/fwbUpload',
+                allowImageUpload : true,
+                items : [
+                    'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                    'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                    'insertunorderedlist', '|', 'emoticons', 'image', 'link', '|','fullscreen']
+            });
+        });
+    </script>
+    <style>
+
+        form {
+            margin: 0;
+        }
+        textarea {
+            display: block;
+        }
+        .ke-dialog{
+            top: 100px;
+
+            left: auto;
+        }
+    </style>
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<#if shiro.hasPermission("sys:ffitupcompanycases:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:ffitupcompanycases:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>
+			<#if shiro.hasPermission("sys:ffitupcompanycases:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+<el-dialog :visible.sync="dialogVisible">
+    <img width="100%" :src="dialogImageUrl" alt="">
+</el-dialog>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal"  id="fitup-companyCases-form" >
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">案例名称</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" name="required" autocomplete="off" v-model="fFitupCompanyCases.title" placeholder="案例名称"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">主图</div>
+                        <div class="col-sm-10">
+
+                            <el-upload
+                                    class="upload-demo"
+                                    :data='{filePage:"fitup"}'
+                                    action="../../upload/imgUpload"
+                                    :on-preview="handlePictureCardPreview"
+                                    :on-remove="handleRemove"
+                                    :on-change="handleChange"
+                                    :on-success="onSuccess"
+                                    :file-list="fileList"
+                                    list-type="picture">
+                                <el-button size="small" type="primary">点击上传</el-button>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.mainImg" placeholder="主图"/>-->
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标签 多个用;隔开</div>
+                        <div class="col-sm-10">
+                                    <el-tag
+                                            :key="tag"
+                                            v-for="tag in dynamicTags"
+                                            closable
+                                            :disable-transitions="false"
+                                            @close="handleClose1(tag)">
+                                        {{tag}}
+                                    </el-tag>
+                                    <el-input
+                                            class="input-new-tag"
+                                            v-if="inputVisible&&bj"
+                                            v-model="inputValue"
+                                            ref="saveTagInput"
+                                            size="small"
+                                            @keyup.enter.native="handleInputConfirm"
+                                            @blur="handleInputConfirm"
+                                    >
+                                    </el-input>
+                                    <el-button v-else-if="!inputVisible" class="button-new-tag" size="small" @click="showInput">+ 添加标签</el-button>
+
+
+
+
+
+
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属企业</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.companyId" placeholder="所属企业id"/>-->
+                            <select   v-model="fFitupCompanyCases.companyId" placeholder="请选择所属企业" style="" name="required">
+                                <option v-for="(item,index) in selCompanyVal" :key="item.itemid" :value="item.itemid"
+                                        :label="item.companyName"/>
+                            </select>
+
+                        </div>
+                    </div>
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">面积</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.squareid" placeholder="面积(1.60以下，2.60-80,3.80-100,4.100-120,5120-180,6.180-300,7.300以上)"/>-->
+                            <select   v-model="fFitupCompanyCases.squareid" placeholder="请选择面积" style="">
+                                <option v-for="(item,index) in selSquareVal" :key="item.valueId" :value="item.valueId"
+                                        :label="item.title"/>
+                            </select>
+
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">户型</div>
+                        <div class="col-sm-10">
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.houseTypeid" placeholder="户型1.1室，2 ,3 ,4 ,5.4室以上"/>-->
+                            <select   v-model="fFitupCompanyCases.houseTypeid" placeholder="请选择户型" style="" >
+                                <option v-for="(item,index) in selHouseTypeVal" :key="item.valueId" :value="item.valueId"
+                                        :label="item.title"/>
+                            </select>
+
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">风格</div>
+                        <div class="col-sm-10">
+                            <select   v-model="fFitupCompanyCases.styleid" placeholder="请选择风格" style="" >
+                                <option v-for="(item,index) in selStyleVal" :key="item.valueId" :value="item.valueId"
+                                        :label="item.title"/>
+                            </select>
+
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.styleid" placeholder="风格"/>-->
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">预算</div>
+                        <div class="col-sm-10">
+
+                            <select   v-model="fFitupCompanyCases.moneyid" placeholder="请选择预算" style="" >
+                                <option v-for="(item,index) in selMoneyVal" :key="item.valueId" :value="item.valueId"
+                                        :label="item.title"/>
+                            </select>
+
+                            <!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.moneyid" placeholder="预算 123456"/>-->
+                        </div>
+                    </div>
+
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">商圈</div>
+                <div class="col-sm-10">
+
+                    <select   v-model="fFitupCompanyCases.businessDistrictId" placeholder="请选择商圈" style="" >
+                        <option v-for="(item,index) in selBusinessDistrictVal" :key="item.valueId" :value="item.valueId"
+                                :label="item.title"/>
+                    </select>
+
+                    <!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.moneyid" placeholder="预算 123456"/>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">公装类型</div>
+                <div class="col-sm-10">
+
+                    <select   v-model="fFitupCompanyCases.publicTypeId" placeholder="请选择公装类型" style="" >
+                        <option v-for="(item,index) in selPublicTypeVal" :key="item.valueId" :value="item.valueId"
+                                :label="item.title"/>
+                    </select>
+
+                    <!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.moneyid" placeholder="预算 123456"/>-->
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-2 control-label">经度</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="jingdu"   autocomplete="off" v-model="fFitupCompanyCases.longitude" placeholder="经度"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">纬度</div>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="weidu" autocomplete="off" v-model="fFitupCompanyCases.latitude" placeholder="纬度"/>
+                </div>
+            </div>
+
+
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否推荐</div>
+                        <div class="col-sm-10">
+                            <select  id ="allHalfContracting" v-model="fFitupCompanyCases.recommend"  placeholder="请选择状态" style="">
+                                <option   value="0" label="不推荐"/>
+                                <option   value="1"  label="推荐"
+                                />
+
+                            </select>
+
+<!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.recommend" placeholder="是否推荐，默认0,1推荐"/>-->
+                        </div>
+                    </div>
+            <div class="form-group">
+                <div class="col-sm-2 control-label">公装还是家装</div>
+                <div class="col-sm-10">
+                    <select  id ="" v-model="fFitupCompanyCases.isPublic"  placeholder="请选择状态" style="">
+                        <option   value="1" label="公装"/>
+                        <option   value="2"  label="家装"
+                        />
+
+                    </select>
+
+                    <!--                            <input type="text" class="form-control" v-model="fFitupCompanyCases.recommend" placeholder="是否推荐，默认0,1推荐"/>-->
+                </div>
+            </div>
+
+            <el-collapse v-model="activeNames" >
+                <el-collapse-item title="装修案例详情" name="0">
+                    <textarea name="content"  enctype="multipart/form-data"  id="companyCasesContent" v-model="fFitupCompanyCases.content" style="width:700px;height:500px;visibility:hidden;">KindEditor</textarea>
+                </el-collapse-item>
+                <el-collapse-item title="装修案例摘要" name="1">
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">装修案例摘要</div>
+                    <input type="text" class="form-control"    autocomplete="off" v-model="fFitupCompanyCases.abstractContent" placeholder="案例摘要"/>
+                    </div>
+                </el-collapse-item>
+
+
+
+
+            </el-collapse>
+
+
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="submit" class="btn btn-primary"  value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/ffitupcompanycases.js?_${.now?long}"></script>
+</body>
+</html>

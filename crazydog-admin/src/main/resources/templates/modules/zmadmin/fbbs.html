@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>贴子表</title>
+		<#include "/header.html">
+    <link rel="stylesheet" href="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/themes/default/default.css"/>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/kindeditor-min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/modules/zmadmin/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <script src="${request.contextPath}/statics/libs/ajaxupload.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/libs/chosen.jquery.min.js"></script>
+    <script charset="utf-8" src="${request.contextPath}/statics/js/vue-resource.js"></script>
+    <script src="${request.contextPath}/statics/libs/bootstrap-table.min.js"></script>
+    <script src="${request.contextPath}/statics/plugins/layui/lay/modules/laydate.js?"></script>
+
+
+</head>
+<body>
+<div id="rrapp" v-cloak>
+    <div v-show="showList">
+        <div class="grid-btn">
+			<!--<#if shiro.hasPermission("sys:fbbs:save")>
+            <a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+			</#if>
+			<#if shiro.hasPermission("sys:fbbs:update")>
+            <a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+			</#if>-->
+			<#if shiro.hasPermission("sys:fbbs:delete")>
+            <a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+			</#if>
+        </div>
+        <table id="jqGrid"></table>
+        <div id="jqGridPager"></div>
+    </div>
+
+    <div v-show="!showList" class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <form class="form-horizontal">
+														                    <div class="form-group">
+                        <div class="col-sm-2 control-label">标题</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.title" placeholder="标题"/>
+                        </div>
+                    </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">用户id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.memberid" placeholder="用户id"/>
+                        </div>
+                    </div>-->
+<!--											                    <div class="form-group">-->
+<!--                        <div class="col-sm-2 control-label">内容</div>-->
+<!--                        <div class="col-sm-10">-->
+<!--                            <input type="text" class="form-control" v-model="fBbs.content" placeholder="内容"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                        <div class="form-group">
+                            <div class="col-sm-2 control-label">内容</div>
+                            <div class="col-sm-10">
+                                        <textarea id="activity_detail" name="content" v-model="fBbs.content"
+                                                  type="text/plain" style="width:1024px;height:500px;"></textarea>
+                            </div>
+                        </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">是否精华帖，默认0,1是</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.good" placeholder="是否精华帖，默认0,1是"/>
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">精华帖</div>
+                        <div class="col-sm-10">
+                            <input type="radio" v-model="fBbs.good" name="good" value="0">否
+                            <input type="radio" v-model="fBbs.good" name="good" value="1">是
+                        </div>
+                    </div>
+											                   <!-- <div class="form-group">
+                        <div class="col-sm-2 control-label">是否置顶，默认0,1是</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.top" placeholder="是否置顶，默认0,1是"/>
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">置顶</div>
+                        <div class="col-sm-10">
+                            <input type="radio" v-model="fBbs.top" name="top" value="0">否
+                            <input type="radio" v-model="fBbs.top" name="top" value="1">是
+                        </div>
+                    </div>
+							<!--				                    <div class="form-group">
+                        <div class="col-sm-2 control-label">浏览量</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.views" placeholder="浏览量"/>
+                        </div>
+                    </div>-->
+							<!--				                    <div class="form-group">
+                        <div class="col-sm-2 control-label">IP地址</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.ip" placeholder="IP地址"/>
+                        </div>
+                    </div>-->
+							<!--				                    <div class="form-group">
+                        <div class="col-sm-2 control-label">态状，默认0,1屏蔽</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.status" placeholder="态状，默认0,1屏蔽"/>
+                        </div>
+                    </div>-->
+
+                    <div class="form-group">
+                        <div class="col-sm-2 control-label">状态</div>
+                        <div class="col-sm-10">
+                            <input type="radio" v-model="fBbs.status" name="status" value="0">正常
+                            <input type="radio" v-model="fBbs.status" name="status" value="1">屏蔽
+                        </div>
+                    </div>
+						<!--					                    <div class="form-group">
+                        <div class="col-sm-2 control-label">添加时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.addtime" placeholder="添加时间"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">所属地区id</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.areaid" placeholder="所属地区id"/>
+                        </div>
+                    </div>
+											                    <div class="form-group">
+                        <div class="col-sm-2 control-label">修改时间</div>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" v-model="fBbs.updatetime" placeholder="修改时间"/>
+                        </div>
+                    </div>-->
+							            <div class="form-group">
+                <div class="col-sm-2 control-label"></div>
+                <input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
+                &nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+            </div>
+        </form>
+    </div>
+
+<div id="showDetail" class="" style="display: none; ">
+    <div  id="showDetailDIV" align="center" style="padding:20px; font-size: large;">
+    </div>
+</div>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/zmadmin/fbbs.js?_${.now?long}"></script>
+</body>
+</html>
